@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
-from auth.forms import LoginForm, AddUser
+from vibe_auth.forms import LoginForm, AddUser
 
 # Create your views here.
 def register_page(request):

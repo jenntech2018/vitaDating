@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'main',
     'tailwind',
     'theme',
-    'auth',
+    'vibe_auth',
 ]
 
 TAILWIND_APP_NAME = 'theme'
