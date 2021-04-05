@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
-from Auth.forms import LoginForm, AddUser
+from auth.forms import LoginForm, AddUser
 
 # Create your views here.
 def registerPage(request):
