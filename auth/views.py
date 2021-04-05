@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from auth.forms import LoginForm, AddUser
 
 # Create your views here.
-def registerPage(request):
+def register_page(request):
     form = AddUser()
     if request.method == 'POST':
         form = AddUser(request.POST)
@@ -21,7 +21,8 @@ def registerPage(request):
     context = {'form': form}
     return render(request, 'register.html', context)
 
-def loginPage(request):
+
+def login_page(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
         if form.is_valid():
@@ -36,6 +37,6 @@ def loginPage(request):
     return render(request, "login.html", {'form': form})
 
 
-def logoutView(request):
+def logout_view(request):
     logout(request)
     return HttpResponseRedirect(reverse('login'))
