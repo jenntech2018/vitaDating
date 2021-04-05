@@ -1,0 +1,5 @@
+.vscode
+.env
+vibetube/.env
+node_modules
+theme/static_src/node_modules
