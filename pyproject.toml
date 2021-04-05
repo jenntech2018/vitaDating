@@ -2,11 +2,12 @@
 name = "VibeTube"
 version = "0.1.0"
 description = ""
-authors = ["Your Name <you@example.com>"]
+authors = ["Carlos Luevano", "Dessance Chandler","Jalon Dodson", "Jen Schneider"]
 
 [tool.poetry.dependencies]
 python = "^3.9"
 Django = "^3.1.7"
+django-tailwind = "^1.2.0"
 
 [tool.poetry.dev-dependencies]
 

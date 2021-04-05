@@ -1,1 +1,4 @@
 .vscode
+.env
+vibetube/.env
+node_modules
