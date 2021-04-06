@@ -6,4 +6,4 @@ from video.models import Video
 class MainView(View):
     def get(self, request):
         stuff = Video.objects.all()
-        return render(request, "base.html", {"vids": stuff})
+        return render(request, "main/main.html", {"vids": stuff})

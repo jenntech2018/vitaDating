@@ -19,7 +19,7 @@
 		<header>
 			<div class="min-w-full container flex border-b-2 justify-center text-center mt-2">
 			<div class="mr-40">
-				<img class="inline" src="{% static 'images/vibe-icon.ico' %}"><img class="inline" src="{% static 'images/vibe-text.png' %}">
+				<img class="inline" src="{% static 'images/vibe-icon.ico' %}"/><img class="inline" src="{% static 'images/vibe-text.png' %}"/>
 			</div>
 			<div id="search-box" class="mr-40">
 				<input type="search" class="mb-2 bg-white shadow rounded-full border-0 h-8 p-2 w-64" placeholder="Search VibeTube..."/>
@@ -43,22 +43,5 @@
 			</div>
 			</div>
 		</header>
-		{% for bloop in vids %}
-		<video
-		id="{{bloop.uuid}}"
-		src="file://{{bloop.get_absolute_url}}"
-		class="videos"
-		loop
-		preload="auto"
-		height="calc(400px + (100vw - 768px) / 1152 * 100)"
-		width="width: calc(0.56 * (400px + ((100vw - 768px) / 1152) * 100));"
-		webkit-playsinline="true"
-		playsinline
-		></video>
-		<div>
-			{{bloop.get_absolute_url}}
-		</div>
-		{% endfor %}
-		<script src="https://vjs.zencdn.net/7.11.4/video.min.js"></script>
 	</body>
 </html>

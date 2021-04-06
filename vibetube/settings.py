@@ -25,13 +25,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = 'jz9lmi_vsc8#mu^u-@n&iz8z1sk0cw_f5^%vh9c82+iyr!^4%u'
 environ.Env.read_env()
 SECRET_KEY = os.environ["secret_key"]
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = []
+SITE_URL = "http://127.0.0.1:8000"
 
 
 # Application definition
@@ -125,6 +125,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
+STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 
 MEDIA_URL = '/media/'
 
