@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from django.views import View
+from video.models import Video
 
 # Create your views here.
 class MainView(View):
     def get(self, request):
-        return render(request, "base.html", {})
+        stuff = Video.objects.all()
+        return render(request, "base.html", {"vids": stuff})
