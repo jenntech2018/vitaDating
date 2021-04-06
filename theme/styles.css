@@ -4,6 +4,8 @@
 
 @tailwind utilities;
 
+@tailwind forms;
+
 #login {
     background-color: #fc2a5e;
     width: 100px;

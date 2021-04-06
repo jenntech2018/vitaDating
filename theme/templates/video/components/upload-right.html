@@ -1,0 +1,26 @@
+<div id="upload-form-text" class="mt-48 ml-10">
+    <h3 class="text-2xl font-bold inline">
+        Caption
+    </h3>
+    <span id="counter" class="float-right text-gray-400 mt-2">0/150</span>
+    {{form.caption}}
+    <div class="mt-10">
+        <h3 class="text-2xl font-bold">
+            Who can view this video
+        </h3>
+        <div>
+            {% for radio in form.privacy_settings %}
+                {% if radio.choice_label == "Friends" %}
+                <label class="inline-flex items-center mt-3" for="{{ radio.id_for_label }}">
+                    {{radio.tag}}<span class="ml-2 text-gray-700">{{ radio.choice_label }}</span>
+                </label>
+                {% else %}
+                    <label class="ml-10 inline-flex items-center mt-3" for="{{ radio.id_for_label }}">
+                        {{radio.tag}}<span class="ml-2 text-gray-700">{{ radio.choice_label }}</span>
+                    </label>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <button type="submit" id="upload-submit" disabled class="float-right mt-36 px-4 py-2 text-lg font-semibold tracking-wider w-36 text-white rounded">Post</button>
+    </div>
+</div>
