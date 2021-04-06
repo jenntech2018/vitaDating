@@ -1,0 +1,25 @@
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
+
+#login {
+    background-color: #fc2a5e;
+    width: 100px;
+    height: 32px;
+    font-weight: 600;
+}
+
+#upload {
+    font-weight: 600;
+}
+
+#search-icon {
+    margin-left: -2vw;
+    padding: 2px;
+}
+
+.videos {
+    height: 600px; width: 336px; margin-left: 17.5vw;
+}

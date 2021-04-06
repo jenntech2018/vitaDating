@@ -2,7 +2,7 @@ from django import forms
 
 class LoginForm(forms.Form):
     username = forms.CharField(max_length=100)
-    password = forms.CharField(widget=forms.PasswordInput)
+    password = forms.CharField(widget=forms.PasswordInput())
 
 
 NONPROFIT_CHOICES = [
@@ -15,7 +15,7 @@ NONPROFIT_CHOICES = [
 ]
 class AddUser(forms.Form):
     username = forms.CharField(max_length=100)
-    password = forms.CharField(widget=forms.PasswordInput)
+    password = forms.CharField(widget=forms.PasswordInput())
     display_name = forms.CharField(max_length=60)
     bio = forms.CharField(max_length=180)
     nonprofit = forms.ChoiceField(choices=NONPROFIT_CHOICES, required=False)
