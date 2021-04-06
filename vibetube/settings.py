@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'main',
     'theme',
+    'vibe_user',
     'vibe_auth',
     'video'
 ]
