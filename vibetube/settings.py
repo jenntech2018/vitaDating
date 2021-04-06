@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'main',
     'tailwind',
-    'theme'
+    'theme',
+    'vibe_user',
 ]
 
 TAILWIND_APP_NAME = 'theme'
