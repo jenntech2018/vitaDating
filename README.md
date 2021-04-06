@@ -10,6 +10,7 @@ Use the dependency manager [poetry](https://github.com/python-poetry/poetry) to 
 git clone git@github.com:JalonDodson/VibeTube.git
 cd VibeTube
 poetry install
+npm install
 ```
 
 ## Usage
@@ -17,10 +18,7 @@ poetry install
 ```python
 poetry shell
 python manage.py runserver
-
-# in new terminal
-python manage.py tailwind install
-python manage.py tailwind start
+npm run build
 ```
 
 ## Contributors
