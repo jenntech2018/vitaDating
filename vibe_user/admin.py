@@ -10,7 +10,7 @@ class ViberAdmin(UserAdmin):
     model = Viber
     list_display = ['email', 'username', 'first_name', 'last_name', 'display_name']
     add_fieldsets = UserAdmin.add_fieldsets + (
-        (None, {'fields': ('email', 'first_name', 'last_name', 'display_name', 'homepage', 'age')}),
+        (None, {'fields': ('email', 'first_name', 'last_name', 'display_name',)}),
     )
     fieldsets = UserAdmin.fieldsets
 
