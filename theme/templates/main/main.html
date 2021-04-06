@@ -1,0 +1,38 @@
+{% include 'base.html' %}
+<body>
+    <div class="container flex justify-center">
+        <div id="side-panel">
+            For You
+            <br>
+            Following
+        </div>
+            <div id="videos" class="mt-10">
+            {% for bloop in vids %}
+                <div id="video-{{bloop.id}}" style="margin-left: 17.5vw">
+                    <video
+                    class="video-js videos rounded-md"
+                    loop
+                    autoplay
+                    preload="metadata"
+                    webkit-playsinline="true"
+                    playsinline
+                    style="height: 600px; width: 336px;"
+                    >
+                        <source src="file://{{bloop.get_absolute_url}}" />
+                    </video>
+                    <hr class="min-w-full">
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+	<script src="https://vjs.zencdn.net/7.11.4/video.min.js"></script>
+    <script>
+        let doc = document.documentElement;
+        document.getElementById("login").addEventListener("click", () => {
+            let leftPos = (window.pageXOffset || doc.scrollLeft) - (doc.clientLeft || 0);
+            let topPos = (window.pageYOffset || doc.scrollTop)  - (doc.clientTop || 0);
+            console.log(topPos, leftPos)
+        })
+        let currentVideo = ""
+    </script>
+</body>

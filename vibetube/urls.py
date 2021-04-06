@@ -15,11 +15,19 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
 
 from main.urls import urlpatterns as main_urls
+from video.urls import urlpatterns as video_urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
 ]
 
 urlpatterns += main_urls
+urlpatterns += video_urls
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)
+
