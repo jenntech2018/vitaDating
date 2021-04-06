@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'main',
     'tailwind',
     'theme',
+    'vibe_user',
     'vibe_auth',
 ]
 
