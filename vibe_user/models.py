@@ -10,7 +10,7 @@ class Viber(AbstractUser):
     following = models.ManyToManyField('self', symmetrical=False, related_name='viber_following')
     video = models.ManyToManyField('self', symmetrical=False, related_name='viber_video')
     sound = models.ManyToManyField('self', symmetrical=False, related_name='viber_sound')
-    # profile_photo = models.ImageField(blank=True)
+    profile_photo = models.ImageField(blank=True)
 
     def __str__(self):
         return self.username
