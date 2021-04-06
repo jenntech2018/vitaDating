@@ -1,0 +1,83 @@
+{% include 'base.html' %}
+{% load static %}
+<head>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        #body {
+            font-family: 'Source Sans Pro', sans-serif;
+        }
+        #v-flex > div > span {
+            cursor:default;
+        }
+        #upload-vid-div {
+            margin-left: 27.5vw;
+        }
+        #upload-box {
+            height: 40vh;
+        }
+        #upload-box, #upload-box > * {
+            cursor: pointer;
+        }
+        #upload-box > div {
+            text-align: center;
+        }
+        #upload-form-text {
+            min-width: 30vw;
+        }
+        #caption:focus {
+            border: none!important;
+            box-shadow: 0 0 0 5pt rgb(0 0 0 / 2%);
+            outline: none;
+        }
+        #upload-submit {
+            background-color: #fc2a5e;
+        }
+        #upload-submit:disabled {
+            background-color: rgba(87, 85, 85, 0.25);
+            cursor: default;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <form method="POST" enctype="multipart/form-data" class="flex">
+            {% csrf_token %}
+            {% include 'video/components/upload-left.html' with form=form %}
+            {% include 'video/components/upload-right.html' with form=form %}
+        </form>
+    </main>
+    {% include 'video/components/footer.html' %}
+    <script>
+        caption = document.getElementById("caption");
+        counter = document.getElementById("counter");
+        caption.addEventListener("keyup", () => {
+            if (caption.value.length <= 150) {
+                counter.innerHTML = caption.value.length + "/150";
+            } else {
+                caption.value = caption.value.substring(0, caption.value.length - 1);
+            }
+        })
+
+        video = document.getElementById("upload-input");
+        video.onchange = (ev) => {
+            if (video.files) {
+                let videoPreview = document.getElementById("video-preview");
+                document.getElementById("upload-submit").disabled = false
+                document.getElementById("preview-div").classList.remove("hidden")
+                document.getElementById("file-uploader").classList.add("hidden")
+                document.getElementById("upload-input").classList.add("hidden")
+                
+                let reader = new FileReader();
+                reader.onload = (e) => {
+                    videoPreview.src = e.target.result;
+                }
+                reader.readAsDataURL(video.files[0])
+            }
+        }
+
+        window.onload = () => {
+            document.getElementById("id_privacy_settings_0").checked = true
+        }
+    </script>
+</body>
