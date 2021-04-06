@@ -4,4 +4,4 @@ from django.views import View
 # Create your views here.
 class UploadView(View):
     def get(self, request):
-        return render(request, "upload.html", {})
+        return render(request, "video/upload.html", {})
