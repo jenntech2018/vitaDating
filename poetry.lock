@@ -106,22 +106,6 @@ optional = false
 python-versions = ">=3.5"
 
 [[package]]
-name = "unicorn"
-version = "1.0.2"
-description = "Unicorn CPU emulator engine"
-category = "main"
-optional = false
-python-versions = "*"
-
-[[package]]
-name = "uwsgi"
-version = "2.0.19.1"
-description = "The uWSGI server"
-category = "main"
-optional = false
-python-versions = "*"
-
-[[package]]
 name = "whitenoise"
 version = "5.2.0"
 description = "Radically simplified static file serving for WSGI applications"
@@ -135,7 +119,7 @@ brotli = ["brotli"]
 [metadata]
 lock-version = "1.1"
 python-versions = "3.9.2"
-content-hash = "fb15801d324cdbe7a5f20423bfae88be4e271b21441eb4fb4dcf5f34e81b6183"
+content-hash = "ad804916773ab443ea10c71329a8a945b2a7c09e5c545c0af8bef8a92a7e4377"
 
 [metadata.files]
 asgiref = [
@@ -189,17 +173,6 @@ pytz = [
 sqlparse = [
     {file = "sqlparse-0.4.1-py3-none-any.whl", hash = "sha256:017cde379adbd6a1f15a61873f43e8274179378e95ef3fede90b5aa64d304ed0"},
     {file = "sqlparse-0.4.1.tar.gz", hash = "sha256:0f91fd2e829c44362cbcfab3e9ae12e22badaa8a29ad5ff599f9ec109f0454e8"},
-]
-unicorn = [
-    {file = "unicorn-1.0.2-py2.py3-none-macosx_10_14_x86_64.whl", hash = "sha256:25d65de6662c74cfed371b0bbf4fc8cc9246ab7e293314a29a6c570da46b6050"},
-    {file = "unicorn-1.0.2-py2.py3-none-manylinux1_i686.whl", hash = "sha256:f8ac03d7fa5d5b71871064db89e3c69f4acc773d617fda21cf43c00b95e06229"},
-    {file = "unicorn-1.0.2-py2.py3-none-manylinux1_x86_64.whl", hash = "sha256:a87d6065cb44854d40d25259d0c0f3bfc849c3cf0f6b48056f861b2b20bbaee0"},
-    {file = "unicorn-1.0.2-py2.py3-none-win32.whl", hash = "sha256:62df2e022563b42ab12f43f003449b11e7d110ff9268ed20917aaf0a90fdfe4e"},
-    {file = "unicorn-1.0.2-py2.py3-none-win_amd64.whl", hash = "sha256:16f43e836b088f2b5b537e7ac6ae0f364946b0b7d608f637a5ab919e32f3b919"},
-    {file = "unicorn-1.0.2.tar.gz", hash = "sha256:fd2d5225d394c54af889b550b86b33ae8311945d2225744509434cd86663a94a"},
-]
-uwsgi = [
-    {file = "uWSGI-2.0.19.1.tar.gz", hash = "sha256:faa85e053c0b1be4d5585b0858d3a511d2cd10201802e8676060fd0a109e5869"},
 ]
 whitenoise = [
     {file = "whitenoise-5.2.0-py2.py3-none-any.whl", hash = "sha256:05d00198c777028d72d8b0bbd234db605ef6d60e9410125124002518a48e515d"},
