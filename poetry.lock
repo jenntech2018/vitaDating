@@ -27,6 +27,14 @@ argon2 = ["argon2-cffi (>=16.1.0)"]
 bcrypt = ["bcrypt"]
 
 [[package]]
+name = "django-environ"
+version = "0.4.5"
+description = "Django-environ allows you to utilize 12factor inspired environment variables to configure your Django application."
+category = "main"
+optional = false
+python-versions = "*"
+
+[[package]]
 name = "django-tailwind"
 version = "1.2.0"
 description = "Tailwind CSS Framework for Django projects"
@@ -70,7 +78,7 @@ python-versions = ">=3.5"
 [metadata]
 lock-version = "1.1"
 python-versions = "3.9.2"
-content-hash = "3b80a3c54d8134f441c0b4dc77337f9d091e82f7ddafbb0a50bce5c7d22b65b0"
+content-hash = "a8121c470f5ee22623032b45bc4f5f4d2a17629999757da2ccf9be18b2cade44"
 
 [metadata.files]
 asgiref = [
@@ -80,6 +88,10 @@ asgiref = [
 django = [
     {file = "Django-3.1.7-py3-none-any.whl", hash = "sha256:baf099db36ad31f970775d0be5587cc58a6256a6771a44eb795b554d45f211b8"},
     {file = "Django-3.1.7.tar.gz", hash = "sha256:32ce792ee9b6a0cbbec340123e229ac9f765dff8c2a4ae9247a14b2ba3a365a7"},
+]
+django-environ = [
+    {file = "django-environ-0.4.5.tar.gz", hash = "sha256:6c9d87660142608f63ec7d5ce5564c49b603ea8ff25da595fd6098f6dc82afde"},
+    {file = "django_environ-0.4.5-py2.py3-none-any.whl", hash = "sha256:c57b3c11ec1f319d9474e3e5a79134f40174b17c7cc024bbb2fad84646b120c4"},
 ]
 django-tailwind = [
     {file = "django-tailwind-1.2.0.tar.gz", hash = "sha256:6cc8950a024bc786be5462e3fae00382bb182dc831946621cf1209937a4e2b48"},
