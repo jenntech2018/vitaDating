@@ -1,4 +1,4 @@
 Procfile
 -------------------------------
-web: bin/start-nginx uwsgi uwsgi.ini
+web: bin/start-nginx gunicorn -c gunicorn.conf vibetube.wsgi:application
 
