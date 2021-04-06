@@ -25,7 +25,7 @@ def user_dir_path(instance, filename):
     return f"@test/{instance.uuid}.mp4"
 
 def gen_uuid():
-    return random.randint(69000000000000000, 69999999999999999)
+    return random.randint(690000000, 699999999)
 
 class Video(models.Model):
 
