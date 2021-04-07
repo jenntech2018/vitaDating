@@ -6,6 +6,7 @@ from django.contrib.auth.models import AbstractUser
 class Viber(AbstractUser):
     display_name = models.CharField(max_length=120, null=True, blank=True)
     bio = models.TextField()
+    dob = models.DateField()
     followers = models.ManyToManyField('self', symmetrical=False, related_name='viber_followers')
     following = models.ManyToManyField('self', symmetrical=False, related_name='viber_following')
     video = models.ManyToManyField('self', symmetrical=False, related_name='viber_video')
