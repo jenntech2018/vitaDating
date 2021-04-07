@@ -1,5 +1,5 @@
 from django import forms
-
+from vibe_user.models import Viber
 class LoginForm(forms.Form):
     username = forms.CharField(max_length=100)
     password = forms.CharField(widget=forms.PasswordInput())
@@ -21,4 +21,4 @@ class AddUser(forms.Form):
     nonprofit = forms.ChoiceField(choices=NONPROFIT_CHOICES, required=False)
     instagram_link = forms.URLField(max_length=180)
     youtube_link = forms.URLField(max_length=180)
-    profile_photo = forms.ImageField(upload_to='/photos/')
+    profile_photo = forms.ImageField()
