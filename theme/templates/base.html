@@ -51,50 +51,99 @@
 			#icon-btn > * {
 				cursor: pointer;
 			}
+			.u-icon-wrapper .u-icon-info, .n-icon-wrapper .n-icon-info {
+				display: none;
+			}
+			
+			.u-icon-wrapper:hover .u-icon-info, .n-icon-wrapper .n-icon-info {
+				display: block;
+			}
+
+			#nav-icons, #search-box, #logo {
+				user-select: none;
+			}
 		</style>
 	</head>
 
-	<body x-cloak x-data="{ showLogin: false, showRegister: false, showStep2: false }" :class="{'overflow-y-hidden': showLogin, 'overflow-y-hidden': showRegister, 'overflow-y-hidden': showStep2 }" class="bg-grey-lightest font-serif leading-normal tracking-normal border-box" style="font-family: 'Source Sans Pro', sans-serif">
+	<body x-cloak x-data="{ showLogin: false, showRegister: false, showStep2: false, bellClicked: false, chatClicked: false }" :class="{'overflow-y-hidden': showLogin, 'overflow-y-hidden': showRegister, 'overflow-y-hidden': showStep2 }" class="bg-grey-lightest font-serif leading-normal tracking-normal border-box" style="font-family: 'Source Sans Pro', sans-serif">
 		<header>
-			<div class="min-w-full container flex border-b-2 justify-center text-center mt-2">
-			<div class="mr-40">
-				<img class="inline" src="{% static 'images/vibe-icon.ico' %}"/><img class="inline" src="{% static 'images/vibe-text.png' %}"/>
+				<!-- {% include 'components/nav/darkmode-toggle.html' %} -->
+			<div style="height: 54px;" class="min-w-full container flex border-b-2 justify-center text-center mt-2">
+			<div id="logo" style="margin-right: 14.6875rem;" class="-ml-28 mt-2">
+				<a href="/"><img class="inline" style="height: 32px;" src="{% static 'images/vibe-icon.ico' %}"/><img style="height: 25px; width: 95px;" class="inline" src="{% static 'images/vibe-text.png' %}"/></a>
 			</div>
-			<div id="search-box" class="mr-40">
-				<input type="search" class="mb-2 bg-white shadow rounded-full border-0 h-8 p-2 w-64" placeholder="Search VibeTube..."/>
-				<span class="absolute pin-r pin-t mt-1 text-purple-lighter">
-					<svg id="search-icon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 border-l" fill="none" viewBox="0 0 24 24" stroke="gray">
+			<div id="search-box" style="margin-right: 14.6875rem;" class="-mt-1">
+				<input type="search" style="width: 22.5rem;" class="mb-2 bg-gray-100 shadow rounded-full border-0 h-12 p-2" placeholder="Search accounts, hashtags"/>
+				<span class="absolute pin-r pin-t mt-2.5 -ml-1 text-purple-lighter">
+					<svg id="search-icon" xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="rgba(156, 163, 175, .85)">
 						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
 					</svg>
 				</span>
+				<div class="inline border-l border-gray-300 -ml-14"></div>
 			</div>
 			<div>
 				{% if not request.user.is_authenticated %}
 				<a id="upload-btn" class="hover:underline font-bold" @click="showLogin = true">Upload</a>
 				<button id="login" @click="showLogin = true" class="auth-buttons mb-2 ml-2 inline text-white focus:outline-none focus:ring shadow-lg hover:shadow-none transition-all duration-300">Log in</button>
-				<span>
 					<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline" fill="gray" viewBox="0 0 24 24" stroke="currentColor">
 						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
 					</svg>
-				</span>
 				{% else %}
-				<span>
-					<svg xmlns="http://www.w3.org/2000/svg" class="inline h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
-					</svg>
-					<svg xmlns="http://www.w3.org/2000/svg" class="inline h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-					</svg>
-					<svg xmlns="http://www.w3.org/2000/svg" class="inline h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
-					</svg>
+				<div id="nav-icons" class="mt-1">
+					<span class="relative u-icon-wrapper">
+						<a href="/upload">
+							<svg xmlns="http://www.w3.org/2000/svg" @mouseover="uIcon = true" class="cursor-pointer inline h-8 w-8 pr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+							</svg>
+						</a>
+						<span style="background-color: rgba(84,84,84,0.92); margin-left: -3.25rem;" class="text-white mt-2 text-center rounded-lg font-semibold absolute w-32 h-10 border border-grey-100 px-4 py-2 u-icon-info">
+							<svg xmlns="http://www.w3.org/2000/svg" class="-mt-4 ml-7" width="36" height="8" viewBox="0 0 36 8" fill="none">
+								<path fill-rule="evenodd" clip-rule="evenodd" d="M0 8h6.686a8 8 0 0 0 5.657-2.343l4.95-4.95a1 1 0 0 1 1.414 0l4.95 4.95A8 8 0 0 0 29.314 8H36 0z" fill="#545454" fill-opacity=".92"/>
+							</svg>
+							<span class="relative top-1">Upload video</span>
+						</span>
+					</span>
+					<span class="relative u-icon-wrapper">
+							<svg xmlns="http://www.w3.org/2000/svg" :class="{'hidden': bellClicked }" @click="bellClicked = ! bellClicked" class="cursor-pointer inline h-8 w-8 pr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+							</svg>
+
+							<svg xmlns="http://www.w3.org/2000/svg" :class="{'hidden': !bellClicked }" @click="bellClicked = ! bellClicked" class="cursor-pointer inline h-8 w-8 pr-2" viewBox="0 0 20 20" fill="currentColor">
+								<path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z" />
+							</svg>
+						<span style="background-color: rgba(84,84,84,0.92)" class="text-white mt-2 text-center rounded-lg font-semibold absolute w-32 h-10 -ml-4 border border-grey-100 px-4 py-2 u-icon-info">
+							<svg xmlns="http://www.w3.org/2000/svg" style="margin-left: 1.75rem;" class="-mt-4" width="36" height="8" viewBox="0 0 36 8" fill="none">
+								<path fill-rule="evenodd" clip-rule="evenodd" d="M0 8h6.686a8 8 0 0 0 5.657-2.343l4.95-4.95a1 1 0 0 1 1.414 0l4.95 4.95A8 8 0 0 0 29.314 8H36 0z" fill="#545454" fill-opacity=".92"/>
+							</svg>
+							<span class="relative top-1">Notifications</span>
+						</span>
+					</span>
+
+
+					<span class="relative u-icon-wrapper">
+						<svg xmlns="http://www.w3.org/2000/svg" :class="{'hidden': chatClicked }" @click="chatClicked = ! chatClicked" class="cursor-pointer inline h-8 w-8 pr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z" />
+						  </svg>
+						  <svg xmlns="http://www.w3.org/2000/svg" :class="{'hidden': !chatClicked }" @click="chatClicked = ! chatClicked" class="cursor-pointer inline h-8 w-8 pr-2" viewBox="0 0 20 20" fill="currentColor">
+							<path d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4a2 2 0 01-2 2H9l-3 3v-3H4a2 2 0 01-2-2V5z" />
+							<path d="M15 7v2a4 4 0 01-4 4H9.828l-1.766 1.767c.28.149.599.233.938.233h2l3 3v-3h2a2 2 0 002-2V9a2 2 0 00-2-2h-1z" />
+						  </svg>
+						<span style="background-color: rgba(84,84,84,0.92); margin-left: 3.25rem;" class="text-white mt-2 text-center rounded-lg font-semibold absolute w-16 h-10 border border-grey-100 px-4 py-2 u-icon-info">
+							<svg xmlns="http://www.w3.org/2000/svg" style="margin-left: -0.25rem;" class="-mt-4" width="36" height="8" viewBox="0 0 36 8" fill="none">
+								<path fill-rule="evenodd" clip-rule="evenodd" d="M0 8h6.686a8 8 0 0 0 5.657-2.343l4.95-4.95a1 1 0 0 1 1.414 0l4.95 4.95A8 8 0 0 0 29.314 8H36 0z" fill="#545454" fill-opacity=".92"/>
+							</svg>
+							<span class="relative top-1 right-1">Inbox</span>
+						</span>
+					</span>
+
 					<span class="m-1 mr-2 text-xl rounded-full text-white">
 						<img
 						class="rounded-full inline w-7 h-7"
 						alt="{{request.user.display_name}}'s photo"
 						src="{% if request.user.profile_photo %} {{request.user.profile_photo.url}} {% else %} {% static 'images/default.png' %} {% endif %}">
 					</span>
-				</span>
+				</div>
+				{% include 'components/nav/icons.html' %}
 				{% endif %}
 			</div>
 			</div>

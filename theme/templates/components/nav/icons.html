@@ -1,0 +1,66 @@
+<div x-data="{activeFilter: 'All'}" class="inline" id="notif-box-wrapper">
+    <span id="notif-bar" style="height: 640px; width: 380px; right: 30.5rem; top: 3.75rem;" class="rounded-md absolute w-40 bg-white border-2 drop-shadow-lg shadow-lg">
+        <h4 class="text-2xl font-semibold absolute top-4 left-4">Notifications</h4>
+        <div class="absolute top-14 left-2">
+            <span
+            @click="activeFilter = 'All'"
+            :class="{'bg-black text-white': activeFilter == 'All', 'bg-gray-200 text-black': activeFilter !== 'All'}"
+            class="cursor-pointer rounded-full pr-2 pl-2 font-semibold">All</span>
+            <span @click="activeFilter = 'Likes'"
+            :class="{'bg-black text-white': activeFilter == 'Likes', 'bg-gray-200 text-black': activeFilter !== 'Likes'}" class="cursor-pointer bg-gray-200 rounded-full pr-2 pl-2 font-semibold">Likes</span>
+            <span @click="activeFilter = 'Comments'"
+            :class="{'bg-black text-white': activeFilter == 'Comments', 'bg-gray-200 text-black': activeFilter !== 'Comments'}" class="cursor-pointer bg-gray-200 rounded-full pr-2 pl-2 font-semibold">Comments</span>
+            <span @click="activeFilter = 'Mentions'"
+            :class="{'bg-black text-white': activeFilter == 'Mentions', 'bg-gray-200 text-black': activeFilter !== 'Mentions'}" class="cursor-pointer bg-gray-200 rounded-full pr-2 pl-2 font-semibold">Mentions</span>
+            <span @click="activeFilter = 'Followers'"
+            :class="{'bg-black text-white': activeFilter == 'Followers', 'bg-gray-200 text-black': activeFilter !== 'Followers'}" class="cursor-pointer bg-gray-200 rounded-full pr-2 pl-2 font-semibold">Followers</span>
+        </div>
+    </span>
+    <div class="absolute" style="pointer-events: none;">
+        <div class="relative top-48 right-24" x-show="activeFilter == 'All'" id="all-notifs">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-28 w-28 text-gray-400 opacity-90" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+            </svg><br>
+            <span style="right: 5.5rem" class="-top-4 relative">
+                <h6 class="font-semibold text-xl text-black opacity-80">All activity</h6>
+                <p class="text-sm text-gray-500 opacity-75">Notifications about your account will appear here.</p>
+            </span>
+        </div>
+        <div class="relative top-48 right-24" x-show="activeFilter == 'Likes'" id="like-notifs">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-28 w-28 text-gray-400 opacity-90" viewBox="0 0 20 20" fill="none" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd" />
+            </svg>
+            <span style="right: 6.75rem" class="top-2 relative">
+                <h6 class="font-semibold text-xl text-black opacity-80">Likes on your videos</h6>
+                <p class="text-sm text-gray-500 opacity-75 text-center">When someone likes one of your videos, you'll see it here.</p>
+            </span>
+        </div>
+        <div class="relative top-48 right-24" x-show="activeFilter == 'Comments'" id="comment-notifs">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-28 w-28 text-gray-400 opacity-90" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+            </svg>
+            <span style="right: 6.5rem" class="top-2 relative">
+                <h6 class="font-semibold text-xl text-black opacity-80">Comments on your videos</h6>
+                <p class="text-sm w-80 text-gray-500 opacity-75">When someone comments on one of your videos, you'll see it here.</p>
+            </span>
+        </div>
+        <div class="relative top-48 right-24" x-show="activeFilter == 'Mentions'" id="mention-notifs">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-28 w-28 text-gray-400 opacity-90" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" />
+            </svg>
+            <span style="right: 5rem" class="top-2 relative">
+                <h6 class="font-semibold text-xl text-black opacity-80">Mentions of You</h6>
+                <p class="text-sm text-gray-500 opacity-75">When someone mentions you, you'll see it here.</p>
+            </span>
+        </div>
+        <div class="relative top-48 right-24" x-show="activeFilter == 'Followers'" id="follower-notifs">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-28 w-28 text-gray-400 opacity-90" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+            </svg>
+            <span style="right: 5.5rem" class="top-2 relative">
+                <h6 class="font-semibold text-xl text-black opacity-80">New followers</h6>
+                <p class="text-gray-500 text-sm opacity-75">When someone new follows you, you'll see it here.</p>
+            </span>
+        </div>
+    </div>
+</div>
