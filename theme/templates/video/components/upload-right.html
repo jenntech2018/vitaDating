@@ -9,7 +9,10 @@
             Who can view this video
         </h3>
         <div>
-            {% for radio in form.privacy_settings %}
+        <div class="hidden">
+            {{ form.creator }}
+        </div>
+            {% for radio in form.privacy %}
                 {% if radio.choice_label == "Friends" %}
                 <label class="inline-flex items-center mt-3" for="{{ radio.id_for_label }}">
                     {{radio.tag}}<span class="ml-2 text-gray-700">{{ radio.choice_label }}</span>

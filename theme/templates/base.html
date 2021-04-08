@@ -13,9 +13,48 @@
 
 		<link rel="stylesheet" href="{% static 'css/style.css' %}">
 		<link href="https://vjs.zencdn.net/7.11.4/video-js.css" rel="stylesheet" />
+		<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+    	<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap" rel="stylesheet">
+		<style>
+			input:focus {
+				outline: none;
+			}
+			#login-modal-btn, #reg-modal-btn, #s2-modal-btn {
+				background-color: #fc2a5e;
+				font-weight: 600;
+			}
+			#dob > select {
+				cursor: pointer;
+				text-align-last: center;
+				border: none;
+			}
+			#dob > select:focus {
+				outline: none;
+			}
+			.dob-labels {
+				cursor: pointer;
+				pointer-events: none;
+			}
+			#send-code:disabled {
+				cursor: not-allowed;
+				background-color: rgba(255, 255, 255, 0.5);
+				color: rgba(0,0,0,.5);
+				border-left: none;
+			}
+			#reg-modal-btn:disabled {
+				cursor: not-allowed;
+				background-color: rgba(229, 231, 235, .75);
+				color: rgba(0,0,0,.35);
+			}
+			[x-cloak] { display: none }
+			#icon-btn > * {
+				cursor: pointer;
+			}
+		</style>
 	</head>
 
-	<body class="bg-grey-lightest font-serif leading-normal tracking-normal border-box">
+	<body x-cloak x-data="{ showLogin: false, showRegister: false, showStep2: false }" :class="{'overflow-y-hidden': showLogin, 'overflow-y-hidden': showRegister, 'overflow-y-hidden': showStep2 }" class="bg-grey-lightest font-serif leading-normal tracking-normal border-box" style="font-family: 'Source Sans Pro', sans-serif">
 		<header>
 			<div class="min-w-full container flex border-b-2 justify-center text-center mt-2">
 			<div class="mr-40">
@@ -30,18 +69,33 @@
 				</span>
 			</div>
 			<div>
-				<a href="/upload" class="hover:underline" id="upload">
-				<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-  					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
-				</svg></a>
-				<button id="login" class="mb-2 ml-2 inline text-white"><a href='login/'>Log in</a></button>
+				{% if not request.user.is_authenticated %}
+				<a id="upload-btn" class="hover:underline font-bold" href="#">Upload</a>
+				<button id="login" @click="showLogin = true" class="auth-buttons mb-2 ml-2 inline text-white focus:outline-none focus:ring shadow-lg hover:shadow-none transition-all duration-300">Log in</button>
 				<span>
 					<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline" fill="gray" viewBox="0 0 24 24" stroke="currentColor">
 						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
 					</svg>
 				</span>
+				{% endif %}
 			</div>
 			</div>
 		</header>
+		{% include 'components/modals/login.html' %}
+		{% include 'components/modals/register.html' %}
+	  <script>
+		  const month = document.getElementById("month");
+		  let monthLabel = document.getElementById("mlabel");
+
+		  const day = document.getElementById("day");
+		  let dayLabel = document.getElementById("dlabel");
+
+		  const year = document.getElementById("year");
+		  let yearLabel = document.getElementById("ylabel");
+
+		  month.onchange = (ev) => monthLabel.classList.add("hidden");
+		  day.onchange = (ev) => dayLabel.classList.add("hidden");
+		  year.onchange = (ev) => yearLabel.classList.add("hidden");
+		</script>
 	</body>
 </html>

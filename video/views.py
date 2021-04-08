@@ -7,11 +7,11 @@ from video.models import Video
 # Create your views here.
 class UploadView(View):
     def post(self, request):
-        form = UploadForm(request.POST or None, request.FILES or None)
+        form = UploadForm(request.POST or None, request.FILES or None, user=request.user)
         if form.is_valid():
             form.save()
-            # temp redirect to main, will update to video url after it's working
             return redirect(reverse("main"))
+
     def get(self, request):
-        form = UploadForm()
+        form = UploadForm(initial={'creator':request.user}, user=request.user)
         return render(request, "video/upload.html", {"form": form})
