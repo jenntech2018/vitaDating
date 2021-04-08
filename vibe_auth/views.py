@@ -1,8 +1,7 @@
 from django.shortcuts import render, HttpResponseRedirect, reverse
 from django.contrib.auth import authenticate, login, logout
-from vibe_auth.forms import LoginForm, AddUser
+from vibe_auth.forms import LoginForm, RegistrationForm
 from vibe_user.models import Viber
-from django.contrib.auth.models import User
 
 # Create your views here.
 def register_page(request):
@@ -11,7 +10,7 @@ def register_page(request):
         form = AddUser(request.POST)
         if form.is_valid():
             data = form.cleaned_data
-            user = User.objects.create_user(
+            user = Viber.objects.create_user(
                 username=data['username'],
                 password=data['password'],
                 display_name=data['display_name'],

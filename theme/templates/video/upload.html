@@ -69,10 +69,10 @@
                 document.getElementById("upload-input").classList.add("hidden")
                 
                 let reader = new FileReader();
+                reader.readAsDataURL(video.files[0])
                 reader.onload = (e) => {
                     videoPreview.src = e.target.result;
                 }
-                reader.readAsDataURL(video.files[0])
             }
         }
 

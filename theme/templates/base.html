@@ -20,7 +20,7 @@
 			input:focus {
 				outline: none;
 			}
-			#login-modal-btn {
+			#login-modal-btn, #reg-modal-btn, #s2-modal-btn {
 				background-color: #fc2a5e;
 				font-weight: 600;
 			}
@@ -47,10 +47,14 @@
 				background-color: rgba(229, 231, 235, .75);
 				color: rgba(0,0,0,.35);
 			}
+			[x-cloak] { display: none }
+			#icon-btn > * {
+				cursor: pointer;
+			}
 		</style>
 	</head>
 
-	<body x-data="{ showLogin: false, showRegister: false }" :class="{'overflow-y-hidden': showLogin, 'overflow-y-hidden': showRegister }" class="bg-grey-lightest font-serif leading-normal tracking-normal border-box" style="font-family: 'Source Sans Pro', sans-serif">
+	<body x-cloak x-data="{ showLogin: false, showRegister: false, showStep2: false }" :class="{'overflow-y-hidden': showLogin, 'overflow-y-hidden': showRegister, 'overflow-y-hidden': showStep2 }" class="bg-grey-lightest font-serif leading-normal tracking-normal border-box" style="font-family: 'Source Sans Pro', sans-serif">
 		<header>
 			<div class="min-w-full container flex border-b-2 justify-center text-center mt-2">
 			<div class="mr-40">

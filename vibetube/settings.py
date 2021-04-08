@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     'theme',
     'vibe_user',
     'vibe_auth',
-    'video'
+    'video',
 ]
 
 MIDDLEWARE = [
@@ -73,6 +73,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'theme.processors.base_login_form',
+                'theme.processors.base_register_form'
             ],
         },
     },
@@ -104,6 +106,11 @@ AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
+]
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'vibe_auth.auth_backend.SettingsBackend'
 ]
 
 
