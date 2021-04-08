@@ -1,11 +1,21 @@
-<h1>Vibe Profile {{vibe_user.username}}</h1>
+<!-- <head> -->
 
-<h3>{{vibe_user.first_name}} {{vibe_user.last_name}}</h3>
+    <!-- <style></style> -->
+    <h1>Vibe Profile {{vibe_user.username}}</h1>
+<!-- </head> -->
+<!-- <body> -->
+    <h3>{{vibe_user.first_name}} {{vibe_user.last_name}}</h3>
 
-<p1>{{vibe_followers}} Followers {{vibe_following}} Following {{vibe_likes}} Likes</p1>
+    <p1>{{vibe_followers}} Followers {{vibe_following}} Following {{vibe_likes}} Likes</p1>
+    
+    
+    <p1>{{vibe_user.bio}}</p1>
+    
+    {% for item in videos %}
+    {% endfor %}
 
 
-<p1>{{vibe_user.bio}}</p1>
+<!-- </body> -->
 
-{% for item in videos %}
-{% endfor %}
+
+
