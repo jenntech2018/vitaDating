@@ -17,11 +17,11 @@ def check_for_name(name):
 
 def user_vid_path(instance, filename):
     ext = filename.split(".")[-1]
-    return f"@{instance.creator.display_name}/video/{random.randint(690000000, 699999999)}{ext}"
+    return f"@{instance.creator.display_name}/video/{random.randint(690000000, 699999999)}.{ext}"
 
 def user_photo_path(instance, filename):
     ext = filename.split(".")[-1]
-    return f"@{instance.display_name}/profile-photos/{random.randint(101010101, 999999999)}{ext}"
+    return f"@{instance.display_name}/profile-photos/{random.randint(101010101, 999999999)}.{ext}"
 
 def gen_uuid():
     return random.randint(690000000, 699999999)
