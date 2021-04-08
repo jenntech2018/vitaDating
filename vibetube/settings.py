@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     'theme',
     'vibe_user',
     'vibe_auth',
-    'video'
+    'video',
 ]
 
 MIDDLEWARE = [
@@ -73,6 +73,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'theme.processors.base_login_form',
+                'theme.processors.base_register_form'
             ],
         },
     },
@@ -106,6 +108,11 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'vibe_auth.auth_backend.SettingsBackend'
+]
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
@@ -124,10 +131,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-
-AUTH_USER_MODEL= 'vibe_user.Viber'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 STATIC_ROOT = os.path.join(BASE_DIR, "static/")
+
+AUTH_USER_MODEL= 'vibe_user.Viber'
+DEFAULT_AUTO_FIELD='django.db.models.AutoField'
 
 MEDIA_URL = '/media/'
 

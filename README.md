@@ -17,8 +17,8 @@ npm install
 
 ```python
 poetry shell
-python manage.py runserver
 npm run build
+python manage.py runserver
 ```
 
 ## Contributors

@@ -1,7 +1,7 @@
 <div id="upload-vid-div" class="flex flex-col flex-end">
     <div id="header-text">
         <h2 id="upload-text" class="text-5xl font-bold mt-24">Upload video</h2>
-        <p id="helper-text" class="text-lg text-gray-400">This video will be published to @test</p>
+        <p id="helper-text" class="text-lg text-gray-400">This video will be published to @{{request.user.display_name}}</p>
     </div>
     <br>
     <div id="upload-box" class="hover:bg-opacity-75 relative text-gray-400 bg-gray-300 bg-opacity-50 rounded-md flex w-64 max-w-xs flex-col justify-center">
