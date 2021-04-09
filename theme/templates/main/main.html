@@ -1,28 +1,54 @@
 {% include 'base.html' %}
 <body>
-    <div class="container flex justify-center">
-        <div id="side-panel">
-            For You
+    <div x-data="{mode: 'fyp'}" class="container flex">
+        <!-- Only two panels needed for home page. -->
+        <div id="side-panel" class="fixed justify-self-start top-16 left-96">
+            <span @click="mode = 'fyp'" class="cursor-pointer" :class="{'text-red-500 font-semibold': mode == 'fyp'}">
+                <svg x-show="mode == 'fyp'" xmlns="http://www.w3.org/2000/svg" class="inline h-10 w-10" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
+                  </svg>
+                <svg x-show="mode !== 'fyp'" xmlns="http://www.w3.org/2000/svg" class="inline h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                </svg>
+                <h3 class="relative inline text-3xl top-2">For You</h3>
+            </span>
             <br>
-            Following
-        </div>
-            <div id="videos" class="mt-10">
-            <!-- {% for vid in vids %}
-                <div id="video-{{bloop.id}}" style="margin-left: 17.5vw">
-                    <video
-                    class="video-js videos rounded-md"
-                    loop
-                    autoplay
-                    preload="metadata"
-                    webkit-playsinline="true"
-                    playsinline
-                    style="height: 600px; width: 336px;"
-                    >
-                        <source src="{{vid.video.url}}" />
-                    </video>
-                    <hr class="min-w-full">
+            <span @click="mode = 'following'" class="cursor-pointer" :class="{'text-red-500 font-semibold': mode == 'following'}">
+                  <svg x-show="mode !== 'following'" xmlns="http://www.w3.org/2000/svg" class="inline h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                  </svg>
+                  <svg x-show="mode == 'following'" xmlns="http://www.w3.org/2000/svg" class="inline h-10 w-10" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" />
+                  </svg>
+                <h3 class="relative inline text-3xl top-2">Following</h3>
+            </span>
+            {% if not user.is_authenticated %}
+                <div>
+                    <br><br><br>
+                    <h6 class="w-64 text-gray-400">Log in to follow creators, like videos, and view comments.</h6><br>
+                    <button id="login-main" style="border-color: #fc2a5e; color: #fc2a5e" @click="showLogin = true" class="hover:bg-gray-100 border-2 h-12 font-semibold bg-opacity-0 w-56 focus:outline-none rounded-md">Log in</button>
                 </div>
-            {% endfor %} -->
+            {% endif %}
+            <div id="suggested-accounts" class="mt-6">
+                <hr><br>
+                <p class="font-thin">Suggested accounts</p>
+            </div>
+        </div>
+        <div id="videos" class="left-10 mt-10 justify-center">
+            <div id="" style="margin-left: 17.5vw">
+                <video
+                class="video-js videos rounded-md"
+                loop
+                autoplay
+                preload="metadata"
+                webkit-playsinline="true"
+                playsinline
+                style="height: 600px; width: 336px;"
+                >
+                    <source src="" />
+                </video>
+                <hr class="min-w-full">
+            </div>
         </div>
     </div>
 	<script src="https://vjs.zencdn.net/7.11.4/video.min.js"></script>
