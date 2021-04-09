@@ -3,7 +3,7 @@ from django.contrib.auth.models import AbstractUser
 
 import random
 
-from video.models import Video
+from video.models import Video, Sound
 from vibetube.helpers import user_photo_path
 
 
@@ -15,7 +15,7 @@ class Viber(AbstractUser):
     following = models.ManyToManyField('self', symmetrical=False, related_name='viber_following')
     videos = models.ManyToManyField(Video, related_name='viber_videos')
     verified = models.BooleanField(default=False)
-    # sound = models.ManyToManyField('self', symmetrical=False, related_name='viber_sound')
+    sounds = models.ManyToManyField(Sound, related_name='viber_sounds')
     profile_photo = models.ImageField(upload_to=user_photo_path, blank=True, null=True)
 
     def __str__(self):
