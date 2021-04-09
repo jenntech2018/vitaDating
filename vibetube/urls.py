@@ -22,6 +22,7 @@ from main.urls import urlpatterns as main_urls
 from video.urls import urlpatterns as video_urls
 from vibe_user.urls import urlpatterns as user_urls
 from vibe_auth.urls import urlpatterns as auth_urls
+from notifications.urls import urlpatterns as blip_urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -31,7 +32,7 @@ urlpatterns += main_urls
 urlpatterns += video_urls
 urlpatterns += user_urls
 urlpatterns += auth_urls
-
+urlpatterns += blip_urls
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,
                           document_root=settings.MEDIA_ROOT)
