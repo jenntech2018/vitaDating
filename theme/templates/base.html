@@ -12,10 +12,12 @@
 		<meta name="author" content="">
 
 		<link rel="stylesheet" href="{% static 'css/style.css' %}">
-		<link href="https://vjs.zencdn.net/7.11.4/video-js.css" rel="stylesheet" />
 		<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
 		<link rel="preconnect" href="https://fonts.gstatic.com">
     	<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap" rel="stylesheet">
+		<link href="https://unpkg.com/@videojs/themes@1/dist/forest/index.css" rel="stylesheet">
+
+		<script src="{% static 'temp.js' %}"></script>
 		<style>
 			input:focus {
 				outline: none;
@@ -88,7 +90,7 @@
 	</head>
 
 	<body x-cloak x-data="{ activeFilter: 'All', showLogin: false, showRegister: false, showStep2: false, bellClicked: false, chatClicked: false, userHover: false }" :class="{'overflow-y-hidden': showLogin, 'overflow-y-hidden': showRegister, 'overflow-y-hidden': showStep2 }" class="bg-grey-lightest font-serif leading-normal tracking-normal border-box" style="font-family: 'Source Sans Pro', sans-serif">
-		<header>
+		<header class="fixed" style="margin-left: 30.5rem; z-index: 999;">
 				<!-- {% include 'components/nav/darkmode-toggle.html' %} -->
 			<div style="height: 54px;" class="bg-white min-w-full container flex border-b-2 justify-center text-center">
 			<div id="logo" style="margin-right: 14.6875rem;" class="-ml-28 mt-2">
@@ -105,7 +107,7 @@
 			</div>
 			<div>
 				{% if not request.user.is_authenticated %}
-				<a id="upload-btn" class="mt-2 hover:underline font-bold" @click="showLogin = true">Upload</a>
+				<a id="upload-btn" class="cursor-pointer mt-2 hover:underline font-bold" @click="showLogin = true">Upload</a>
 				<button id="login" @click="showLogin = true" class="rounded-sm mt-2 auth-buttons mb-2 ml-2 inline text-white focus:outline-none focus:ring shadow-lg hover:shadow-none transition-all duration-300">Log in</button>
 				{% else %}
 				<div id="nav-icons" class="mt-2">
@@ -157,7 +159,7 @@
 								class="rounded-full duration-500 delay-1000 inline w-7 h-7 cursor-pointer"m-1 mr-2 text-xl rounded-full text-white
 								alt="{{request.user.display_name}}'s photo"
 								src="{% if request.user.profile_photo %} {{request.user.profile_photo.url}} {% else %} {% static 'images/default.png' %} {% endif %}">
-							<span style="margin-left: -2.75rem;" class="mt-2 text-center bg-white shadow-lg drop-shadow-lg rounded-lg font-semibold absolute w-48 h-40 border border-grey-100 px-4 py-2 u-icon-info">
+							<span style="margin-left: -2.75rem;" class="  text-center bg-white shadow-lg drop-shadow-lg rounded-lg font-semibold absolute w-48 h-40 border border-grey-100 px-4 py-2 u-icon-info">
 								<svg xmlns="http://www.w3.org/2000/svg" class="-mt-4 ml-32" width="36" height="8" viewBox="0 0 30 8" fill="white">
 									<path fill-rule="evenodd" class="shadow-lg drop-shadow-lg" clip-rule="evenodd" d="M0 8h6.686a8 8 0 0 0 5.657-2.343l4.95-4.95a1 1 0 0 1 1.414 0l4.95 4.95A8 8 0 0 0 29.314 8H36 0z" fill="white" fill-opacity="1"/>
 								</svg>
@@ -199,19 +201,5 @@
 		</header>
 		{% include 'components/modals/login.html' %}
 		{% include 'components/modals/register.html' %}
-	  <script>
-		  const month = document.getElementById("month");
-		  let monthLabel = document.getElementById("mlabel");
-
-		  const day = document.getElementById("day");
-		  let dayLabel = document.getElementById("dlabel");
-
-		  const year = document.getElementById("year");
-		  let yearLabel = document.getElementById("ylabel");
-
-		  month.onchange = (ev) => monthLabel.classList.add("hidden");
-		  day.onchange = (ev) => dayLabel.classList.add("hidden");
-		  year.onchange = (ev) => yearLabel.classList.add("hidden");
-		</script>
 	</body>
 </html>
