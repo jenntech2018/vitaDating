@@ -106,7 +106,7 @@
 			<div>
 				{% if not request.user.is_authenticated %}
 				<a id="upload-btn" class="mt-2 hover:underline font-bold" @click="showLogin = true">Upload</a>
-				<button id="login" @click="showLogin = true" class="mt-2 auth-buttons mb-2 ml-2 inline text-white focus:outline-none focus:ring shadow-lg hover:shadow-none transition-all duration-300">Log in</button>
+				<button id="login" @click="showLogin = true" class="rounded-sm mt-2 auth-buttons mb-2 ml-2 inline text-white focus:outline-none focus:ring shadow-lg hover:shadow-none transition-all duration-300">Log in</button>
 				{% else %}
 				<div id="nav-icons" class="mt-2">
 					<span class="relative u-icon-wrapper">

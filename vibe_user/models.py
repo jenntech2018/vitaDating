@@ -14,7 +14,7 @@ class Viber(AbstractUser):
     followers = models.ManyToManyField('self', symmetrical=False, related_name='viber_followers')
     following = models.ManyToManyField('self', symmetrical=False, related_name='viber_following')
     videos = models.ManyToManyField(Video, related_name='viber_videos')
-    verified = models.BooleanField(default=False, null=True, blank=True)
+    verified = models.BooleanField(default=False)
     # sound = models.ManyToManyField('self', symmetrical=False, related_name='viber_sound')
     profile_photo = models.ImageField(upload_to=user_photo_path, blank=True, null=True)
 
