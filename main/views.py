@@ -8,23 +8,17 @@ import datetime
 from video.models import Video
 from vibe_auth.forms import LoginForm, RegistrationForm
 from vibe_user.models import Viber
-from vibetube.helpers import auth_user, check_for_name
+from vibetube.helpers import auth_user, check_for_name, check_for_username, handle_create_user
 
 class MainView(View):
     def post(self, request):
-        if request.POST['email']: form = RegistrationForm(request.POST, request.FILES)
+        if 'email' in request.POST: form = RegistrationForm(request.POST, request.FILES)
         else: form = LoginForm(request.POST)
         if form.is_valid():
             data = form.cleaned_data
-            if data['email']:
-                display_name = check_for_name(data["display_name"])
-                dob = datetime.date(int(data["year"]), int(data["month"]), int(data["day"]))
-                Viber.objects.create_user(
-                    username=data["email"],
-                    password=data["password"],
-                    dob=dob,
-                    display_name=display_name,
-                    profile_photo=data["profile_photo"])
+            if 'email' in data:
+                handle_create_user(data)
+                
             is_authed = auth_user(request, data)
             if is_authed:
                 return redirect(reverse("main"))

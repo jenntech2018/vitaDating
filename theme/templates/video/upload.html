@@ -49,8 +49,8 @@
     </main>
     {% include 'video/components/footer.html' %}
     <script>
-        caption = document.getElementById("caption");
-        counter = document.getElementById("counter");
+        let caption = document.getElementById("caption");
+        let counter = document.getElementById("counter");
         caption.addEventListener("keyup", () => {
             if (caption.value.length <= 150) {
                 counter.innerHTML = caption.value.length + "/150";
@@ -59,7 +59,7 @@
             }
         })
 
-        video = document.getElementById("upload-input");
+        let video = document.getElementById("upload-input");
         video.onchange = (ev) => {
             if (video.files) {
                 let videoPreview = document.getElementById("video-preview");

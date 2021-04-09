@@ -36,6 +36,10 @@ x-show="showStep2"
         <br>
       <h5 class="font-semibold ml-10 float-left text-md">What should we call you?</h5>
       {{ registration_form.display_name }}
+      {{ registration_form.username }}
+      <span id="inject-username">
+        
+      </span>
       <button
           id="s2-modal-btn"
           type="submit"
@@ -57,14 +61,24 @@ x-show="showStep2"
 <script>
   let regPhoto = document.getElementById("reg-photo");
   let uploadPfp = document.getElementById("upload-pfp");
+  let grabUsername = document.getElementById("id_username");
+  let injectUsername = document.getElementById("inject-username");
+
+  grabUsername.addEventListener("keyup", () => {
+    if (grabUsername.value) {
+      injectUsername.innerHTML = '<h6 class="text-gray-400 text-sm">Your profile link will be <span id="inject-username">@' + grabUsername.value + '</span></h6>';
+    } else {
+      injectUsername.innerHTML = ""
+    }
+  });
 
   uploadPfp.onchange = (ev) => {
       if (uploadPfp.files) {
         let reader = new FileReader();
-        reader.readAsDataURL(uploadPfp.files[0])
+        reader.readAsDataURL(uploadPfp.files[0]);
         reader.onload = (e) => {
-              regPhoto.src = e.target.result
+              regPhoto.src = e.target.result;
           }
       }
-  }
+  };
 </script>
