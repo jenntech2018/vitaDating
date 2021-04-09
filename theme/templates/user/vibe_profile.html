@@ -1,16 +1,63 @@
 <!-- <head> -->
     {% include 'base.html' %}
-    
-    <!-- <style></style> -->
-    <h1>Vibe Profile {{vibe_user.username}}</h1>
-<!-- </head> -->
-<!-- <body> -->
-    <h3>{{vibe_user.first_name}} {{vibe_user.last_name}}</h3>
 
-    <p1>{{vibe_followers}} Followers {{vibe_following}} Following {{vibe_likes}} Likes</p1>
-    
-    
-    <p1>{{vibe_user.bio}}</p1>
+    <div class="bg-white shadow w-64 my-2">
+
+        <div x-data="{mode: 'fyp'}" class="container flex">
+            <!-- Only two panels needed for home page. -->
+            <div id="side-panel" class="fixed justify-self-start top-16 left-96">
+                <span @click="mode = 'fyp'" class="cursor-pointer" :class="{'text-red-500 font-semibold': mode == 'fyp'}">
+                    <svg x-show="mode == 'fyp'" xmlns="http://www.w3.org/2000/svg" class="inline h-10 w-10" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
+                      </svg>
+                    <svg x-show="mode !== 'fyp'" xmlns="http://www.w3.org/2000/svg" class="inline h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                    </svg>
+                    <h3 class="relative inline text-3xl top-2">For You</h3>
+                </span>
+                <br>
+                <span @click="mode = 'following'" class="cursor-pointer" :class="{'text-red-500 font-semibold': mode == 'following'}">
+                      <svg x-show="mode !== 'following'" xmlns="http://www.w3.org/2000/svg" class="inline h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                      </svg>
+                      <svg x-show="mode == 'following'" xmlns="http://www.w3.org/2000/svg" class="inline h-10 w-10" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" />
+                      </svg>
+                    <h3 class="relative inline text-3xl top-2">Following</h3>
+                </span>
+
+
+        <ul class="list-reset">
+          <li >
+            <a href="#" class="block p-4 text-grey-darker font-bold border-purple hover:bg-grey-lighter border-r-4">{{vibe_user.username}}</a>
+          </li>
+          <li >
+            <a href="#" class="block p-4 text-grey-darker font-bold border-grey-lighter hover:border-purple-light hover:bg-grey-lighter border-r-4">{{vibe_user.username}}</a>
+          </li>
+          <li >
+            <a href="#" class="block p-4 text-grey-darker font-bold border-grey-lighter hover:border-purple-light hover:bg-grey-lighter border-r-4">{{vibe_user.id}}</a>
+          </li>
+          <li >
+            <a href="#" class="block p-4 text-grey-darker font-bold border-grey-lighter hover:border-purple-light hover:bg-grey-lighter border-r-4">{{vibe_user.username}}</a>
+          </li>
+        </ul>
+      </div>
+
+
+    <div>
+
+        <!-- <style></style> -->
+        <h1>Vibe Profile {{vibe_user.username}}</h1>
+        <img class="rounded-full h-24 w-24 flex items-center justify-center..." src="/media/@TikTokGirl1/profile-photos/587757914.jpeg">
+        <!-- </head> -->
+        <!-- <body> -->
+            <h3>{{vibe_user.first_name}} {{vibe_user.last_name}}</h3>
+            
+            <p1>{{vibe_followers}} Followers {{vibe_following}} Following {{vibe_likes}} Likes</p1>
+            
+            
+            <p1>{{vibe_user.bio}}</p1>
+    </div>
     
     {% for item in videos %}
     {% endfor %}
