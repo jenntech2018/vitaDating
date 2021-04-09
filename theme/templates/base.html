@@ -64,6 +64,26 @@
 			#nav-icons, #search-box, #logo {
 				user-select: none;
 			}
+
+			.auth-buttons {
+				background-color: #fc2a5e;
+				width: 100px;
+				height: 32px;
+				font-weight: 600;
+			}
+			
+			#login:hover {
+				background-color: #e62253;
+			}
+			
+			#search-icon {
+				margin-left: -2vw;
+				padding: 2px;
+			}
+			
+			.videos {
+				height: 600px; width: 336px; margin-left: 17.5vw;
+			}
 		</style>
 	</head>
 
@@ -85,11 +105,8 @@
 			</div>
 			<div>
 				{% if not request.user.is_authenticated %}
-				<a id="upload-btn" class="hover:underline font-bold" @click="showLogin = true">Upload</a>
-				<button id="login" @click="showLogin = true" class="auth-buttons mb-2 ml-2 inline text-white focus:outline-none focus:ring shadow-lg hover:shadow-none transition-all duration-300">Log in</button>
-					<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline" fill="gray" viewBox="0 0 24 24" stroke="currentColor">
-						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
-					</svg>
+				<a id="upload-btn" class="mt-2 hover:underline font-bold" @click="showLogin = true">Upload</a>
+				<button id="login" @click="showLogin = true" class="mt-2 auth-buttons mb-2 ml-2 inline text-white focus:outline-none focus:ring shadow-lg hover:shadow-none transition-all duration-300">Log in</button>
 				{% else %}
 				<div id="nav-icons" class="mt-2">
 					<span class="relative u-icon-wrapper">

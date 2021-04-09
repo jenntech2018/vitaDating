@@ -40,4 +40,4 @@ def login_page(request):
 
 def logout_view(request):
     logout(request)
-    return HttpResponseRedirect(reverse('login'))
+    return HttpResponseRedirect(reverse('main'))

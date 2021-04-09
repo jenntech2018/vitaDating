@@ -6,13 +6,12 @@ from django.contrib.auth.hashers import check_password
 from vibe_user.models import Viber
 
 class SettingsBackend(BaseBackend):
-    def authenticate(self, request, username=None, email=None, display_name=None, password=None):
-        if email: user = Viber.objects.get(username=email)
-        elif display_name: user = Viber.objects.get(display_name=display_name)
+    def authenticate(self, request, username=None, email=None, password=None):
+        if email: user = Viber.objects.get(email=email)
+        else: user = Viber.objects.get(username=username)
         
         if password:
             try:
-                user = Viber.objects.get(username=email)
                 password_valid = check_password(password, user.password)
                 if password_valid:
                     return user

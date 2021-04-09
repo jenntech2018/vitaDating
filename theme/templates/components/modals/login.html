@@ -19,17 +19,20 @@ x-show="showLogin"
       </button>
     </header>
     <main class="p-2 text-center">
-      <h5 class="font-semibold ml-10 float-left text-md">Email or Username</h5>
-      <input type="text" name="email" placeholder="Email or Username" autofocus class="rounded-md h-12 border-gray-200 bg-gray-100 hover:bg-gray-200 mt-2 border-2 w-96">	
-      <input type="password" name="password" placeholder="Password" class="rounded-md h-12 border-gray-200 bg-gray-100 hover:bg-gray-200 mt-2 border-2 w-96">	
-      <br><span class="text-xs mt-3 ml-10 float-left">Forgot password?</span><br><br>
-
-          <button
-          id="login-modal-btn"
-          class="w-96 h-12 inline text-white focus:outline-none focus:ring shadow-lg hover:shadow-none transition-all duration-300"
-          @click="showLogin = false"
-          >
-          Log in</button>
+      <form method="POST">
+        {% csrf_token %}
+        <h5 class="font-semibold ml-10 float-left text-md">Email or Username</h5>
+        {{ login_form.username }}
+        {{ login_form.password }}
+        <br><span class="text-xs mt-3 ml-10 float-left">Forgot password?</span><br><br>
+        
+        <button
+        id="login-modal-btn"
+        class="w-96 h-12 inline text-white focus:outline-none focus:ring shadow-lg hover:shadow-none transition-all duration-300"
+        @click="showLogin = false"
+        >
+        Log in</button>
+      </form>
       </main>
 
     <footer>
