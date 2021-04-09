@@ -8,7 +8,7 @@ import datetime
 from video.models import Video
 from vibe_auth.forms import LoginForm, RegistrationForm
 from vibe_user.models import Viber
-from vibetube.helpers import auth_user, check_for_name, check_for_username, handle_create_user
+from vibetube.helpers import auth_user, check_for_name, check_for_username
 
 class MainView(View):
     def post(self, request):
@@ -17,26 +17,23 @@ class MainView(View):
         if form.is_valid():
             data = form.cleaned_data
             if 'email' in data:
-                handle_create_user(data)
+                display_name = check_for_name(data["display_name"])
+                username = check_for_username(data['username'], display_name)
+                dob = datetime.date(int(data["year"]), int(data["month"]), int(data["day"]))
+
+                Viber.objects.create_user(
+                    username=username,
+                    email=data["email"],
+                    password=data["password"],
+                    dob=dob,
+                    display_name=display_name,
+                    profile_photo=data["profile_photo"])
                 
             is_authed = auth_user(request, data)
             if is_authed:
                 return redirect(reverse("main"))
 
     def get(self, request):
-        stuff = Video.objects.all()
-        suggested_creators = Viber.objects.all().filter(verified=True).order_by('-followers')
-        return render(request, "main/main.html", {"vids": stuff, "suggested": suggested_creators})
-
-        #     if request.method == 'POST':
-        # form = LoginForm(request.POST)
-        # if form.is_valid():
-        #     from django.contrib.auth import authenticate, login
-        #     if "@" in data["name"]:
-        #         user = authenticate(request, username=data["name"], password=data["password"])
-        #     else:
-        #         user = authenticate(request, display_name=data["name"], password=data["password"])
-            
-        #     if user:
-        #         login(request, user)
-        #     return redirect(reverse("main"))
+        videos = Video.objects.all()
+        suggested_creators = Viber.objects.all().filter(verified=True).order_by('-followers')[:10]
+        return render(request, "main/main.html", {"videos": videos, "suggested": suggested_creators})

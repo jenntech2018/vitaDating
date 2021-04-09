@@ -74,7 +74,8 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'theme.processors.base_login_form',
-                'theme.processors.base_register_form'
+                'theme.processors.base_register_form',
+                'django.template.context_processors.media'
             ],
         },
     },
