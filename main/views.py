@@ -25,7 +25,8 @@ class MainView(View):
 
     def get(self, request):
         stuff = Video.objects.all()
-        return render(request, "main/main.html", {"vids": stuff})
+        suggested_creators = Viber.objects.all().filter(verified=True).order_by('-followers')
+        return render(request, "main/main.html", {"vids": stuff, "suggested": suggested_creators})
 
         #     if request.method == 'POST':
         # form = LoginForm(request.POST)
