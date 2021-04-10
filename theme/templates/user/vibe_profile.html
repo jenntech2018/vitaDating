@@ -3,23 +3,66 @@
     {% include 'base.html' %}
 
     {% include 'components/main/side-panel.html' %}
-
-
-    <div>
-
-        <!-- <style></style> -->
-        <h1>Vibe Profile {{vibe_user.username}}</h1>
-        <img class="rounded-full h-24 w-24 flex items-center justify-center..." src="/media/@TikTokGirl1/profile-photos/587757914.jpeg">
-        <!-- </head> -->
-        <!-- <body> -->
-            <h3>{{vibe_user.first_name}} {{vibe_user.last_name}}</h3>
+    <style>
+        #cent {
+            position:absolute;
+            top:20%;
+            left:60%;
+            margin-top:-50px;  
+            margin-left:-100px; 
+        }
+        #right {
+            position:absolute;
+            top:0%;
+            left:70%;
+            margin-top:-50px;  
+            margin-left:-100px; 
             
+        }
+        .flex-container {
+            display: flex;
+            flex-direction:column;
+            flex-wrap: wrap;
+        }
+
+        .position {
+            display: flex;
+            /* flex-direction:column-reverse; */
+            position: relative;
+            left: 125px;
+            bottom: 75px;
+        }
+
+        .flex-item-right {
+            flex: 10%;
+        }
+    </style>
+
+    <div id=cent>
+        <div > 
+            <img class="rounded-full h-24 w-24 flex items-center justify-center..." src="/media/@TikTokGirl1/profile-photos/587757914.jpeg">
+        </div>
+        <div>
+        
+        <div class=flex-container>
+            <h1 class=position>{{vibe_user.username}}</h1>
+        </div>
+            <div >
+                <h3 class=position>{{vibe_user.first_name}} {{vibe_user.last_name}}</h3>
+            </div>
+        </div>                
+         
+        <div>
             <p1>{{vibe_followers}} Followers {{vibe_following}} Following {{vibe_likes}} Likes</p1>
-            
-            
+        </div>  
+        <div>
             <p1>{{vibe_user.bio}}</p1>
+        </div> 
+
     </div>
     
+    
+
     {% for item in videos %}
     {% endfor %}
 
