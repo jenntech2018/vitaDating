@@ -22,7 +22,7 @@ from main.urls import urlpatterns as main_urls
 from video.urls import urlpatterns as video_urls
 from vibe_user.urls import urlpatterns as user_urls
 from vibe_auth.urls import urlpatterns as auth_urls
-from notifications.urls import url_patterns as blip_urls
+from notifications.urls import urlpatterns as blip_urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
