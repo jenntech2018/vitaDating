@@ -1,6 +1,9 @@
-from django.shortcuts import render
-from notifications.models import Notifications
+from django.shortcuts import render, reverse, HttpResponseRedirect
+from notifications.models import Notifications, LikedNotifications, CommentedNotifications, FollowedNotifications
+
+from vibe_user.models import Viber
 from video.models import Video
+
 # Create your views here.
 '''
 // call this function when like button is pressed
@@ -70,29 +73,31 @@ notification creation:
 '''
 
 
-def notification_view(request, user_id):
-    user = Model.objects.get(id=user_id)
-    mention_notifications = Notifications.objects.filter(id=request.user.id).all()
-    like_notifications = Notifications.objects.filter(id=request.user.id).all()
-    comment_notifications = Notifications.objects.filter(id=request.user.id).all()
-    followed_notifications = Notifications.objects.filter(id=request.user.id).all()
-
-    return render(request, 'notifications.html',{
+def notification_view(request):
+    # user = Model.objects.get(id=user_id)
+    mention_notifications = Notifications.objects.all()
+    like_notifications = LikedNotifications.objects.all()
+    comment_notifications = CommentedNotifications.objects.all()
+    followed_notifications = FollowedNotifications.objects.all()
+    blips = 'notifications/blips.html'
+    return render(request, blips, {
         'comments': comment_notifications,
         'likes': like_notifications,
         'mentions': mention_notifications,
         'followed': followed_notifications
     })
 
-def like_notification(request, post_id):
-    user = request.user
-    notification_object = Notifications.objects.create(
-        post = post_id,
-        liked = post_id,
 
-    ).mentions.add(post_id.user)
-    notification_object.save()
+def like_notification(request):
+    # user = request.user
+    #post_id
+    user = Viber.objects.get(id=2)
+    video = Video.objects.get(id=1)
+    created_like = LikedNotifications.objects.create(post=video)
+    created_like.liked.add(user)
+    created_like.save()
+    return HttpResponseRedirect(request.GET.get('next', reverse('blips')))
 
-def mention_notifcation(requst, post_id):
-    latest_post = Video.objects.latest('timestamp')
-    mentions = re.findall(r'@([A-Za-z0-9_]+)', latest_post.comments.body)
+# def mention_notifcation(requst, post_id):
+#     latest_post = Video.objects.latest('timestamp')
+#     mentions = re.findall(r'@([A-Za-z0-9_]+)', latest_post.comments.body)

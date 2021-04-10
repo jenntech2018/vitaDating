@@ -1,0 +1,24 @@
+{% include 'base.html' %}
+
+<form action='like' method='POST'>
+    {% csrf_token %}
+    <button type='submit'>create a like</button>
+    </form>
+
+{% for item in comments%}
+{{ item }}
+<br>
+{% endfor %}
+<br>
+{% for item in likes%}
+{{ item.liked }}
+<br>
+{% endfor %}
+<br>
+{% for item in mentions%}
+{{ item }}
+{% endfor %}
+<br>
+{% for item in followed%}
+{{ item }}
+{% endfor %}

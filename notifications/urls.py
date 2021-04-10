@@ -1,8 +1,7 @@
 from django.urls import path
-from notifications.views import notification_view
+from notifications.views import notification_view, like_notification
 
-url_patterns = [
-    path('blips', notification_view, name='blips')
+urlpatterns = [
+    path('blips', notification_view, name='blips'),
+    path('like', like_notification)
  ]
-
-#  somethingsdfsdf

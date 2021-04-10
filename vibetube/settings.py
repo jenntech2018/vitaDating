@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'vibe_user',
     'vibe_auth',
     'video',
+    'notifications'
 ]
 
 MIDDLEWARE = [
