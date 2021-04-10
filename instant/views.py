@@ -18,7 +18,7 @@ class MessagesView(View):
 
         return render(
             request,
-            'users/messages.html',
+            'theme/templates/messaging/dialog.html',
             {
                 'user_profile': request.user,
                 'chat': chat,
