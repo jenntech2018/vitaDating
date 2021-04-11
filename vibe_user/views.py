@@ -12,6 +12,7 @@ def vibe_user_profile_view(request, user_id):
     vibe_user_profile_photo = vibe_user.profile_photo
     # vibe_user_videos = Video.objects.get(id=user_id)
     # vibe_likes = vibe_user.likes.all().count
+    suggested_creators = Viber.objects.all().filter(verified=True).order_by('-followers')[:10]
     return render(request, "user/vibe_profile.html", {
         "vibe_user": vibe_user, 
         "vibe_followers": vibe_followers,
@@ -19,5 +20,17 @@ def vibe_user_profile_view(request, user_id):
         "vibe_user_profile_photo":vibe_user_profile_photo,
         # "vibe_user_videos": vibe_user_videos,
         # 'vibe_likes': vibe_likes,
+        "suggested": suggested_creators,
         })
 
+def vibe_user_follower_view(request, user_id):
+    follow = Viber.objects.get(id=user_id)
+    request.user.followers.add(follow)
+
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+def vibe_user_unfollow_view(request, user_id):
+    follow = Viber.objects.get(id=user_id)
+    request.user.followers.remove(follow)
+
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
