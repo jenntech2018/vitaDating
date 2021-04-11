@@ -1,5 +1,6 @@
 from video.models import Video, Comment, Sound
 from vibe_user.models import Viber
+from notifications.models import Notifications
 from rest_framework import serializers
 
 
@@ -19,3 +20,9 @@ class SoundSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Sound
         fields = ["id", "original_video", "creator", "audio_file"]
+
+
+class NotificationsSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Notifications
+        fields = ["id", "time_created", "n_type", "video", "comment", "sender", "to"]

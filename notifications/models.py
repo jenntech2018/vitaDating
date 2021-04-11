@@ -14,10 +14,31 @@ commented
 follow
 '''
 
-class Notifications(models.model):
+CHOICES = [
+    (
+        "M", "MENTION"
+    ),
+    (
+        "L", "LIKE"
+    ),
+    (
+        "C", "COMMENT"
+    ),
+    (
+        "F", "FOLLOW"
+    ),
+    (
+        "CR", "COMMENT_REPLY"
+    ),
+    (
+        "CL", "COMMENT_LIKE"
+    )
+]
+
+class Notifications(models.Model):
     time_created = models.DateTimeField(default=timezone.now)
-    mentions = models.ManyToManyField(Viber, symmetrical=False, related_name='mentions')
-    post = models.ForeignKey(Video, on_delete=models.CASCADE)
-    liked = models.ManyToManyField(Viber, symmetrical=False, related_name='liked')
-    Commented = models.ManyToManyField(Viber, symmetrical=False, related_name='commented')
-    followed = models.ManyToManyField(Viber, symmetrical=False, related_name='followed')
+    n_type = models.CharField(choices=CHOICES, max_length=2)
+    video = models.ForeignKey(to=Video, on_delete=models.CASCADE, null=True, blank=True, related_name="related_video")
+    comment = models.ForeignKey(to=Video, on_delete=models.CASCADE, null=True, blank=True, related_name="related_comment")
+    sender = models.ForeignKey(to=Viber, on_delete=models.CASCADE, null=True, blank=True, related_name="related_sender")
+    to = models.ForeignKey(to=Viber, on_delete=models.CASCADE, null=True, blank=True, related_name="related_to")

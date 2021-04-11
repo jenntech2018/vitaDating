@@ -92,7 +92,7 @@
                                 <svg x-show="isLiked{{video.id}}" @click="unlikeVideo({{video.id}}), isLiked{{video.id}} = ! isLiked{{video.id}}" xmlns="http://www.w3.org/2000/svg" class="rounded-full p-2 bg-gray-200 hover:bg-gray-300 cursor-pointer h-12 w-12" fill="red" viewBox="0 0 24 24" stroke="none">
                                     <path stroke-linecap="none" stroke-linejoin="none" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                                 </svg>
-                                <svg x-show="! isLiked{{video.id}}" @click="likeVideo({{video.id}}), isLiked{{video.id}} = ! isLiked{{video.id}}" xmlns="http://www.w3.org/2000/svg" class="rounded-full p-2 bg-gray-200 hover:bg-gray-300 cursor-pointer h-12 w-12" fill="currentColor" viewBox="0 0 24 24" stroke="none">
+                                <svg x-show="! isLiked{{video.id}}" @click="likeVideo({{video.id}}, {{video.creator.id}}, {{request.user.id}}), isLiked{{video.id}} = ! isLiked{{video.id}}" xmlns="http://www.w3.org/2000/svg" class="rounded-full p-2 bg-gray-200 hover:bg-gray-300 cursor-pointer h-12 w-12" fill="currentColor" viewBox="0 0 24 24" stroke="none">
                                     <path stroke-linecap="none" stroke-linejoin="none" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                                 </svg><span id="likes-counter-{{video.id}}" class="ml-5 font-semibold text-gray-500">{{video.likes}}</span>
                             </span>
@@ -136,9 +136,17 @@
         })
 
 
-        const likeVideo = (vId) => {
+        const likeVideo = (vId, cId, viberId) => {
             postLike = fetch(`${url}/videos/${vId}/like_video/`, {
-                method: "POST"
+                method: "POST",
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    "creator_id": cId,
+                    "viber_id": viberId
+                })
             }).then(resp => resp.json()).then(data => document.getElementById(`likes-counter-${vId}`).innerHTML = data.likes)
         }
 

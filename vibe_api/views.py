@@ -5,8 +5,9 @@ from rest_framework.response import Response
 
 from video.models import Video, Comment, Sound
 from vibe_user.models import Viber
+from notifications.models import Notifications
 
-from vibe_api.serializers import ViberSerializer, VideoSerializer, SoundSerializer
+from vibe_api.serializers import ViberSerializer, VideoSerializer, SoundSerializer, NotificationsSerializer
 
 
 class VideoViewSet(viewsets.ModelViewSet):
@@ -17,6 +18,13 @@ class VideoViewSet(viewsets.ModelViewSet):
     def like_video(self, request, pk=None):
         Video.objects.filter(id=pk).update(likes=F("likes") + 1)
         data = Video.objects.get(id=pk)
+
+        Notifications.objects.create(
+                                     n_type="L",
+                                     video=data,
+                                     sender=request.data["viber_id"],
+                                     to = request.data["creator_id"])
+        
         serialized_data = self.get_serializer(data)
         return Response(data=serialized_data.data,status=status.HTTP_200_OK)
 
@@ -28,13 +36,6 @@ class VideoViewSet(viewsets.ModelViewSet):
         serialized_data = self.get_serializer(data)
         return Response(data=serialized_data.data,status=status.HTTP_200_OK)
 
-    
-    @action(detail=True, methods=["get"])
-    def video_info(self, request, pk=None):
-        x = Video.objects.filter(id=pk).all()
-        serializer = self.get_serializer(x, many=True)
-        return Response(serializer.data)
-
 
 class ViberViewSet(viewsets.ModelViewSet):
     queryset = Viber.objects.all().order_by('-username')
@@ -44,3 +45,8 @@ class ViberViewSet(viewsets.ModelViewSet):
 class SoundViewSet(viewsets.ModelViewSet):
     queryset = Sound.objects.all().order_by('-id')
     serializer_class = SoundSerializer
+
+
+class NotificationsViewSet(viewsets.ModelViewSet):
+    queryset = Notifications.objects.all().order_by('-id')
+    serializer_class = NotificationsSerializer
