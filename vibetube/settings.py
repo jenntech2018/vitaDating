@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'vibe_api',
     'corsheaders',
     'rest_framework',
+    'instant',
 ]
 
 MIDDLEWARE = [
