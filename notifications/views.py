@@ -75,35 +75,14 @@ notification creation:
 
 
 def notification_view(request):
-    user = request.user
-    notifs = Notifications.objects.filter()
-    # mention_notifications = Notifications.objects.all()
-    # like_notifications = LikedNotifications.objects.filter(liked=user)
-    # comment_notifications = CommentedNotifications.objects.all()
-    # followed_notifications = FollowedNotifications.objects.all()
+    notifs = Notifications.objects.filter(id=request.user.id)
+
     blips = 'notifications/blips.html'
     return render(request, blips, {
-        # 'comments': comment_notifications,
-        # 'likes': like_notifications,
-        # 'mentions': mention_notifications,
-        # 'followed': followed_notifications,
-        'user': user,
-
+        'notifs': notifs,
     })
 
 
 def like_notification(request):
-    # user = request.user
-    #post_id
-    user = Viber.objects.get(id=5)
-    video = Video.objects.get(id=1)
-    created_like = Notifications.objects.create(
-        n_type='like',
-        video=video,
-        sender=request.user
-    )
-    return HttpResponseRedirect(request.GET.get('next', reverse('blips')))
 
-# def mention_notifcation(requst, post_id):
-#     latest_post = Video.objects.latest('timestamp')
-#     mentions = re.findall(r'@([A-Za-z0-9_]+)', latest_post.comments.body)
+    return HttpResponseRedirect(request.GET.get('next', reverse('blips')))
