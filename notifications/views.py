@@ -1,5 +1,6 @@
 from django.shortcuts import render, reverse, HttpResponseRedirect
-from notifications.models import Notifications, LikedNotifications, CommentedNotifications, FollowedNotifications
+# from notifications.models import Notifications, LikedNotifications, CommentedNotifications, FollowedNotifications
+from notifications.models import Notifications
 
 from vibe_user.models import Viber
 from video.models import Video
@@ -24,7 +25,7 @@ testing:
 
 from video.models import Video
 from vibe_user.models import Viber
-from notifications.models import Notifications
+from notifications.models import Notifications, LikedNotifications, CommentedNotifications, FollowedNotifications
 
 from vibe_user.models import Viber:
     display_name = models.CharField(max_length=120, null=True, blank=True)
@@ -74,28 +75,33 @@ notification creation:
 
 
 def notification_view(request):
-    # user = Model.objects.get(id=user_id)
-    mention_notifications = Notifications.objects.all()
-    like_notifications = LikedNotifications.objects.all()
-    comment_notifications = CommentedNotifications.objects.all()
-    followed_notifications = FollowedNotifications.objects.all()
+    user = request.user
+    notifs = Notifications.objects.filter()
+    # mention_notifications = Notifications.objects.all()
+    # like_notifications = LikedNotifications.objects.filter(liked=user)
+    # comment_notifications = CommentedNotifications.objects.all()
+    # followed_notifications = FollowedNotifications.objects.all()
     blips = 'notifications/blips.html'
     return render(request, blips, {
-        'comments': comment_notifications,
-        'likes': like_notifications,
-        'mentions': mention_notifications,
-        'followed': followed_notifications
+        # 'comments': comment_notifications,
+        # 'likes': like_notifications,
+        # 'mentions': mention_notifications,
+        # 'followed': followed_notifications,
+        'user': user,
+
     })
 
 
 def like_notification(request):
     # user = request.user
     #post_id
-    user = Viber.objects.get(id=2)
+    user = Viber.objects.get(id=5)
     video = Video.objects.get(id=1)
-    created_like = LikedNotifications.objects.create(post=video)
-    created_like.liked.add(user)
-    created_like.save()
+    created_like = Notifications.objects.create(
+        n_type='like',
+        video=video,
+        sender=request.user
+    )
     return HttpResponseRedirect(request.GET.get('next', reverse('blips')))
 
 # def mention_notifcation(requst, post_id):

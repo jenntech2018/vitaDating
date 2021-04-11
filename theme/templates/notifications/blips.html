@@ -4,14 +4,15 @@
     {% csrf_token %}
     <button type='submit'>create a like</button>
     </form>
+    {{ user.id }}
 
-{% for item in comments%}
+<!-- {% for item in comments%}
 {{ item }}
 <br>
 {% endfor %}
 <br>
 {% for item in likes%}
-{{ item.liked }}
+{{ item.user }}
 <br>
 {% endfor %}
 <br>
@@ -21,4 +22,5 @@
 <br>
 {% for item in followed%}
 {{ item }}
-{% endfor %}
+{% endfor %} -->
+
