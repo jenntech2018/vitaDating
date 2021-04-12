@@ -18,12 +18,14 @@ class VideoViewSet(viewsets.ModelViewSet):
     def like_video(self, request, pk=None):
         Video.objects.filter(id=pk).update(likes=F("likes") + 1)
         data = Video.objects.get(id=pk)
+        sender = Viber.objects.get(id=request.data["viber_id"])
+        creator = Viber.objects.get(id=request.data["creator_id"])
 
         Notifications.objects.create(
                                      n_type="L",
                                      video=data,
-                                     sender=request.data["viber_id"],
-                                     to = request.data["creator_id"])
+                                     sender=sender,
+                                     to=creator)
         
         serialized_data = self.get_serializer(data)
         return Response(data=serialized_data.data,status=status.HTTP_200_OK)
