@@ -87,6 +87,11 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'theme.processors.base_login_form',
                 'theme.processors.base_register_form',
+                'theme.processors.notifications_all',
+                'theme.processors.notifications_likes',
+                'theme.processors.notifications_comments',
+                'theme.processors.notifications_followers',
+                'theme.processors.notifications_mentions',
                 'django.template.context_processors.media'
             ],
         },
