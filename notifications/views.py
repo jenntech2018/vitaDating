@@ -50,11 +50,11 @@ notification creation:
 - create an object that has a foreign key relationship to a post
   ex: n = MentionNotifications.objects.create(post=video1)
 
-- add a user to the mention propery who is being mentioned
-  ex: n.mentions.add(user1) // user1 is being mentioned @user1
+- add a user to the sender property who is being mentioned
+  ex: n.sender = user1 // user1 is being mentioned @user1
 
 - add the user doing the mentioning to another property
-  ex: n.user.add(request.user) // person typeing the @user1
+  ex: n.reciever = user2 // person typeing the @user1
 
   n.mentions.all()
 <QuerySet [<Viber: vibetubez@gmail.com>]>
