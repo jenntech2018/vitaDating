@@ -1,3 +1,4 @@
+{% load static %}
 <div @click.away="bellClicked = false" x-show="bellClicked == true" class="inline" id="notif-box-wrapper">
     <span id="notif-bar" style="height: 640px; width: 380px; right: -2.5rem; top: 2rem;" class="rounded-md absolute w-40 bg-white border-2 drop-shadow-lg shadow-lg">
         <h4 class="text-2xl font-semibold absolute top-4 left-4">Notifications</h4>
@@ -18,16 +19,27 @@
     </span>
     <div class="absolute" style="pointer-events: none;">
         <div class="relative top-48 right-36" x-show="activeFilter == 'All'" id="all-notifs">
+            {% if not notifs_all %}
             <svg xmlns="http://www.w3.org/2000/svg" class="ml-2 h-28 w-28 text-gray-400 opacity-90" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
             </svg><br>
-            <span style="right: 0rem" class="-top-4 relative">
-                {% if not notifications_all %}
+                {% endif %}
+                <span style="right: 0rem" class="-top-4 relative">
+                {% if not notifs_all %}
                 <h6 class="font-semibold -ml-32 text-xl text-black opacity-80">All activity</h6>
                 <p class="text-sm -ml-32 w-96 text-gray-500 opacity-75">Notifications about your account will appear here.</p>
                 {% else %}
-                    {% for notif in notifications_all %}
-                        <p>Test</p>
+                    <h6 class="font-semibold -mt-20 -ml-44 text-xl text-black opacity-80">Today</h6>
+                    {% for notif in notifs_all %}
+                    <span class="absolute w-min-full" style="left: -7rem;">
+                        <img
+                            class="rounded-full duration-500 delay-1000 inline w-10 h-10"
+                            alt="{{notif.sender.display_name}}'s photo"
+                            src="{% if notif.sender.profile_photo %} {{notif.sender.profile_photo.url}} {% else %} {% static 'images/default.png' %} {% endif %}">
+                            {% if notif.n_type == "L" %}
+                                <p style="width: 150px;" class="inline -right-2">liked your video.</p>
+                            {% endif %}
+                        </span>
                     {% endfor %}
                 {% endif %}
             </span>
