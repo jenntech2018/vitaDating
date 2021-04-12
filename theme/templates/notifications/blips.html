@@ -2,25 +2,13 @@
 
 <form action='like' method='POST'>
     {% csrf_token %}
-    <button type='submit'>create a like</button>
+    <button class="flex justify-center ... h-48 flex flex-wrap content-center ..." type='submit'>create a like</button>
     </form>
     {{ user.id }}
 
-<!-- {% for item in comments%}
-{{ item }}
-<br>
+{% for item in notifs %}
+{% if item.n_type == 'L'%}
+<br>{{ item.sender }} Liked Your Post 
+{% endif %}
 {% endfor %}
-<br>
-{% for item in likes%}
-{{ item.user }}
-<br>
-{% endfor %}
-<br>
-{% for item in mentions%}
-{{ item }}
-{% endfor %}
-<br>
-{% for item in followed%}
-{{ item }}
-{% endfor %} -->
 

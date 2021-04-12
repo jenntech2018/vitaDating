@@ -1,9 +1,8 @@
-from django.shortcuts import render, reverse, HttpResponseRedirect
-# from notifications.models import Notifications, LikedNotifications, CommentedNotifications, FollowedNotifications
-from notifications.models import Notifications
+# from django.shortcuts import render, reverse, HttpResponseRedirect
+# from notifications.models import Notifications
 
-from vibe_user.models import Viber
-from video.models import Video
+# from vibe_user.models import Viber
+# from video.models import Video
 
 # Create your views here.
 '''
@@ -25,7 +24,7 @@ testing:
 
 from video.models import Video
 from vibe_user.models import Viber
-from notifications.models import Notifications, LikedNotifications, CommentedNotifications, FollowedNotifications
+from notifications.models import Notifications
 
 from vibe_user.models import Viber:
     display_name = models.CharField(max_length=120, null=True, blank=True)
@@ -36,15 +35,6 @@ from vibe_user.models import Viber:
     videos = models.ManyToManyField(Video, related_name='viber_videos')
     # sound = models.ManyToManyField('self', symmetrical=False, related_name='viber_sound')
     profile_photo = models.ImageField(upload_to=user_photo_path, blank=True, null=True)
-
-from notifications.models import Notifications:
-    time_created = models.DateTimeField(default=timezone.now)
-    mentions = models.ManyToManyField(Viber, symmetrical=False, related_name='mentions')
-    post = models.ForeignKey(Video, on_delete=models.CASCADE)
-    liked = models.ManyToManyField(Viber, symmetrical=False, related_name='liked')
-    Commented = models.ManyToManyField(Viber, symmetrical=False, related_name='commented')
-    followed = models.ManyToManyField(Viber, symmetrical=False, related_name='followed')
-
 
 from video.models import Video:
     creator = models.ForeignKey('vibe_user.Viber', null=True, blank=True, on_delete=models.CASCADE, related_name="video_creator")
@@ -74,15 +64,21 @@ notification creation:
 '''
 
 
-def notification_view(request):
-    notifs = Notifications.objects.filter(id=request.user.id)
+# def notification_view(request):
+#     notifs = Notifications.objects.all()
 
-    blips = 'notifications/blips.html'
-    return render(request, blips, {
-        'notifs': notifs,
-    })
+#     blips = 'notifications/blips.html'
+#     return render(request, blips, {
+#         'notifs': notifs,
+#     })
 
 
-def like_notification(request):
-
-    return HttpResponseRedirect(request.GET.get('next', reverse('blips')))
+# def like_notification(request):
+#     vid = Video.objects.get(id=1)
+#     Notifications.objects.create(
+#       n_type='L',
+#       video=vid,
+#       sender=request.user.id,
+#       reciever=request.user.id
+#     )
+#     return HttpResponseRedirect(request.GET.get('next', reverse('blips')))
