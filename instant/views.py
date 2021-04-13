@@ -33,5 +33,5 @@ class MessagesView(View):
             message.chat_id = chat_id
             message.author = request.user
             message.save()
-        return redirect(reverse('users:messages', kwargs={'chat_id': chat_id}))
+        return redirect(reverse({'message':message}, kwargs={'chat_id': chat_id}))
 

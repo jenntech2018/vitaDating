@@ -3,14 +3,15 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 from vibe_user.models import Viber
+from vibetube import settings
 
 
 class Message(models.Model):
-    author = models.ForeignKey(Viber, verbose_name='viber', on_delete=models.CASCADE)
+    author = models.ForeignKey(Viber, verbose_name='sender', on_delete=models.CASCADE)
     message = models.TextField(max_length=280)
     pub_date = models.DateTimeField(default=timezone.now)
     is_read = models.BooleanField(default=False)
-
+    recipient = models.OneToOneField(settings.AUTH_USER_MODEL, related_name='recipient', on_delete=models.CASCADE)
     class Meta:
         ordering=['pub_date']
 
