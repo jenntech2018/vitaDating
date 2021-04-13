@@ -23,16 +23,18 @@ from video.urls import urlpatterns as video_urls
 from vibe_user.urls import urlpatterns as user_urls
 from vibe_auth.urls import urlpatterns as auth_urls
 from vibe_api.urls import urlpatterns as api_urls
+from instant.urls import urlpatterns as msg_urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
 ]
-
+urlpatterns += msg_urls
 urlpatterns += main_urls
 urlpatterns += video_urls
 urlpatterns += user_urls
 urlpatterns += auth_urls
 urlpatterns += api_urls
+
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,

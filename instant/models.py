@@ -5,6 +5,18 @@ from django.utils.translation import ugettext_lazy as _
 from vibe_user.models import Viber
 
 
+class Message(models.Model):
+    author = models.ForeignKey(Viber, verbose_name='viber', on_delete=models.CASCADE)
+    message = models.TextField(max_length=280)
+    pub_date = models.DateTimeField(default=timezone.now)
+    is_read = models.BooleanField(default=False)
+
+    class Meta:
+        ordering=['pub_date']
+
+    def __str__(self):
+        return self.message
+
 class Chat(models.Model):
     DIALOG = 'D'
     CHAT = 'C'
@@ -19,20 +31,8 @@ class Chat(models.Model):
         default=DIALOG
     )
     members = models.ManyToManyField(Viber, verbose_name="Member")
- 
+    chat_id = models.ManyToManyField(Message, verbose_name="messages")
     def get_absolute_url(self):
         return 'users:messages', (), {'chat_id': self.pk }
  
  
-class Message(models.Model):
-    author = models.ForeignKey(Viber, verbose_name='viber', on_delete=models.CASCADE)
-    message = models.TextField(max_length=280)
-    pub_date = models.DateTimeField(default=timezone.now)
-    is_read = models.BooleanField(default=False)
-
-    class Meta:
-        ordering=['pub_date']
-
-    def __str__(self):
-        return self.message
-
