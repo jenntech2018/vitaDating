@@ -1,8 +1,8 @@
 {% load static %}
 <div @click.away="bellClicked = false" x-show="bellClicked == true" class="inline" id="notif-box-wrapper">
-    <span id="notif-bar" style="height: 640px; width: 380px; right: -2.5rem; top: 2rem;" class="rounded-md absolute w-40 bg-white border-2 drop-shadow-lg shadow-lg">
-        <h4 class="text-2xl font-semibold absolute top-4 left-4">Notifications</h4>
-        <div class="absolute top-14 left-2">
+    <span id="notif-bar" style="height: 640px; width: 380px; right: -2.5rem; top: 2rem;" class="rounded-md w-40 bg-white border-2 drop-shadow-lg shadow-lg">
+        <h4 class="text-2xl font-semibold top-4 left-4">Notifications</h4>
+        <div class="top-14 left-2">
             <span
             @click="activeFilter = 'All'"
             :class="{'bg-black text-white': activeFilter == 'All', 'bg-gray-200 text-black': activeFilter !== 'All'}"
@@ -17,8 +17,8 @@
             :class="{'bg-black text-white': activeFilter == 'Followers', 'bg-gray-200 text-black': activeFilter !== 'Followers'}" class="cursor-pointer bg-gray-200 rounded-full pr-2 pl-2 font-semibold">Followers</span>
         </div>
     </span>
-    <div class="absolute" style="pointer-events: none;">
-        <div class="relative top-48 right-36" x-show="activeFilter == 'All'" id="all-notifs">
+    <div style="pointer-events: none;">
+        <div class="top-48 right-36" x-show="activeFilter == 'All'" id="all-notifs">
             {% if not notifs_all %}
             <svg xmlns="http://www.w3.org/2000/svg" class="ml-2 h-28 w-28 text-gray-400 opacity-90" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
@@ -31,20 +31,18 @@
                 {% else %}
                     <h6 class="font-semibold -mt-20 -ml-44 text-xl text-black opacity-80">Today</h6>
                     {% for notif in notifs_all %}
-                    <span class="absolute w-min-full" style="left: -7rem;">
+                    <span class="w-min-full">
                         <img
-                            class="rounded-full duration-500 delay-1000 inline w-10 h-10"
+                            class="rounded-full w-10 h-10"
                             alt="{{notif.sender.display_name}}'s photo"
                             src="{% if notif.sender.profile_photo %} {{notif.sender.profile_photo.url}} {% else %} {% static 'images/default.png' %} {% endif %}">
-                            {% if notif.n_type == "L" %}
-                                <p style="width: 150px;" class="inline -right-2">liked your video.</p>
-                            {% endif %}
+                            <p class="ml-10">{{notif.msg}}</p>
                         </span>
                     {% endfor %}
                 {% endif %}
             </span>
         </div>
-        <div class="relative top-48 right-36" x-show="activeFilter == 'Likes'" id="like-notifs">
+        <div class="top-48 right-36" x-show="activeFilter == 'Likes'" id="like-notifs">
             <svg xmlns="http://www.w3.org/2000/svg" class="ml-2 h-28 w-28 text-gray-400 opacity-90" viewBox="0 0 20 20" fill="none" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd" />
             </svg>
@@ -53,7 +51,7 @@
                 <p class="text-sm -ml-32 w-96 text-gray-500 opacity-75 text-center">When someone likes one of your videos, you'll see it here.</p>
             </span>
         </div>
-        <div class="relative top-48 right-32" x-show="activeFilter == 'Comments'" id="comment-notifs">
+        <div class="top-48 right-32" x-show="activeFilter == 'Comments'" id="comment-notifs">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-28 w-28 text-gray-400 opacity-90" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
             </svg>
@@ -62,7 +60,7 @@
                 <p class="text-sm w-80 text-gray-500 opacity-75">When someone comments on one of your videos, you'll see it here.</p>
             </span>
         </div>
-        <div class="relative top-48 right-32" x-show="activeFilter == 'Mentions'" id="mention-notifs">
+        <div class="top-48 right-32" x-show="activeFilter == 'Mentions'" id="mention-notifs">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-28 w-28 text-gray-400 opacity-90" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" />
             </svg>
@@ -71,7 +69,7 @@
                 <p class="text-sm w-80 text-gray-500 opacity-75">When someone mentions you, you'll see it here.</p>
             </span>
         </div>
-        <div class="relative top-48 right-32" x-show="activeFilter == 'Followers'" id="follower-notifs">
+        <div class="top-48 right-32" x-show="activeFilter == 'Followers'" id="follower-notifs">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-28 w-28 text-gray-400 opacity-90" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
             </svg>

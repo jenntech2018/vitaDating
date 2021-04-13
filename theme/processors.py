@@ -13,7 +13,7 @@ def base_register_form(request):
 def notifications_all(request):
     if request.user.is_authenticated:
         from notifications.models import Notifications
-        notifs = Notifications.objects.filter(to=request.user)
+        notifs = Notifications.objects.filter(to=request.user).order_by('-time_created')
         return {"notifs_all": notifs}
     return {}
 
@@ -21,7 +21,7 @@ def notifications_all(request):
 def notifications_likes(request):
     if request.user.is_authenticated:
         from notifications.models import Notifications
-        notifs = Notifications.objects.filter(to=request.user, n_type="L")
+        notifs = Notifications.objects.filter(to=request.user, n_type="L").order_by('-time_created')
         return {"notifs_likes": notifs}
     return {}
 
@@ -30,7 +30,7 @@ def notifications_comments(request):
     if request.user.is_authenticated:
         from notifications.models import Notifications
         from django.db.models import Q
-        notifs = Notifications.objects.filter(Q(n_type="C") | Q(n_type="CL") | Q(n_type="CR"), to=request.user)
+        notifs = Notifications.objects.filter(Q(n_type="C") | Q(n_type="CL") | Q(n_type="CR"), to=request.user).order_by('-time_created')
         return {"notifs_comments": notifs}
     return {}
 
@@ -38,7 +38,7 @@ def notifications_comments(request):
 def notifications_mentions(request):
     if request.user.is_authenticated:
         from notifications.models import Notifications
-        notifs = Notifications.objects.filter(to=request.user, n_type="M")
+        notifs = Notifications.objects.filter(to=request.user, n_type="M").order_by('-time_created')
         return {"notifs_mentions": notifs}
     return {}
 
@@ -46,6 +46,6 @@ def notifications_mentions(request):
 def notifications_followers(request):
     if request.user.is_authenticated:
         from notifications.models import Notifications
-        notifs = Notifications.objects.filter(to=request.user, n_type="F")
+        notifs = Notifications.objects.filter(to=request.user, n_type="F").order_by('-time_created')
         return {"notifs_followers": notifs}
     return {}
