@@ -44,7 +44,13 @@
                 {% endif %}
             </span>
         </div>
-        <div class="relative top-48 right-36" x-show="activeFilter == 'Likes'" id="like-notifs">
+        <div class="relative top-48 right-36 border border-indigo-600 w-50 h-auto" x-show="activeFilter == 'Likes'" id="like-notifs">
+            {% for notif in notifs_likes %}
+            <span >
+                {{ notif.sender }} likes your post
+            </span>
+            {% endfor %}
+            {% if not notifs_likes %}
             <svg xmlns="http://www.w3.org/2000/svg" class="ml-2 h-28 w-28 text-gray-400 opacity-90" viewBox="0 0 20 20" fill="none" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd" />
             </svg>
@@ -52,6 +58,7 @@
                 <h6 class="font-semibold -ml-32 text-xl text-black opacity-80">Likes on your videos</h6>
                 <p class="text-sm -ml-32 w-96 text-gray-500 opacity-75 text-center">When someone likes one of your videos, you'll see it here.</p>
             </span>
+            {% endif %}
         </div>
         <div class="relative top-48 right-32" x-show="activeFilter == 'Comments'" id="comment-notifs">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-28 w-28 text-gray-400 opacity-90" fill="none" viewBox="0 0 24 24" stroke="currentColor">
