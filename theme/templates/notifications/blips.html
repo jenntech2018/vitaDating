@@ -1,0 +1,14 @@
+{% include 'base.html' %}
+
+<form action='like' method='POST'>
+    {% csrf_token %}
+    <button class="flex justify-center ... h-48 flex flex-wrap content-center ..." type='submit'>create a like</button>
+    </form>
+    {{ user.id }}
+
+{% for item in notifs %}
+{% if item.n_type == 'L'%}
+<br>{{ item.sender }} Liked Your Post 
+{% endif %}
+{% endfor %}
+
