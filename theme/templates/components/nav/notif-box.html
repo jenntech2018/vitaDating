@@ -1,8 +1,13 @@
 {% load static %}
-<div @click.away="bellClicked = false" x-show="bellClicked == true" class="inline" id="notif-box-wrapper">
-    <span id="notif-bar" style="height: 640px; width: 380px; right: -2.5rem; top: 2rem;" class="rounded-md w-40 bg-white border-2 drop-shadow-lg shadow-lg">
-        <h4 class="text-2xl font-semibold top-4 left-4">Notifications</h4>
-        <div class="top-14 left-2">
+<div @click.away="bellClicked = false" x-show="bellClicked" x-transition:enter="transition ease-out duration-500" 
+x-transition:enter-start="opacity-0 transform"
+x-transition:enter-end="opacity-100 transform"
+x-transition:leave="transition ease-in duration-500" 
+x-transition:leave-start="opacity-100 transform" 
+x-transition:leave-end="opacity-0 transform" style="height: 700px; width: 380px;" class="drop-shadow-lg rounded-lg shadow-lg fixed right-0 bg-white border-2 mr-56" id="notif-box-wrapper">
+    <span id="notif-bar"  class="w-40">
+        <h4 class="text-2xl font-semibold mt-5 ml-5 mb-2">Notifications</h4>
+        <div class="flex justify-around">
             <span
             @click="activeFilter = 'All'"
             :class="{'bg-black text-white': activeFilter == 'All', 'bg-gray-200 text-black': activeFilter !== 'All'}"
@@ -17,67 +22,127 @@
             :class="{'bg-black text-white': activeFilter == 'Followers', 'bg-gray-200 text-black': activeFilter !== 'Followers'}" class="cursor-pointer bg-gray-200 rounded-full pr-2 pl-2 font-semibold">Followers</span>
         </div>
     </span>
-    <div style="pointer-events: none;">
-        <div class="top-48 right-36" x-show="activeFilter == 'All'" id="all-notifs">
+    <div>
+        <div class="" x-show="activeFilter == 'All'" id="all-notifs">
             {% if not notifs_all %}
-            <svg xmlns="http://www.w3.org/2000/svg" class="ml-2 h-28 w-28 text-gray-400 opacity-90" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-            </svg><br>
-                {% endif %}
-                <span style="right: 0rem" class="-top-4 relative">
-                {% if not notifs_all %}
-                <h6 class="font-semibold -ml-32 text-xl text-black opacity-80">All activity</h6>
-                <p class="text-sm -ml-32 w-96 text-gray-500 opacity-75">Notifications about your account will appear here.</p>
+                <svg xmlns="http://www.w3.org/2000/svg" width="7.5rem" class="mx-auto text-gray-400 opacity-90 mt-20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                </svg><br>
+                <span class="text-center">
+                    <h6 class="font-semibold text-xl text-black opacity-80">All activity</h6>
+                    <p class="text-sm w-96 text-gray-500 opacity-75">Notifications about your account will appear here.</p>
+                </span>
                 {% else %}
-                    <h6 class="font-semibold -mt-20 -ml-44 text-xl text-black opacity-80">Today</h6>
+                    <h6 class="font-semibold text-xl mt-3 ml-5 text-black opacity-80">Today</h6>
                     {% for notif in notifs_all %}
-                    <span class="w-min-full">
+                    <span class="ml-5 cursor-pointer " onclick="window.location.href='{{notif.video.video.url}}'">
                         <img
-                            class="rounded-full w-10 h-10"
+                            class="rounded-full w-10 h-10 inline"
                             alt="{{notif.sender.display_name}}'s photo"
                             src="{% if notif.sender.profile_photo %} {{notif.sender.profile_photo.url}} {% else %} {% static 'images/default.png' %} {% endif %}">
-                            <p class="ml-10">{{notif.msg}}</p>
-                        </span>
+                            <span class="grid-rows-2 grid-flow-row inline-grid">
+                                <p class="font-semibold">{{notif.sender.username}}</p><p>{{notif.msg}}</p>
+                            </span>
+                    </span><br><br>
                     {% endfor %}
                 {% endif %}
             </span>
         </div>
-        <div class="top-48 right-36" x-show="activeFilter == 'Likes'" id="like-notifs">
-            <svg xmlns="http://www.w3.org/2000/svg" class="ml-2 h-28 w-28 text-gray-400 opacity-90" viewBox="0 0 20 20" fill="none" stroke="currentColor">
+        <div class="" x-show="activeFilter == 'Likes'" id="like-notifs">
+            {% if not notifs_likes %}
+            <svg xmlns="http://www.w3.org/2000/svg" width="7.5rem" class="mx-auto text-gray-400 opacity-90 mt-20" viewBox="0 0 20 20" fill="none" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd" />
             </svg>
-            <span class="top-2 relative">
-                <h6 class="font-semibold -ml-32 text-xl text-black opacity-80">Likes on your videos</h6>
-                <p class="text-sm -ml-32 w-96 text-gray-500 opacity-75 text-center">When someone likes one of your videos, you'll see it here.</p>
+            <span class="text-center">
+                <h6 class="font-semibold text-xl text-black opacity-80">Likes on your videos</h6>
+                <p class="text-sm text-gray-500 opacity-75">When someone likes one of your videos, you'll see it here.</p>
             </span>
+            {% else %}
+                <h6 class="font-semibold text-xl mt-3 ml-5 text-black opacity-80">Today</h6>
+                {% for notif in notifs_likes %}
+                <span class="ml-5 cursor-pointer " onclick="window.location.href='{{notif.video.video.url}}'">
+                    <img
+                        class="rounded-full w-10 h-10 inline"
+                        alt="{{notif.sender.display_name}}'s photo"
+                        src="{% if notif.sender.profile_photo %} {{notif.sender.profile_photo.url}} {% else %} {% static 'images/default.png' %} {% endif %}">
+                        <span class="grid-rows-2 grid-flow-row inline-grid">
+                            <p class="font-semibold">{{notif.sender.username}}</p><p>{{notif.msg}}</p>
+                        </span>
+                </span><br><br>
+                {% endfor %}
             {% endif %}
         </div>
-        <div class="top-48 right-32" x-show="activeFilter == 'Comments'" id="comment-notifs">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-28 w-28 text-gray-400 opacity-90" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <div class="" x-show="activeFilter == 'Comments'" id="comment-notifs">
+            {% if not notifs_comments %}
+            <svg xmlns="http://www.w3.org/2000/svg" width="7.5rem" class="mx-auto text-gray-400 opacity-90 mt-20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
             </svg>
-            <span style="right: 6.5rem" class="top-2 relative">
+            <span class="text-center">
                 <h6 class="font-semibold text-xl text-black opacity-80">Comments on your videos</h6>
-                <p class="text-sm w-80 text-gray-500 opacity-75">When someone comments on one of your videos, you'll see it here.</p>
+                <p class="text-sm text-gray-500 opacity-75">When someone comments on one of your videos, you'll see it here.</p>
             </span>
+            {% else %}
+                <h6 class="font-semibold text-xl mt-3 ml-5 text-black opacity-80">Today</h6>
+                {% for notif in notifs_comments %}
+                <span class="ml-5 cursor-pointer " onclick="window.location.href='{{notif.video.video.url}}'">
+                    <img
+                        class="rounded-full w-10 h-10 inline"
+                        alt="{{notif.sender.display_name}}'s photo"
+                        src="{% if notif.sender.profile_photo %} {{notif.sender.profile_photo.url}} {% else %} {% static 'images/default.png' %} {% endif %}">
+                        <span class="grid-rows-2 grid-flow-row inline-grid">
+                            <p class="font-semibold">{{notif.sender.username}}</p><p>{{notif.msg}}</p>
+                        </span>
+                </span><br><br>
+                {% endfor %}
+            {% endif %}
         </div>
-        <div class="top-48 right-32" x-show="activeFilter == 'Mentions'" id="mention-notifs">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-28 w-28 text-gray-400 opacity-90" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <div class="" x-show="activeFilter == 'Mentions'" id="mention-notifs">
+            {% if not notifs_mentions %}
+            <svg xmlns="http://www.w3.org/2000/svg" width="7.5rem" class="mx-auto text-gray-400 opacity-90 mt-20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" />
             </svg>
-            <span style="right: 6.25rem" class="top-2  relative">
+            <span class="text-center">
                 <h6 class="font-semibold text-xl text-black opacity-80">Mentions of You</h6>
-                <p class="text-sm w-80 text-gray-500 opacity-75">When someone mentions you, you'll see it here.</p>
+                <p class="text-sm text-gray-500 opacity-75">When someone mentions you, you'll see it here.</p>
             </span>
+            {% else %}
+                <h6 class="font-semibold text-xl mt-3 ml-5 text-black opacity-80">Today</h6>
+                {% for notif in notifs_mentions %}
+                <span class="ml-5 cursor-pointer " onclick="window.location.href='{{notif.video.video.url}}'">
+                    <img
+                        class="rounded-full w-10 h-10 inline"
+                        alt="{{notif.sender.display_name}}'s photo"
+                        src="{% if notif.sender.profile_photo %} {{notif.sender.profile_photo.url}} {% else %} {% static 'images/default.png' %} {% endif %}">
+                        <span class="grid-rows-2 grid-flow-row inline-grid">
+                            <p class="font-semibold">{{notif.sender.username}}</p><p>{{notif.msg}}</p>
+                        </span>
+                </span><br><br>
+                {% endfor %}
+            {% endif %}
         </div>
         <div class="top-48 right-32" x-show="activeFilter == 'Followers'" id="follower-notifs">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-28 w-28 text-gray-400 opacity-90" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            {% if not notifs_followers %}
+            <svg xmlns="http://www.w3.org/2000/svg" width="7.5rem" class="mx-auto text-gray-400 opacity-90 mt-20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
             </svg>
-            <span style="right: 6.5rem" class="top-2 relative">
+            <span class="text-center">
                 <h6 class="font-semibold text-xl text-black opacity-80">New followers</h6>
-                <p class="text-gray-500 w-80 text-sm opacity-75">When someone new follows you, you'll see it here.</p>
+                <p class="text-gray-500 text-sm opacity-75">When someone new follows you, you'll see it here.</p>
             </span>
+            {% else %}
+                <h6 class="font-semibold text-xl mt-3 ml-5 text-black opacity-80">Today</h6>
+                {% for notif in notifs_followers %}
+                <span class="ml-5 cursor-pointer " onclick="window.location.href='{{notif.video.video.url}}'">
+                    <img
+                        class="rounded-full w-10 h-10 inline"
+                        alt="{{notif.sender.display_name}}'s photo"
+                        src="{% if notif.sender.profile_photo %} {{notif.sender.profile_photo.url}} {% else %} {% static 'images/default.png' %} {% endif %}">
+                        <span class="grid-rows-2 grid-flow-row inline-grid">
+                            <p class="font-semibold">{{notif.sender.username}}</p><p>{{notif.msg}}</p>
+                        </span>
+                </span><br><br>
+                {% endfor %}
+            {% endif %}
         </div>
     </div>
 </div>

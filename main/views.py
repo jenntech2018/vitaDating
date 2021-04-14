@@ -28,7 +28,7 @@ class MainView(View):
                     dob=dob,
                     display_name=display_name,
                     profile_photo=data["profile_photo"])
-                
+            data["username"] = username
             is_authed = auth_user(request, data)
             if is_authed:
                 return redirect(reverse("main"))
