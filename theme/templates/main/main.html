@@ -1,7 +1,6 @@
 {% load static %}
 {% include 'base.html' %}
-<div x-data="{mode: 'fyp'}" class="absolute flex">
-        <!-- Only two panels needed for home page. -->
+<div x-data="{mode: 'fyp'}" class="flex -mt-2">
         <div id="side-panel" class="fixed justify-self-start top-16 left-96">
             <span @click="mode = 'fyp'" class="cursor-pointer" :class="{'text-red-500 font-semibold': mode == 'fyp'}">
                 <svg x-show="mode == 'fyp'" xmlns="http://www.w3.org/2000/svg" class="inline h-10 w-10" viewBox="0 0 20 20" fill="currentColor">
@@ -10,7 +9,7 @@
                 <svg x-show="mode !== 'fyp'" xmlns="http://www.w3.org/2000/svg" class="inline h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                 </svg>
-                <h3 class="relative inline text-3xl top-2">For You</h3>
+                <h3 class="inline text-3xl top-2">For You</h3>
             </span>
             <br>
             <span @click="mode = 'following'" class="cursor-pointer" :class="{'text-red-500 font-semibold': mode == 'following'}">
@@ -20,7 +19,7 @@
                   <svg x-show="mode == 'following'" xmlns="http://www.w3.org/2000/svg" class="inline h-10 w-10" viewBox="0 0 20 20" fill="currentColor">
                     <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" />
                   </svg>
-                <h3 class="relative inline text-3xl top-2">Following</h3>
+                <h3 class="inline text-3xl top-2">Following</h3>
             </span>
             {% if not user.is_authenticated %}
                 <div>
@@ -38,7 +37,7 @@
                             class="inline rounded-full duration-500 delay-1000 w-12 h-12 cursor-pointer"
                             alt="{{account.display_name}}'s photo"
                             src="{% if account.profile_photo %} {{account.profile_photo.url}} {% else %} {% static 'images/default.png' %} {% endif %}">
-                            <span class="flex-col inline-flex -mt-2 ml-2  relative">
+                            <span class="flex-col inline-flex -mt-2 ml-2">
                                 <p class="inline-flex font-semibold">
                                     {{ account.username }}
                                     {% if account.verified %}
@@ -57,7 +56,7 @@
                 </div>
             </div>
         </div>
-        <div id="videos">
+        <div id="videos" class="mt-6">
             {% for video in videos %}
                 <div style="left: 50rem; margin-left: 50rem;" class="mt-16">
                     <div>
@@ -65,7 +64,7 @@
                             class="inline rounded-full duration-500 delay-1000 w-12 h-12"
                             alt="{{video.creator.display_name}}'s photo"
                             src="{% if video.creator.profile_photo %} {{video.creator.profile_photo.url}} {% else %} {% static 'images/default.png' %} {% endif %}">
-                            <span class="flex-col inline-flex -mt-2 ml-2 relative">
+                            <span class="flex-col inline-flex -mt-2 ml-2">
                                 <p class="inline-flex font-semibold cursor-pointer">
                                     {{ video.creator.username }}
                                     {% if video.creator.verified %}
@@ -130,7 +129,6 @@
                         el.muted = true;
                         el.play();
                     } else {
-                        console.log("Test Tha Shit")
                         el.pause();
                     }
                 });
