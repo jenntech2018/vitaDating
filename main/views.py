@@ -20,6 +20,7 @@ class MainView(View):
                 display_name = check_for_name(data["display_name"])
                 username = check_for_username(data['username'], display_name)
                 dob = datetime.date(int(data["year"]), int(data["month"]), int(data["day"]))
+                data["username"] = username
 
                 Viber.objects.create_user(
                     username=username,
@@ -28,7 +29,6 @@ class MainView(View):
                     dob=dob,
                     display_name=display_name,
                     profile_photo=data["profile_photo"])
-            data["username"] = username
             is_authed = auth_user(request, data)
             if is_authed:
                 return redirect(reverse("main"))
