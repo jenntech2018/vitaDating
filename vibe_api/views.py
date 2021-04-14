@@ -28,7 +28,7 @@ class VideoViewSet(viewsets.ModelViewSet):
                                      to=creator)
         
         serialized_data = self.get_serializer(data)
-        return Response(data=serialized_data.data,status=status.HTTP_200_OK)
+        return Response(data=serialized_data.data,status=status.HTTP_201_OK)
 
     
     @action(detail=True, methods=["post"])
@@ -36,12 +36,50 @@ class VideoViewSet(viewsets.ModelViewSet):
         Video.objects.filter(id=pk).update(likes=F("likes") - 1)
         data = Video.objects.get(id=pk)
         serialized_data = self.get_serializer(data)
-        return Response(data=serialized_data.data,status=status.HTTP_200_OK)
+        return Response(data=serialized_data.data,status=status.HTTP_201_OK)
 
 
 class ViberViewSet(viewsets.ModelViewSet):
     queryset = Viber.objects.all().order_by('-username')
     serializer_class = ViberSerializer
+
+    @action(detail=True, methods=["post"])
+    def follow(self, request, pk=None):
+        user = Viber.objects.get(id=pk)
+        follower = Viber.objects.get(id=request.data["from_id"])
+        user.followers.add(follower)
+        follower.following.add(user)
+        user.save()
+        follower.save()
+
+        Notifications.objects.create(
+            n_type="F",
+            sender=follower,
+            to=user
+        )
+
+        followers_count = user.followers.all().count()
+        return Response(data={"followers_count": followers_count}, status=status.HTTP_201_CREATED)
+
+
+    @action(detail=True, methods=["post"])
+    def unfollow(self, request, pk=None):
+        user = Viber.objects.get(id=pk)
+        unfollower = Viber.objects.get(id=request.data["from_id"])
+        user.followers.remove(unfollower)
+        unfollower.following.remove(user)
+        user.save()
+        unfollower.save()
+
+        Notifications.objects.create(
+            n_type="F",
+            sender=unfollower,
+            to=user
+        )
+        followers_count = user.followers.all().count()
+        return Response(data={"followers_count": followers_count}, status=status.HTTP_201_CREATED)
+
+
 
 
 class SoundViewSet(viewsets.ModelViewSet):

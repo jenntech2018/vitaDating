@@ -38,26 +38,68 @@
         }
     </style>
 
-<div id=cent>
+<div id="cent">
     <div > 
-        <img class="rounded-full h-24 w-24 flex items-center justify-center..." src="/media/@TikTokGirl1/profile-photos/587757914.jpeg">
+        <img class="rounded-full h-24 w-24 flex items-center justify-center" src="{% if vibe_user.profile_photo %} {{vibe_user.profile_photo.url}} {% else %} {% static 'images/default.png' %} {% endif %}">
     </div>
     <div>
         
-        <div class=flex-container>
-            <h1 class=position>{{vibe_user.username}}</h1>
-        </div>
-        <div >
-            <h3 class=position>{{vibe_user.first_name}} {{vibe_user.last_name}}</h3>
+        <div class="flex-container">
+            {% if not request.user == vibe_user %}
+                <div x-data="{isFollowing: {{is_following}}}">
+                        <button x-show="!isFollowing" @click="isFollowing = !  isFollowing, followViber({{vibe_user.id}}, {{request.user.id}})" style="
+                            background-color: #fc2a5e;
+                            width: 200px;
+                            height: 32px;" class="rounded-sm ml-32 text-white font-semibold focus:outline-none focus:ring">Follow</button>
+                        <button x-show="isFollowing" @click="isFollowing = !  isFollowing, unfollowViber({{vibe_user.id}}, {{request.user.id}})" style="
+                            width: 200px;
+                            border-width: .5px;
+                            height: 32px;" class="hover:bg-gray-100 rounded-sm ml-32 text-black border-gray-300 font-semibold focus:outline-none focus:ring">Following</button>
+                    </div>
+                {% endif %}
+            <h1 class="position">{{vibe_user.username}}</h1>
+            <h3 class="position">{{vibe_user.display_name}}</h3>
         </div>
     </div>                
     
     <div>
-        <p1>{{vibe_followers}} Followers {{vibe_following}} Following {{vibe_likes}} Likes</p1>
+        <p1><span id="followers">{{vibe_followers}}</span> Followers {{vibe_following}} Following {{vibe_likes}} Likes</p1>
     </div>  
     <div>
         <p1>{{vibe_user.bio}}</p1>
     </div> 
     
 </div>
+
+<script>
+    const followViber = (toId, fromId) => {
+        url = "http://localhost:8000/api-vibes"
+        fetch(`${url}/vibers/${toId}/follow/`, {
+            method: "POST",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                "to_id": toId,
+                "from_id": fromId
+            })
+        }).then(x => x.json()).then(data => document.getElementById("followers").innerHTML = data.followers_count)
+    }
+
+    const unfollowViber = (toId, fromId) => {
+        url = "http://localhost:8000/api-vibes"
+        fetch(`${url}/vibers/${toId}/unfollow/`, {
+            method: "POST",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                "to_id": toId,
+                "from_id": fromId
+            })
+        }).then(x => x.json()).then(data => document.getElementById("followers").innerHTML = data.followers_count)
+    }
+</script>
 
