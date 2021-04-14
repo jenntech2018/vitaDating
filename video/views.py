@@ -15,7 +15,7 @@ class UploadView(View):
         if form.is_valid():
             data = form.cleaned_data
             video = mp.VideoFileClip(data["video"].temporary_file_path())
-
+            
             instance = form.save()
             video.audio.write_audiofile(f"media/@{request.user.username}/video/{instance.uuid}_sound.mp3")
             sound = Sound.objects.create(

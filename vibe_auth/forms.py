@@ -187,6 +187,6 @@ class RegistrationForm(forms.Form):
     day = forms.ChoiceField(choices=DAY, widget=forms.Select(attrs={"id": "day", "name": "day", "class": "w-28 h-12 bg-gray-100 hover:bg-gray-200 rounded"}))
     month = forms.ChoiceField(choices=MONTH, widget=forms.Select(attrs={"id": "month", "name": "month", "class": "w-28 h-12 bg-gray-100 hover:bg-gray-200 rounded"}))
     year = forms.ChoiceField(choices=YEAR, widget=forms.Select(attrs={"id": "year", "name": "year", "class": "w-28 h-12 bg-gray-100 hover:bg-gray-200 rounded"}))
-    username = forms.CharField(max_length=32, widget=forms.TextInput(attrs={"name":"username", "placeholder":"Username", "class":"rounded-md inline h-12 border-gray-200 bg-gray-100 pl-3 hover:bg-gray-200 mt-2 border-2 w-96"}))
+    username = forms.CharField(required=False, max_length=32, widget=forms.TextInput(attrs={"name":"username", "placeholder":"Username", "class":"rounded-md inline h-12 border-gray-200 bg-gray-100 pl-3 hover:bg-gray-200 mt-2 border-2 w-96"}))
     display_name = forms.CharField(required=False, max_length=32, widget=forms.TextInput(attrs={"name":"display-name", "placeholder":"Display name", "class":"rounded-md inline h-12 border-gray-200 bg-gray-100 pl-3 hover:bg-gray-200 mt-2 border-2 w-96"}))
     profile_photo = forms.ImageField(required=False,widget=forms.ClearableFileInput(attrs={"id":"upload-pfp", "type":"file", "style":"font-size: 0; opacity: 0; top: 3.95rem; right: 13.425rem;", "class":"opacity-100 absolute w-8 h-8 cursor-pointer", "accept":"image/png,image/jpeg,image/jpg"}))

@@ -47,8 +47,10 @@ class ViberViewSet(viewsets.ModelViewSet):
     def follow(self, request, pk=None):
         user = Viber.objects.get(id=pk)
         follower = Viber.objects.get(id=request.data["from_id"])
+        
         user.followers.add(follower)
         follower.following.add(user)
+
         user.save()
         follower.save()
 
