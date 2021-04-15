@@ -37,3 +37,7 @@ def vibe_user_unfollow_view(request, user_id):
     request.user.followers.remove(follow)
 
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+
+def settings_page(request):
+    return render(request, 'settings/settings.html', {})
