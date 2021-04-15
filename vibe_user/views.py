@@ -66,3 +66,6 @@ def edit_profile_view(request, username):
         }
     )
     return render(request, "user/edit_profile.html", {"form":form})
+
+def settings_page(request):
+    return render(request, 'settings/settings.html', {})
