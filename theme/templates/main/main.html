@@ -183,7 +183,7 @@
         }
 
         const submitComment = (videoId) => {
-            const comment = document.getElementById(`addComment${videoId}`)
+            const comment = document.getElementById(`addComment${videoId}`).value
             const url = "http://localhost:8000/api-vibes"
             fetch(`${url}/comments/add_comment/`, {
                 method: "POST",
@@ -199,10 +199,12 @@
         }).then(resp => resp.json()).then(d => document.getElementById('comment-counter-{{video.id}}').innerHTML = d.comment_count)
     }
 
-    const submitReply = (commentId) => {
+    const submitReply = (commentId, replyTo, replyId) => {
         const reply = document.getElementById(`replyBox${commentId}`).value
+        const replyBox = document.getElementById(`replyBox${commentId}${replyId}`).value
         const replyList = document.getElementById(`replies-list-${commentId}`)
         const viewReplies = document.getElementById(`view-comment-replies-${commentId}`)
+        const showRepliesWrapper = document.getElementById(`show-replies-wrapper-${commentId}`)
         const url = "http://localhost:8000/api-vibes"
         fetch(`${url}/comments/${commentId}/add_reply/`, {
             method: "POST",
@@ -212,7 +214,7 @@
             },
             body: JSON.stringify({
                 "user_id": '{{request.user.id}}',
-                "reply": reply
+                "reply": replyTo ? `@${replyTo}: ${replyBox}` : reply
             })
         }).then(resp => resp.json()).then(d => {
             replyList.innerHTML += 
@@ -235,13 +237,21 @@
                             <span id="reply-${commentId}-${d.reply_id}-likes" class="ml-1.5 text-xs text-gray-400">0</span>
                         </span>
                     </span><br>
-                    ${reply}
+                    ${replyTo ? `@${replyTo}: ${replyBox}` : reply}
                 </p>
                 <span class="ml-12 text-xs text-gray-400">0 second(s) ago</span>
                 <button class="focus:outline-none bg-none text-xs text-gray-400 font-semibold pl-4">Reply</button>
             </span><br>
             `
-            viewReplies.innerHTML = `View replies (${Number(viewReplies.innerHTML.split(" ")[2].replace("(", "").replace(")", "")) + 1})`
+            if (viewReplies) {
+                viewReplies.innerHTML = `View replies (${Number(viewReplies.innerHTML.split(" ")[2].replace("(", "").replace(")", "")) + 1})`
+            } else {
+                showRepliesWrapper.innerHTML = `
+                <span id="view-comment-replies-${commentId}" class="font-semibold text-gray-400 text-xs">View replies (1)</span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline" fill="none" viewBox="0 0 24 24" stroke="gray">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>`
+            }
         })
     }
 

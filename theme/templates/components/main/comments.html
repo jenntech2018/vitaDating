@@ -75,9 +75,8 @@
                             <span class="text-xs text-gray-400">{{comment.fixed_date}}</span>
                             <button @click="showReplyBox{{comment.id}} = ! showReplyBox{{comment.id}}" class="focus:outline-none bg-none text-xs text-gray-400 font-semibold pl-4">Reply</button><br x-show="showReplyBox{{comment.id}}">
                             <input x-show="showReplyBox{{comment.id}}" id="replyBox{{comment.id}}" class="w-72 h-8 pl-4 bg-gray-200 rounded-lg" placeholder="Reply to @{{comment.user.username}}...">
-                            <button x-show="showReplyBox{{comment.id}}" @click="submitReply('{{comment.id}}'), showReplyBox{{comment.id}} = false" class="inline focus:outline-none font-semibold bg-none text-red-600 text-sm">Post</button>
+                            <button x-show="showReplyBox{{comment.id}}" @click="submitReply('{{comment.id}}'', '', ''), showReplyBox{{comment.id}} = false" class="inline focus:outline-none font-semibold bg-none text-red-600 text-sm">Post</button>
                             <br>
-                            {% if comment.replies.replies|length %}
                                 <span id="replies-list-{{comment.id}}" x-show="showReplies{{comment.id}}">
                                     {% for reply in comment.replies.replies %}
                                     <div class="flex-shrink-0 mr-3 inline">
@@ -112,21 +111,23 @@
                                                     <span id="reply-{{comment.id}}-{{reply.id}}-likes" class="ml-1.5 text-xs text-gray-400">{{reply.likes}}</span>
                                                 </span>
                                             </span><br>
-                                            {{ reply.reply }}
+                                                {{ reply.reply }}
                                         </p>
                                         <span class="ml-12 text-xs text-gray-400">{{reply.timestamp|fix_date}}</span>
                                         <button @click="replyToReply{{comment.id}} = ! replyToReply{{comment.id}}" class="focus:outline-none bg-none text-xs text-gray-400 font-semibold pl-4">Reply</button><br x-show="replyToReply{{comment.id}}">
                                         <input x-show="replyToReply{{comment.id}}" id="replyBox{{comment.id}}{{reply.id}}" class="w-72 h-8 pl-4 bg-gray-200 rounded-lg" placeholder="Reply to @{{reply.username}}...">
-                                        <button x-show="replyToReply{{comment.id}}" @click="submitReply('{{comment.id}}'), replyToReply{{comment.id}} = false" class="inline focus:outline-none font-semibold bg-none text-red-600 text-sm">Post</button>
+                                        <button x-show="replyToReply{{comment.id}}" @click="submitReply('{{comment.id}}', '{{reply.username}}', '{{reply.id}}'), replyToReply{{comment.id}} = false" class="inline focus:outline-none font-semibold bg-none text-red-600 text-sm">Post</button>
                                     </span><br>
                                     {% endfor %}
                                 </span>
                             <span @click="showReplies{{comment.id}} = ! showReplies{{comment.id}}" class="cursor-pointer">
-                                <span x-show="!showReplies{{comment.id}}">
+                                <span x-show="!showReplies{{comment.id}}" id="show-replies-wrapper-{{comment.id}}">
+                                    {% if comment.replies.replies|length %}
                                     <span id="view-comment-replies-{{comment.id}}" class="font-semibold text-gray-400 text-xs">View replies ({{comment.replies.replies|length}})</span>
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline" fill="none" viewBox="0 0 24 24" stroke="gray">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                                     </svg>
+                                    {% endif %}
                                 </span>
                                 <span x-show="showReplies{{comment.id}}">
                                     <span class="font-semibold text-gray-400 text-xs">Hide</span>
@@ -135,7 +136,6 @@
                                     </svg>
                                 </span>
                             </span>
-                            {% endif %}
                         </span>
                     </div>
                   </div>
