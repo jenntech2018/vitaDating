@@ -7,7 +7,7 @@
         #cent {
             position:absolute;
             top:20%;
-            left:45%;
+            left:60%;
             margin-top:-50px;  
             margin-left:-100px; 
         }
@@ -30,7 +30,7 @@
             /* flex-direction:column-reverse; */
             position: relative;
             left: 125px;
-            bottom: 75px;
+            bottom: 115px;
         }
 
         .flex-item-right {
@@ -56,6 +56,8 @@
                             border-width: .5px;
                             height: 32px;" class="hover:bg-gray-100 rounded-sm ml-32 text-black border-gray-300 font-semibold focus:outline-none focus:ring">Following</button>
                 </div>
+
+                <button type="button" onclick='window.location.href="/edit/@{{request.user}}"'>Edit Profile</button>
                 {% endif %}
             <h1 class="position">{{vibe_user.username}} 
                                 {% if vibe_user.verified %}
@@ -66,10 +68,14 @@
     </div>                
     
     <div>
-        <p1><span id="followers">{{vibe_followers}}</span> Followers {{vibe_following}} Following {{vibe_user.video_likes}} Likes</p1>
+        <p1><span id="followers"><strong>{{vibe_followers}}</strong></span> Followers <strong>{{vibe_following}}</strong> Following <strong>{{vibe_user.video_likes}}</strong> Likes</p1>
     </div>  
     <div>
-        <p1>{{vibe_user.bio}}</p1>
+        {% if not vibe_user.bio %}
+            <p>No bio yet. </p>
+        {% else %}
+            <p1>{{vibe_user.bio}}</p1>
+        {% endif %}
     </div> 
     
     <h1 class="text-3xl font-semibold">Bloop</h1>
@@ -87,6 +93,10 @@
         {% endfor %}
     </div>
 </div>
+
+
+
+
 
 <script>
     const followViber = (toId, fromId) => {
