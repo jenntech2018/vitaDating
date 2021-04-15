@@ -7,8 +7,9 @@ from vibe_user.models import Viber
 
 class SettingsBackend(BaseBackend):
     def authenticate(self, request, username=None, email=None, password=None):
-        if email: user = Viber.objects.get(email=email)
-        else: user = Viber.objects.get(username=username)
+        username = username
+        if email: user = Viber.objects.get(email__iexact=email).first()
+        else: user = Viber.objects.filter(username__iexact=username).first()
         
         if password:
             try:

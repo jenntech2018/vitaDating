@@ -17,6 +17,15 @@ class Viber(AbstractUser):
     verified = models.BooleanField(default=False)
     sounds = models.ManyToManyField(Sound, related_name='viber_sounds')
     profile_photo = models.ImageField(upload_to=user_photo_path, blank=True, null=True)
+    liked_videos = models.ManyToManyField(Video, related_name="liked_videos_list")
+
+    @property
+    def video_likes(self):
+        user_videos = Video.objects.filter(creator=self).all()
+        count = 0
+        for vid in user_videos:
+            count += vid.likes
+        return count
 
     def __str__(self):
         return self.username
