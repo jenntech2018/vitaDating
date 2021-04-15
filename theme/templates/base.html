@@ -173,7 +173,8 @@
 						<div class="flex justify-between items-center">
 							<a id="upload-btn" class="cursor-pointer mt-2 hover:underline font-bold" @click="showLogin = true">Upload</a>
 							<button id="login" @click="showLogin = true" class="ml-2 rounded-sm mt-2 auth-buttons mb-2 inline text-white focus:outline-none focus:ring shadow-lg hover:shadow-none transition-all duration-300">Log in</button>
-							</div>
+								
+						</div>
 						{% else %}
 							<div class="block">
 								<div class="inline relative sm:flex sm:items-center">
@@ -213,7 +214,18 @@
 									</div>
 								</div>
 							</div>
-						{% endif %}
+							{% endif %}
+						{% if messages %}
+						<ul class="messages">
+						{% for message in messages %}
+							<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+							{% if message.level == INFO %}
+							<p class="text-2xl">This is a message {{message}}</p>
+							{% endif %}
+							</li>
+						{% endfor %}
+						</ul>
+					{% endif %}
 						</div>
 					</div>
 				</div>
