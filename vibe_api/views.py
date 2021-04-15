@@ -33,7 +33,6 @@ class VideoViewSet(viewsets.ModelViewSet):
                                      video=data,
                                      sender=sender,
                                      to=creator)
-        
         serialized_data = self.get_serializer(data)
         return Response(data=serialized_data.data,status=status.HTTP_201_CREATED)
 
