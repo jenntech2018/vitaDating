@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, reverse
 from django.views import View
 from .forms import MessageForm
-from .models import Chat
+from .models import Chat, Message
 
 
 class MessagesView(View):
@@ -9,8 +9,8 @@ class MessagesView(View):
         try:
             chat = Chat.objects.get(id=chat_id)
             if request.user in chat.members.all():
-                chat.message_set.filter(is_readed=False).exclude(
-                    author=request.user).update(is_readed=True)
+                chat.message_set.filter(is_read=False).exclude(
+                    author=request.user).update(is_read=True)
             else:
                 chat = None
         except Chat.DoesNotExist:
@@ -18,10 +18,10 @@ class MessagesView(View):
 
         return render(
             request,
-            'theme/templates/messaging/dialog.html',
+            'messaging/dialog.html',
             {
                 'user_profile': request.user,
-                'chat': chat,
+                'chat': chat_id,
                 'form': MessageForm()
             }
         )
@@ -33,5 +33,5 @@ class MessagesView(View):
             message.chat_id = chat_id
             message.author = request.user
             message.save()
-        return redirect(reverse('users:messages', kwargs={'chat_id': chat_id}))
+        return redirect(reverse({'message':message}, kwargs={'chat_id': chat_id}))
 
