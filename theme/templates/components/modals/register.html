@@ -38,12 +38,30 @@ style="z-index: 1000;"
             <h5 class="font-semibold ml-10 float-left text-md">Email</h5><br>
             {{ registration_form.email }}
             {{ registration_form.password }}
-            <input name="verification" placeholder="Enter 6-digit code" class="float-left rounded-r-none inline rounded-l-md h-12 ml-10 border-gray-200 bg-gray-100 pl-3 hover:bg-gray-200 mt-2 border-2 w-56">
-            <button id="send-code" disabled class="inline rounded-md h-12 float-left border-gray-200 font-semibold rounded-l-none rounded-r-md bg-gray-100 hover:bg-gray-200 mt-2 border-2 w-40">Send code</button>
+            <input name="verification" id="verification" x-ref="verification" placeholder="Enter 6-digit code" class="float-left rounded-r-none inline rounded-l-md h-12 ml-10 border-gray-200 bg-gray-100 pl-3 hover:bg-gray-200 mt-2 border-2 w-56">
+            <button onclick="sendToken()" id="send-code" disabled class="inline rounded-md h-12 float-left border-gray-200 font-semibold rounded-l-none rounded-r-md bg-gray-100 hover:bg-gray-200 mt-2 border-2 w-40">Send code</button>
+            <p class="text-sm text-red-500 -ml-36 -mb-2 hidden" x-ref="invalidCode">Invalid or no code entered.</p><br>
+            <p class="text-sm text-gray-400 -ml-36 -mb-2 hidden" id="codeSent">Verification code sent.</p><br>
             <button
             type="button"
             id="reg-modal-btn"
-            @click="showStep2 = true"
+            @click="fetch('http://localhost:8000/api-vibes/auth/verify_token/', 
+                          {method: 'POST', 
+                           headers: 
+                           {
+                             'Accept': 'application/json',
+                             'Content-Type': 'application/json'
+                           },
+                           body: JSON.stringify({'token': $refs.verification.value })
+                          }).then(resp => {
+                             if (resp.status !== 202) {
+                               $refs.invalidCode.classList.remove('hidden');
+                               $refs.codeSent.classList.add('hidden');
+                              } else {
+                                $refs.invalidCode.classList.add('hidden');
+                                showStep2 = true;
+                              }
+                            });"
             class="w-96 font-semibold mt-8 h-12 text-white focus:outline-none">Next</button>
         </form>
     </main>
@@ -60,3 +78,31 @@ style="z-index: 1000;"
   </div>
 </div>
 </div>
+
+<script>
+  emailField = document.getElementById("reg-email")
+  emailField.onchange = () => {
+    if (emailField.value) {
+      document.getElementById("send-code").disabled = false
+    }
+  }
+
+  const sendToken = () => {
+    userEmail = document.getElementById("reg-email").value
+    url = "http://localhost:8000/api-vibes"
+    fetch(`${url}/auth/send_token/`, {
+      method: "POST",
+      headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+          "email": userEmail
+      })
+  }).then(resp => {
+    if (resp.status == 201) {
+      document.getElementById("codeSent").classList.remove("hidden")
+    }
+  })
+}
+</script>
