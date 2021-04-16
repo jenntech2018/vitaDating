@@ -3,6 +3,7 @@ from django.shortcuts import render, HttpResponseRedirect, reverse
 from django.contrib.auth.models import AbstractUser
 from vibe_user.models import Viber
 from video.models import Video
+from vibe_user.forms import EditProfileForm
 # Create your views here.
 
 def vibe_user_profile_view(request, username):
@@ -38,6 +39,33 @@ def vibe_user_unfollow_view(request, user_id):
 
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
+def edit_profile_view(request, username):
+    editable = Viber.objects.get(username=username)
+    if request.method == "POST":
+        form = EditProfileForm(request.POST)
+
+        if form.is_valid():
+            data = form.cleaned_data
+            editable.display_name=data['display_name']
+            editable.bio=data['bio']
+            editable.profile_photo=data['profile_photo']
+            editable.first_name=data['first_name']
+            editable.last_name=data['last_name']
+            editable.username=data['username']
+            editable.save()
+            return HttpResponseRedirect(reverse("profile", args=[editable.username]))
+
+    form = EditProfileForm(
+        initial={
+        "display_name":editable.display_name,
+        "bio":editable.bio,
+        "profile_photo":editable.profile_photo,
+        "first_name":editable.first_name,
+        "last_name":editable.last_name,
+        "username":editable.username,
+        }
+    )
+    return render(request, "user/edit_profile.html", {"form":form})
 
 def settings_page(request):
     return render(request, 'settings/settings.html', {})

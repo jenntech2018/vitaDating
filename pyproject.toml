@@ -17,6 +17,7 @@ moviepy = "^1.0.3"
 ffmpeg = "^1.4"
 djangorestframework = "^3.12.4"
 django-cors-headers = "^3.7.0"
+sendgrid = "^6.6.0"
 
 [tool.poetry.dev-dependencies]
 

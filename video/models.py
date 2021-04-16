@@ -1,7 +1,6 @@
 from django.db import models
 from django.utils import timezone
 from django.conf import settings
-
 import os
 from urllib.parse import urlparse
 
@@ -42,8 +41,22 @@ class Comment(models.Model):
     user = models.ForeignKey('vibe_user.Viber', null=True, blank=True, on_delete=models.CASCADE, related_name="commenter")
     comment = models.CharField(max_length=60, null=True, blank=True)
     likes = models.IntegerField(default=0)
+    liked_by = models.ManyToManyField('vibe_user.Viber', blank=True, related_name="like_list")
     replies = models.JSONField(default=default_replies)
     timestamp = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
         return f"{self.comment} | {self.user} | {self.timestamp}"
+
+    @property
+    def fixed_date(self):
+        current_date = timezone.now()
+        value = self.timestamp
+        if current_date.month == value.month and current_date.day == value.day and current_date.hour == value.hour and current_date.minute == value.minute:
+            return f"{current_date.second - value.second} second(s) ago"
+        elif current_date.month == value.month and current_date.day == value.day and current_date.hour == value.hour:
+            return f"{current_date.minute - value.minute} minute(s) ago"
+        elif current_date.day == value.day and current_date.month == value.month:
+            return f"{current_date.hour - value.hour} hour(s) ago"
+        else:
+            return f"{(value.day - current_date.day)} day(s) ago"

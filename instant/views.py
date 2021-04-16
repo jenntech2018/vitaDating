@@ -1,28 +1,29 @@
 from django.shortcuts import render, redirect, reverse
 from django.views import View
 from .forms import MessageForm
-from .models import Chat
+from .models import Chat, Message
+from vibe_user.models import Viber
 
 
 class MessagesView(View):
-    def get(self, request, chat_id):
-        try:
-            chat = Chat.objects.get(id=chat_id)
-            if request.user in chat.members.all():
-                chat.message_set.filter(is_readed=False).exclude(
-                    author=request.user).update(is_readed=True)
-            else:
-                chat = None
-        except Chat.DoesNotExist:
-            chat = None
+    # users = {}
+    def get(self, request, recipient):
+        # try:
+        messages = Message.objects.all()
+        #     chat.message_set.filter(is_read=False).exclude(
+        #         author=request.user).update(is_read=True)
+        #     # else:
+        #     #     chat = None
+        # except Chat.DoesNotExist:
+        #     chat = None
 
         return render(
             request,
-            'theme/templates/messaging/dialog.html',
+            'messaging/dialog.html',
             {
+                'messages': messages,
                 'user_profile': request.user,
-                'chat': chat,
-                'form': MessageForm()
+                'form': MessageForm(),
             }
         )
 
@@ -33,5 +34,5 @@ class MessagesView(View):
             message.chat_id = chat_id
             message.author = request.user
             message.save()
-        return redirect(reverse('users:messages', kwargs={'chat_id': chat_id}))
+        return redirect(reverse({'message':message}, kwargs={'chat_id': chat_id}))
 
