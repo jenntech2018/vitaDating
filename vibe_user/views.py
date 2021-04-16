@@ -53,7 +53,7 @@ def edit_profile_view(request, username):
             editable.last_name=data['last_name']
             editable.username=data['username']
             editable.save()
-            return HttpResponseRedirect(reverse("profile", args=[editable.id]))
+            return HttpResponseRedirect(reverse("profile", args=[editable.username]))
 
     form = EditProfileForm(
         initial={
