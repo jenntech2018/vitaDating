@@ -57,6 +57,7 @@
                             height: 32px;" class="hover:bg-gray-100 rounded-sm ml-32 text-black border-gray-300 font-semibold focus:outline-none focus:ring">Following</button>
                 </div>
 
+                {% else %}
                 <button type="button" onclick='window.location.href="/edit/@{{request.user}}"'>Edit Profile</button>
                 {% endif %}
             <h1 class="position">{{vibe_user.username}} 
