@@ -39,4 +39,3 @@ class CommentSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Comment
         fields = ["id", "user", "comment", "likes", "replies", "timestamp"]
-

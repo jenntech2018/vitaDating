@@ -33,7 +33,7 @@
             <hr><br>
             <p class="font-thin pb-4">Suggested accounts</p>
             {% for account in suggested %}
-                <div class="cursor-pointer hover:bg-gray-100">
+                <div onclick="window.location.href='/@{{account.username}}'" class="cursor-pointer hover:bg-gray-100">
                     <img
                         class="inline rounded-full duration-500 delay-1000 w-12 h-12 cursor-pointer"
                         alt="{{account.display_name}}'s photo"
