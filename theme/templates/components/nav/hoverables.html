@@ -15,11 +15,12 @@
         <path fill-rule="evenodd" clip-rule="evenodd" d="M0 8h6.686a8 8 0 0 0 5.657-2.343l4.95-4.95a1 1 0 0 1 1.414 0l4.95 4.95A8 8 0 0 0 29.314 8H36 0z" fill="#545454" fill-opacity=".92"/>
     </svg>
     <span class="-ml-1">Inbox</span>
+    <a href='/messages/{{recipient}}'
 </span>
-<div x-show="userOpen && bellClicked == false" style="margin-right: 11.45rem; margin-top: -1.25rem; font-weight: 500;" @mouseover.away.debounce.750ms="userOpen = false" class="float-right text-center bg-white shadow-lg drop-shadow-lg rounded-lg w-48 h-40 border border-grey-100 px-4 py-2" x-transition:enter="transition ease-out duration-500" 
+<div x-show="userOpen && bellClicked == false" style="margin-right: 11.45rem; margin-top: -1.25rem; font-weight: 500;" @mouseover.away.debounce.350ms="userOpen = false" class="float-right text-center bg-white shadow-lg drop-shadow-lg rounded-lg w-48 h-40 border border-grey-100 px-4 py-2" x-transition:enter="transition ease-out duration-350" 
 x-transition:enter-start="opacity-0 transform"
 x-transition:enter-end="opacity-100 transform"
-x-transition:leave="transition ease-in duration-500" 
+x-transition:leave="transition ease-in duration-350" 
 x-transition:leave-start="opacity-100 transform" 
 x-transition:leave-end="opacity-0 transform">
 <div class="flex flex-wrap flex-col content-start cursor-pointer">

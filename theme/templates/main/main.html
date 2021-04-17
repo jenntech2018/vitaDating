@@ -87,8 +87,8 @@
                         data-setup='{}'>
                             <source src="//vjs.zencdn.net/v/oceans.mp4" type="video/mp4"></source>
                         </video>
-                        <div x-data="{triggerComment{{video.id}} : false}" id="video-interactions" class="float-right -mt-28">
-                            <span id="like">
+                        <div x-data="{triggerComment{{video.id}} : false}" class="video-interactions float-right -mt-28">
+                            <span class="like">
                                 <span id="like-icon-wrapper-{{video.id}}">
                                     {% if video in request.user.liked_videos.all %}
                                     <svg id="video-liked-{{video.id}}" @click="unlikeVideo({{video.id}}, {{video.creator.id}})" xmlns="http://www.w3.org/2000/svg" class="rounded-full p-2 bg-gray-200 hover:bg-gray-300 cursor-pointer h-12 w-12" fill="red" viewBox="0 0 24 24" stroke="none">
@@ -102,7 +102,7 @@
                                 </span>
                                 <span id="likes-counter-{{video.id}}" class="ml-5 font-semibold text-gray-500">{{video.likes}}</span>
                             </span>
-                            <span id="comment">
+                            <span class="comment">
                                 <svg x-show="! triggerComment{{video.id}}" @click="triggerComment{{video.id}} = ! triggerComment{{video.id}}" xmlns="http://www.w3.org/2000/svg" class="rounded-full p-2 bg-gray-200 hover:bg-gray-300 cursor-pointer h-12 w-12" fill="currentColor" viewBox="0 0 24 24" stroke="none">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
                                 </svg>
@@ -160,7 +160,7 @@
             }).then(resp => resp.json()).then(data => {
                 document.getElementById(`likes-counter-${vId}`).innerHTML = data.likes;
                 wrapper.innerHTML = `
-                <svg id="video-liked-${vId}" @click="unlikeVideo(${vId}, ${cId}), isLiked${vId} = ! isLiked${vId}" xmlns="http://www.w3.org/2000/svg" class="rounded-full p-2 bg-gray-200 hover:bg-gray-300 cursor-pointer h-12 w-12" fill="red" viewBox="0 0 24 24" stroke="none">
+                <svg id="video-liked-${vId}" @click="unlikeVideo(${vId}, ${cId})" xmlns="http://www.w3.org/2000/svg" class="rounded-full p-2 bg-gray-200 hover:bg-gray-300 cursor-pointer h-12 w-12" fill="red" viewBox="0 0 24 24" stroke="none">
                     <path stroke-linecap="none" stroke-linejoin="none" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                 </svg>
                 `
@@ -175,7 +175,7 @@
             }).then(resp => resp.json()).then(data => {
                 document.getElementById(`likes-counter-${vId}`).innerHTML = data.likes;
                 wrapper.innerHTML = `
-                <svg id="video-not-liked-${vId}" x-show="! isLiked${vId}" @click="likeVideo(${vId}, ${cId}, {{request.user.id}}), isLiked${vId} = ! isLiked${vId}" xmlns="http://www.w3.org/2000/svg" class="rounded-full p-2 bg-gray-200 hover:bg-gray-300 cursor-pointer h-12 w-12" fill="currentColor" viewBox="0 0 24 24" stroke="none">
+                <svg id="video-not-liked-${vId}" @click="likeVideo(${vId}, ${cId}, {{request.user.id}})" xmlns="http://www.w3.org/2000/svg" class="rounded-full p-2 bg-gray-200 hover:bg-gray-300 cursor-pointer h-12 w-12" fill="currentColor" viewBox="0 0 24 24" stroke="none">
                     <path stroke-linecap="none" stroke-linejoin="none" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                 </svg>
                 `
@@ -201,7 +201,7 @@
 
     const submitReply = (commentId, replyTo, replyId) => {
         const reply = document.getElementById(`replyBox${commentId}`).value
-        const replyBox = document.getElementById(`replyBox${commentId}${replyId}`).value
+        const replyBox = replyTo ? document.getElementById(`replyTo${commentId}${replyId}`).value : document.getElementById(`replyBox${commentId}`).value
         const replyList = document.getElementById(`replies-list-${commentId}`)
         const viewReplies = document.getElementById(`view-comment-replies-${commentId}`)
         const showRepliesWrapper = document.getElementById(`show-replies-wrapper-${commentId}`)

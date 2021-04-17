@@ -11,7 +11,7 @@ class Message(models.Model):
     message = models.TextField(max_length=280)
     pub_date = models.DateTimeField(default=timezone.now)
     is_read = models.BooleanField(default=False)
-    recipient = models.ForeignKey(Viber, related_name='recipient', on_delete=models.CASCADE)
+    recipient = models.ForeignKey(Viber, related_name='recipient', on_delete=models.CASCADE, blank=True, null=True)
     
     class Meta:
         ordering=['pub_date']

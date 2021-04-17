@@ -49,23 +49,15 @@
                             {% endif %}</strong>
                             <span class="float-right" id="likeComment{{comment.id}}">
                                 <span id="like-{{comment.id}}-icon">
-                                        {% if comment.liked_by.all|length %}
-                                            {% for user in comment.liked_by.all %}
-                                                {% if not request.user == user %}
-                                                    <svg id="not-liked-by-user{{comment.id}}" @click="likeComment({{comment.id}})" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 cursor-pointer" fill="none" viewBox="0 0 24 24" stroke="gray">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                                                    </svg>
-                                                {% else %}
-                                                    <svg id="liked-by-user{{comment.id}}" @click="likeComment({{comment.id}})" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 cursor-pointer" fill="red" viewBox="0 0 24 24" stroke="none">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="0" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                                                    </svg>
-                                                {% endif %}
-                                            {% endfor %}
-                                        {% else %}
+                                    {% if not request.user in comment.liked_by.all %}
                                         <svg id="not-liked-by-user{{comment.id}}" @click="likeComment({{comment.id}})" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 cursor-pointer" fill="none" viewBox="0 0 24 24" stroke="gray">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                                         </svg>
-                                        {% endif %}
+                                    {% else %}
+                                        <svg id="liked-by-user{{comment.id}}" @click="unlikeComment({{comment.id}})" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 cursor-pointer" fill="red" viewBox="0 0 24 24" stroke="none">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="0" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                                        </svg>
+                                    {% endif %}
                                 </span>
                                 <span id="comment-{{comment.id}}-likes" class="ml-1.5 text-xs text-gray-400">{{comment.likes}}</span>
                             </span>
@@ -75,7 +67,7 @@
                             <span class="text-xs text-gray-400">{{comment.fixed_date}}</span>
                             <button @click="showReplyBox{{comment.id}} = ! showReplyBox{{comment.id}}" class="focus:outline-none bg-none text-xs text-gray-400 font-semibold pl-4">Reply</button><br x-show="showReplyBox{{comment.id}}">
                             <input x-show="showReplyBox{{comment.id}}" id="replyBox{{comment.id}}" class="w-72 h-8 pl-4 bg-gray-200 rounded-lg" placeholder="Reply to @{{comment.user.username}}...">
-                            <button x-show="showReplyBox{{comment.id}}" @click="submitReply('{{comment.id}}'', '', ''), showReplyBox{{comment.id}} = false" class="inline focus:outline-none font-semibold bg-none text-red-600 text-sm">Post</button>
+                            <button x-show="showReplyBox{{comment.id}}" @click="submitReply('{{comment.id}}'), showReplyBox{{comment.id}} = false" class="inline focus:outline-none font-semibold bg-none text-red-600 text-sm">Post</button>
                             <br>
                                 <span id="replies-list-{{comment.id}}" x-show="showReplies{{comment.id}}">
                                     {% for reply in comment.replies.replies %}
@@ -115,7 +107,7 @@
                                         </p>
                                         <span class="ml-12 text-xs text-gray-400">{{reply.timestamp|fix_date}}</span>
                                         <button @click="replyToReply{{comment.id}} = ! replyToReply{{comment.id}}" class="focus:outline-none bg-none text-xs text-gray-400 font-semibold pl-4">Reply</button><br x-show="replyToReply{{comment.id}}">
-                                        <input x-show="replyToReply{{comment.id}}" id="replyBox{{comment.id}}{{reply.id}}" class="w-72 h-8 pl-4 bg-gray-200 rounded-lg" placeholder="Reply to @{{reply.username}}...">
+                                        <input x-show="replyToReply{{comment.id}}" id="replyTo{{comment.id}}{{reply.id}}" class="w-72 h-8 pl-4 bg-gray-200 rounded-lg" placeholder="Reply to @{{reply.username}}...">
                                         <button x-show="replyToReply{{comment.id}}" @click="submitReply('{{comment.id}}', '{{reply.username}}', '{{reply.id}}'), replyToReply{{comment.id}} = false" class="inline focus:outline-none font-semibold bg-none text-red-600 text-sm">Post</button>
                                     </span><br>
                                     {% endfor %}
