@@ -1,4 +1,5 @@
 from django.shortcuts import render, HttpResponseRedirect, reverse, redirect
+from django.db.models import Q
 
 from django.contrib.auth.models import AbstractUser
 from vibe_user.models import Viber
@@ -74,3 +75,8 @@ def settings_page(request):
 def delete_account(request):
     Viber.objects.get(id=request.user.id).delete()
     return redirect(reverse("main"))
+
+def search_accounts(request):
+    search_query = request.GET["q"]
+    results = Viber.objects.filter(Q(username__icontains=search_query) | Q(display_name__icontains=search_query))
+    return render(request, 'user/search.html', {'query': search_query, 'results': results})
