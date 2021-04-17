@@ -9,7 +9,7 @@ class MessagesView(View):
     # users = {}
     def get(self, request, recipient):
         # try:
-        messages = Message.objects.filter(recipient=request.user.id)
+        messages = Message.objects.all()
         print(messages)
         #     chat.message_set.filter(is_read=False).exclude(
         #         author=request.user).update(is_read=True)
@@ -55,3 +55,17 @@ class MessagesView(View):
             "messaging/new_message.html", 
             context
         )
+
+    def user_messages_view(request,author):
+        sender = Viber.objects.filter(id=author)
+        messages = Message.objects.filter(author=sender)
+        print(sender)
+        return render(
+            request, 
+            'messaging/user_msgs.html',
+            {"messages": messages,
+            "sender": sender,
+            
+            }
+        )
+

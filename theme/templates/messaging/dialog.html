@@ -21,7 +21,7 @@
 	</head>
 	<body>
 	<h1 style='text-align:center;size:100px;color:lightblue'>VibeTube Messenger</h1>
-		<div class="container-fluid h-100">
+		{% comment %} <div class="container-fluid h-100"> {% endcomment %}
 			<div class="row justify-content-center h-100">
 				<div class="col-md-4 col-xl-3 chat"><div class="card mb-sm-3 mb-md-0 contacts_card">
 					<div class="card-header">
@@ -34,15 +34,14 @@
 					</div>
 					<h3> <button><a href='/messages/new/'>send a message</a></button></h3>
 					<div class="card-body contacts_body float:left">
+							{% for person in messages %}
+							<a href='/messages/{{person.author.id}}/'>{{person.author}}</a>
 						<ui class="contacts">
 							
 						<li class="active">
-							<div class="d-flex bd-highlight">
-								<div class="img_cont">
-							{% for person in messages %}
-							<li>
-							<img>{{person.recipient.profile_photo}}</img>
-							<a href='/messages/{{person.message.content}}/'>{{person.author}}</a>
+							{% comment %} <div class="d-flex bd-highlight"> {% endcomment %}
+								{% comment %} <div class="img_cont"> {% endcomment %}
+							{% comment %} <img>{{person.recipient.profile_photo}}</img> {% endcomment %}
 							<br/>
 							<br />
 							{% endfor %}
@@ -86,8 +85,10 @@
 								<img src="{{person.profile_photo}}">
 								</div>
 								{% for chat in messages %}
+								{% if chat.author == person.author.id%}
 								<div class="msg_cotainer">
 									{{chat}}
+				{% endif %}
 				{% endfor %}	
 						<div class="card-footer">
 							<div class="input-group">

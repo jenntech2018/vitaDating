@@ -1,0 +1,9 @@
+{% for users in sender %}
+<h1>Messages from  {{users}}
+{% for chat in messages%}
+{% if chat.author in sender  %}
+ {{chat}}
+ {% endif %}
+ {% endfor %}
+ 
+ {% endfor %} 
