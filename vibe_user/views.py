@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponseRedirect, reverse
+from django.shortcuts import render, HttpResponseRedirect, reverse, redirect
 
 from django.contrib.auth.models import AbstractUser
 from vibe_user.models import Viber
@@ -70,3 +70,7 @@ def edit_profile_view(request, username):
 
 def settings_page(request):
     return render(request, 'settings/settings.html', {})
+
+def delete_account(request):
+    Viber.objects.get(id=request.user.id).delete()
+    return redirect(reverse("main"))

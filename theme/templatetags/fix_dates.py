@@ -14,7 +14,7 @@ def fix_date(value):
         elif current_date.day == value.day and current_date.month == value.month:
             return f"{current_date.hour - value.hour} hour(s) ago"
         else:
-            return f"{(value.day - current_date.day)} day(s) ago"
+            return f"{(current_date.day - value.day)} day(s) ago"
 
 
 @register.filter()

@@ -17,11 +17,13 @@ from django.contrib import admin
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
+from django.conf.urls import handler404, handler500
 
 from main.urls import urlpatterns as main_urls
 from video.urls import urlpatterns as video_urls
 from vibe_user.urls import urlpatterns as user_urls
 from vibe_auth.urls import urlpatterns as auth_urls
+from vibe_auth import views as auth_views
 from vibe_api.urls import urlpatterns as api_urls
 from instant.urls import urlpatterns as msg_urls
 
@@ -36,7 +38,8 @@ urlpatterns += video_urls
 urlpatterns += user_urls
 urlpatterns += auth_urls
 urlpatterns += api_urls
-
+handler404 = auth_views.error_404
+handler500 = auth_views.error_500
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,
