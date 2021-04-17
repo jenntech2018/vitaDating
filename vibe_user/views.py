@@ -40,32 +40,33 @@ def vibe_user_unfollow_view(request, user_id):
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 def edit_profile_view(request, username):
-    editable = Viber.objects.get(username=username)
+    editable = Viber.objects.get(id=request.user.id)
+
     if request.method == "POST":
         form = EditProfileForm(request.POST)
 
         if form.is_valid():
             data = form.cleaned_data
-            editable.display_name=data['display_name']
-            editable.bio=data['bio']
-            editable.profile_photo=data['profile_photo']
-            editable.first_name=data['first_name']
-            editable.last_name=data['last_name']
-            editable.username=data['username']
+            editable.display_name = data['display_name']
+            editable.bio = data['bio']
+            editable.profile_photo = data['profile_photo']
+            editable.first_name = data['first_name']
+            editable.last_name = data['last_name']
+            editable.username = data['username']
             editable.save()
-            return HttpResponseRedirect(reverse("profile", args=[editable.username]))
+        return HttpResponseRedirect(request.GET.get('next', reverse('profile', args=[editable.username])))
 
     form = EditProfileForm(
         initial={
-        "display_name":editable.display_name,
-        "bio":editable.bio,
-        "profile_photo":editable.profile_photo,
-        "first_name":editable.first_name,
-        "last_name":editable.last_name,
-        "username":editable.username,
+            "display_name": editable.display_name,
+            "bio": editable.bio,
+            "profile_photo": editable.profile_photo,
+            "first_name": editable.first_name,
+            "last_name": editable.last_name,
+            "username": editable.username,
         }
     )
-    return render(request, "user/edit_profile.html", {"form":form})
+    return render(request, "user/edit_profile.html", {'form': form})
 
 def settings_page(request):
     return render(request, 'settings/settings.html', {})
