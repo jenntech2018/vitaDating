@@ -76,7 +76,10 @@
             <div class='box-right-inner-deleteaccount'>Delete account</div>
             <div class='box-right-inner-delete-button'>Delete</div>
         </div>
+
+        <!-- line -->
         <hr style="width: 90%; margin: .7rem 0 0 2rem;">
+
         <!-- privacy -->
         <div class='text-xl font-semibold font-sans box-right-inner-title'>Privacy</div>
         <div class='text-xs font-semibold font-sans text-gray-60 box-right-inner-subtitle'>Discoverability</div>
@@ -86,5 +89,15 @@
             <div class='box-right-inner-delete-button'>Delete</div>
         </div>
         <div class='text-xs box-right-inner-small-text'>Sets your account to private</div>
+
+        <!-- line -->
+        <hr style="width: 90%; margin: .7rem 0 0 2rem;">
+        <!-- Edit account -->
+        <div class='text-xl font-semibold font-sans box-right-inner-title'>Edit account</div>
+        <!-- Edit button -->
+        <div class='grid grid-flow-col auto-cols-max justify-between'>
+            <div class='box-right-inner-deleteaccount'>Edit profile</div>
+            <button type="button" class='box-right-inner-delete-button' onclick='window.location.href="/edit/@{{request.user}}"'>Edit</button>
+        </div>
     </div>
 </div>
