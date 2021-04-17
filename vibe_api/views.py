@@ -124,7 +124,7 @@ class CommentViewSet(viewsets.ModelViewSet):
         comment = Comment.objects.get(id=pk)
         user = Viber.objects.get(id=request.data["user_id"])
 
-        photo_url = user.profile_photo if user.profile_photo else ""
+        photo_url = user.profile_photo.url if user.profile_photo else ""
         verified = user.verified if user.verified else ""
         timestamp = str(timezone.now())
 
