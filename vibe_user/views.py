@@ -40,30 +40,35 @@ def vibe_user_unfollow_view(request, user_id):
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 def edit_profile_view(request, username):
-    editable = Viber.objects.get(id=request.user.id)
+    user = request.user
 
     if request.method == "POST":
-        form = EditProfileForm(request.POST)
-
+        form = EditProfileForm(request.POST, request.FILES)
         if form.is_valid():
             data = form.cleaned_data
-            editable.display_name = data['display_name']
-            editable.bio = data['bio']
-            editable.profile_photo = data['profile_photo']
-            editable.first_name = data['first_name']
-            editable.last_name = data['last_name']
-            editable.username = data['username']
-            editable.save()
-        return HttpResponseRedirect(request.GET.get('next', reverse('profile', args=[editable.username])))
+            to_update = {
+                "display_name": data['display_name'],
+                "bio": data['bio'],
+                "profile_photo": data['profile_photo'],
+                "username": data['username']
+            }
+            Viber.objects.filter(id=user.id).update(**to_update)
+            # user.display_name = data['display_name']
+            # user.bio = data['bio']
+            # user.profile_photo = data['profile_photo']
+            # user.first_name = data['first_name']
+            # user.last_name = data['last_name']
+            # user.username = data['username']
+        return HttpResponseRedirect(request.GET.get('next', reverse('profile', args=[user.username])))
 
     form = EditProfileForm(
         initial={
-            "display_name": editable.display_name,
-            "bio": editable.bio,
-            "profile_photo": editable.profile_photo,
-            "first_name": editable.first_name,
-            "last_name": editable.last_name,
-            "username": editable.username,
+            "display_name": user.display_name,
+            "bio": user.bio,
+            "profile_photo": user.profile_photo,
+            "first_name": user.first_name,
+            "last_name": user.last_name,
+            "username": user.username,
         }
     )
     return render(request, "user/edit_profile.html", {'form': form})
