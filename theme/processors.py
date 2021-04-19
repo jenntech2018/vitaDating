@@ -49,3 +49,30 @@ def notifications_followers(request):
         notifs = Notifications.objects.filter(to=request.user, n_type="F").order_by('-time_created')
         return {"notifs_followers": notifs}
     return {}
+
+
+def users_list(request):
+    from vibe_user.models import Viber
+    from django.db.models import Q
+    users = Viber.objects.filter(~Q(id=request.user.id)).all()
+    return {"users_list": users}
+
+
+def inbox(request):
+    from vibe_user.models import Viber
+    from django.db.models import Q
+    from instant.models import Message
+    rev = Message.objects.filter(Q(recipient=request.user)|Q(author=request.user)).all().order_by('-pub_date')
+    norm = Message.objects.filter(Q(recipient=request.user)|Q(author=request.user)).all().order_by('pub_date')
+    authors = {}
+    for msg in rev:
+        if msg.author.username == request.user.username:
+            if msg.recipient.username not in authors:
+                authors[msg.recipient.username] = msg
+        elif msg.author.username not in authors:
+            authors[msg.author.username] = msg
+
+    sorted_authors = dict(sorted(authors.items(), key=lambda k: k[1].pub_date, reverse=True))
+
+    print(sorted_authors)
+    return {"inbox_msgs": norm, "authors": sorted_authors}
