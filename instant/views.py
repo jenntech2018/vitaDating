@@ -7,15 +7,13 @@ from vibe_user.models import Viber
 
 class MessagesView(View):
     # users = {}
-    def get(self, request, recipient):
+    def messages_main(request):
         # try:
-        messages = Message.objects.all()
-        print(messages)
+        messages = Message.objects.filter(recipient=request.user)
         #     chat.message_set.filter(is_read=False).exclude(
         #         author=request.user).update(is_read=True)
         # except Chat.DoesNotExist:
         #     chat = None
-
         return render(
             request,
             'messaging/dialog.html',

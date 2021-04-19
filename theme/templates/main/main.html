@@ -33,7 +33,7 @@
                 <hr><br>
                 <p class="font-thin pb-4">Suggested accounts</p>
                 {% for account in suggested %}
-                    <div class="cursor-pointer hover:bg-gray-100">
+                    <div onclick="window.location.href='/@{{account.username}}'" class="cursor-pointer hover:bg-gray-100">
                         <img
                             class="inline rounded-full duration-500 delay-1000 w-12 h-12 cursor-pointer"
                             alt="{{account.display_name}}'s photo"
@@ -237,7 +237,7 @@
                             <span id="reply-${commentId}-${d.reply_id}-likes" class="ml-1.5 text-xs text-gray-400">0</span>
                         </span>
                     </span><br>
-                    ${replyTo ? `@${replyTo}: ${replyBox}` : reply}
+                    ${replyTo ? `<strong>@${replyTo}:</strong> ${replyBox}` : reply}
                 </p>
                 <span class="ml-12 text-xs text-gray-400">0 second(s) ago</span>
                 <button class="focus:outline-none bg-none text-xs text-gray-400 font-semibold pl-4">Reply</button>
@@ -322,7 +322,7 @@
             likeIcon.innerHTML = 
             `<svg id='liked-by-user${commentId}' @click='unlikeComment(${commentId})' xmlns='http://www.w3.org/2000/svg' class='h-4 w-4 cursor-pointer' fill='red' viewBox='0 0 24 24' stroke='none'>
                 <path stroke-linecap='round' stroke-linejoin='round' stroke-width='0' d='M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z' />
-             </svg>`
+            </svg>`
         })
     }
 
@@ -345,7 +345,7 @@
             likeIcon.innerHTML = 
             `<svg id='not-liked-by-user${commentId}' @click='likeComment(${commentId})' xmlns='http://www.w3.org/2000/svg' class='h-4 w-4 cursor-pointer' fill='none' viewBox='0 0 24 24' stroke='gray'>
                 <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z' />
-             </svg>`
+            </svg>`
         })
     }
 
