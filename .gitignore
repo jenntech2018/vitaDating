@@ -1,7 +1,7 @@
 .vscode
 node_modules
 */node_modules
-./static/css/style.css
+static/css
 
 media
 staticfiles
