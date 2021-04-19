@@ -1,9 +1,9 @@
 .vscode
 node_modules
 */node_modules
-static/css/style.css
+./static/css/style.css
 
-*/*.mp4
+./media/**/*.*
 
 */.DS_Store
 # Byte-compiled / optimized / DLL files
