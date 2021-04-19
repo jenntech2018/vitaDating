@@ -4,6 +4,7 @@ node_modules
 ./static/css/style.css
 
 ./media/**/*.*
+./staticfiles/**/*.*
 
 */.DS_Store
 # Byte-compiled / optimized / DLL files
