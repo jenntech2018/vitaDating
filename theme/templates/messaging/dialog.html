@@ -35,7 +35,7 @@
 					<h3> <button><a href='/messages/new/'>send a message</a></button></h3>
 					<div class="card-body contacts_body float:left">
 							{% for person in messages %}
-							<a href='/messages/{{person.author.id}}/'>{{person.author}}</a>
+							<a href='/messages/{{person.author.id}}/'>{{person.author.username}}</a>
 						<ui class="contacts">
 							
 						<li class="active">

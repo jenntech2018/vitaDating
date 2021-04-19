@@ -6,12 +6,13 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework import permissions
 
+from instant.models import Message
+from notifications.models import Notifications
 from video.models import Video, Comment, Sound
 from vibe_user.models import Viber
-from notifications.models import Notifications
 from vibetube.helpers import generate_html
 
-from vibe_api.serializers import ViberSerializer, CommentSerializer, VideoSerializer, SoundSerializer, NotificationsSerializer, EmailAuthSerializer
+from vibe_api.serializers import ViberSerializer, MessageSerializer, CommentSerializer, VideoSerializer, SoundSerializer, NotificationsSerializer, EmailAuthSerializer
 
 
 class VideoViewSet(viewsets.ModelViewSet):
@@ -232,3 +233,26 @@ class AuthViewSet(viewsets.ModelViewSet):
             token_instance.delete()
             return Response(status=status.HTTP_202_ACCEPTED)
         return Response(status=status.HTTP_401_UNAUTHORIZED)
+
+
+class MessageViewSet(viewsets.ModelViewSet):
+    queryset = Message.objects.all()
+    serializer_class = MessageSerializer
+
+    @action(detail=False, methods=["post"])
+    def send_message(self, request):
+        recipient_id = request.data["recipient"]
+        if recipient_id.isdigit():
+            recip = Viber.objects.get(id=int(recipient_id))
+        else:
+            recip = Viber.objects.get(username=recipient_id)
+
+        sender_id = request.data["sender"]
+        sender = Viber.objects.get(id=int(sender_id))
+        
+        message_body = request.data["content"]
+        new_message = Message.objects.create(
+                                             author=sender,
+                                             recipient=recip,
+                                             message=message_body)
+        return Response({"message": new_message.message, "pub_date": new_message.pub_date})

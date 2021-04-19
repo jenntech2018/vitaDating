@@ -1,7 +1,8 @@
+from instant.models import Message
+from notifications.models import Notifications
 from video.models import Video, Comment, Sound
 from vibe_api.models import EmailAuth
 from vibe_user.models import Viber
-from notifications.models import Notifications
 from rest_framework import serializers
 
 
@@ -39,3 +40,10 @@ class CommentSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Comment
         fields = ["id", "user", "comment", "likes", "replies", "timestamp"]
+
+
+class MessageSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Message
+        # we aint tryna have people see mf messages
+        fields = ["id", "recipient", "author", "message"]

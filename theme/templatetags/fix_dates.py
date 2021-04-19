@@ -16,7 +16,6 @@ def fix_date(value):
         else:
             return f"{(current_date.day - value.day)} day(s) ago"
 
-
 @register.filter()
 def update(value, arg):
     value = arg

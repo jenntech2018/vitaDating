@@ -92,6 +92,8 @@ TEMPLATES = [
                 'theme.processors.notifications_comments',
                 'theme.processors.notifications_followers',
                 'theme.processors.notifications_mentions',
+                'theme.processors.users_list',
+                'theme.processors.inbox',
                 'django.template.context_processors.media'
             ],
         },
