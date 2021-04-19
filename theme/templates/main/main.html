@@ -171,7 +171,14 @@
         const unlikeVideo = (vId, cId) => {
             const wrapper = document.getElementById(`like-icon-wrapper-${vId}`)
             postLike = fetch(`${url}/videos/${vId}/unlike_video/`, {
-                method: "POST"
+                method: "POST",
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    "username": '{{request.user.username}}'
+                })
             }).then(resp => resp.json()).then(data => {
                 document.getElementById(`likes-counter-${vId}`).innerHTML = data.likes;
                 wrapper.innerHTML = `

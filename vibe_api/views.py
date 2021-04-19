@@ -40,8 +40,11 @@ class VideoViewSet(viewsets.ModelViewSet):
     
     @action(detail=True, methods=["post"])
     def unlike_video(self, request, pk=None):
+        sender = Viber.objects.get(username=request.data["username"])
+
         Video.objects.filter(id=pk).update(likes=F("likes") - 1)
         data = Video.objects.get(id=pk)
+        sender.liked_videos.remove(data)
         serialized_data = self.get_serializer(data)
         return Response(data=serialized_data.data,status=status.HTTP_201_CREATED)
 
