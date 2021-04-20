@@ -34,18 +34,10 @@ class MainView(View):
                 return redirect(reverse("main"))
 
     def get(self, request):
-        following_vids = []
         videos = Video.objects.all().order_by('-timestamp')
         user = Viber.objects.get(id=request.user.id)
-        # following = user.following.all()
-        # for viber in following:
-        #     vid = Video.objects.filter(creator=viber)
-        #     following_vids.append(vid)
-        print(following_vids)
-        # for vid in following_vids[:len(following_vids)-1]:
-        #     print(vid.creator)
         suggested_creators = Viber.objects.all().filter(verified=True).order_by('-followers')[:10]
-        return render(request, "main/main.html", {"videos": videos, "suggested": suggested_creators, 'vids': following_vids})
+        return render(request, "main/main.html", {"videos": videos, "suggested": suggested_creators})
 
 
 '''
