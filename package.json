@@ -3,7 +3,7 @@
     "tailwindcss": "^2.1.1"
   },
   "scripts": {
-    "build": "tailwindcss build theme/styles.css -c theme/tailwind.config.js -o static/css/style.css"
+    "build": "npx tailwindcss-cli@latest build -o static/css/style.css"
   },
   "engines": {
     "node": "15.x"
