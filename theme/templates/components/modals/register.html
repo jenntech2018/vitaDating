@@ -45,7 +45,7 @@ style="z-index: 1000;"
             <button
             type="button"
             id="reg-modal-btn"
-            @click="fetch('http://localhost:8000/api-vibes/auth/verify_token/', 
+            @click="fetch('http://vibetube.herokuapp.com/api-vibes/auth/verify_token/', 
                           {method: 'POST', 
                            headers: 
                            {
@@ -89,7 +89,7 @@ style="z-index: 1000;"
 
   const sendToken = () => {
     userEmail = document.getElementById("reg-email").value
-    url = "http://localhost:8000/api-vibes"
+    url = "http://vibetube.herokuapp.com/api-vibes"
     fetch(`${url}/auth/send_token/`, {
       method: "POST",
       headers: {

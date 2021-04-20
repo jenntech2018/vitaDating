@@ -160,7 +160,7 @@
 
 <script>
     const followViber = (toId, fromId) => {
-        url = "http://localhost:8000/api-vibes"
+        url = "http://vibetube.herokuapp.com/api-vibes"
         fetch(`${url}/vibers/${toId}/follow/`, {
             method: "POST",
             headers: {
@@ -175,7 +175,7 @@
     }
 
     const unfollowViber = (toId, fromId) => {
-        url = "http://localhost:8000/api-vibes"
+        url = "http://vibetube.herokuapp.com/api-vibes"
         fetch(`${url}/vibers/${toId}/unfollow/`, {
             method: "POST",
             headers: {
