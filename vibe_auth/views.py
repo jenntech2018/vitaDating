@@ -1,7 +1,10 @@
-from django.shortcuts import render, HttpResponseRedirect, reverse
+from django.shortcuts import render, HttpResponseRedirect, reverse, redirect
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+
 from vibe_auth.forms import LoginForm, RegistrationForm
 from vibe_user.models import Viber
+from vibetube.helpers import auth_user
 
 # Create your views here.
 def register_page(request):
@@ -28,20 +31,16 @@ def login_page(request):
         form = LoginForm(request.POST)
         if form.is_valid():
             data = form.cleaned_data
-            user = authenticate(
-                request, username=data['username'], password=data['password']
-            )
-            if user:
-                login(request, user)
-                return HttpResponseRedirect(reverse(request.GET.get('next', reverse("home"))))
+            is_authed = auth_user(request, data)
+            if is_authed:
+                return redirect(reverse("main"))
     form = LoginForm()
     return render(request, "auth/login.html", {'form': form})
 
-
+@login_required
 def logout_view(request):
     logout(request)
     return HttpResponseRedirect(reverse('main'))
-
 
 def error_404(request, exception):
     return render(request, 'auth/404.html')

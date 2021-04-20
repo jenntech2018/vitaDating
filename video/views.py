@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views import View
 from django.conf import settings
+from django.contrib.auth.mixins import LoginRequiredMixin
 base_dir = settings.BASE_DIR
 import requests
 
@@ -12,7 +13,7 @@ from vibetube.helpers import upload_file
 
 import moviepy.editor as mp
 
-class UploadView(View):
+class UploadView(LoginRequiredMixin, View):
     def post(self, request):
         form = UploadForm(request.POST or None, request.FILES or None, user=request.user)
         if form.is_valid():
