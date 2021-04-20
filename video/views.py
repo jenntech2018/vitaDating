@@ -22,13 +22,13 @@ class UploadView(View):
                 video.audio.write_audiofile(f'{instance.uuid}_sound.mp3')
 
                 upload_file(f'{instance.uuid}_sound.mp3', "vibetubebucket", f'media/@{request.user.username}/video/{instance.uuid}_sound.mp3')
-                # sound = Sound.objects.create(
-                #     original_video = instance,
-                #     creator = request.user,
-                #     audio_file = f"@{request.user.username}/video/{instance.uuid}_sound.mp3"
-                # )
-                # instance.sound = sound
-                # instance.save()
+                sound = Sound.objects.create(
+                    original_video = instance,
+                    creator = request.user,
+                    audio_file = f"@{request.user.username}/video/{instance.uuid}_sound.mp3"
+                )
+                instance.sound = sound
+                instance.save()
             else:
                 video = mp.VideoFileClip(data["video"].temporary_file_path())
                 audio_clip = mp.AudioFileClip(f"media/{data['sound'].audio_file.url.replace('/media/%40', '@')}")
@@ -37,10 +37,12 @@ class UploadView(View):
                 video_clip = video.set_audio(audio_clip)
 
                 instance = form.save(commit=False)
+                video_clip.write_videofile(f"{instance.uuid}.{video_clip.filename.split('.')[-1]}")
+                upload_file(f'{instance.uuid}.{video_clip.filename.split('.')[-1]}',
+                            "vibetubebucket",
+                            f'media/@{request.user.username}/video/{instance.uuid}.{video_clip.filename.split('.')[-1]}')
 
-                video_clip.write_videofile(f"media/@{request.user.username}/video/{instance.uuid}.{video_clip.filename.split('.')[-1]}")
                 instance.video = f"@{request.user.username}/video/{instance.uuid}.{video_clip.filename.split('.')[-1]}"
-
                 instance.save()
             return redirect(reverse("main"))
 
