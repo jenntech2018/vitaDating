@@ -82,7 +82,7 @@
             <div class='text-sm font-semibold font-sans text-gray-60 box-right-inner-subtitle'>Profile Picture</div>
             <div id="profile-pic" class="relative">
                 <div class="md:w-1/4 w-full mx-auto">
-                <img id="reg-photo" style="width: 153.41px; height: 153.41px;" class="rounded-lg select-none antialiased" src="{% if request.user.profile_photo %} {{request.user.profile_photo.url}} {% else %} {% static 'images/default.png' %} {% endif %}">
+                <img id="user-photo" style="width: 153.41px; height: 153.41px;" class="rounded-lg select-none antialiased" src="{% if request.user.profile_photo %} {{request.user.profile_photo.url}} {% else %} {% static 'images/default.png' %} {% endif %}">
                     <svg xmlns="http://www.w3.org/2000/svg" style="top: 3.95rem; right: 19rem; color: rgb(0,0,0, .85);" class="h-8 w-8 absolute" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
                     </svg>
@@ -118,3 +118,17 @@
       </form>
     </div>
 </div>
+
+<script>
+      const editPfp = document.getElementById('edit-pfp')
+      const userPhoto = document.getElementById('user-photo')
+      editPfp.onchange = (ev) => {
+      if (editPfp.files) {
+        let reader = new FileReader();
+        reader.readAsDataURL(editPfp.files[0]);
+        reader.onload = (e) => {
+            userPhoto.src = e.target.result;
+          }
+      }
+  };
+</script>

@@ -360,7 +360,7 @@
                     "user_id": '{{request.user.id}}',
                     "comment": comment
                 })
-        }).then(resp => resp.json()).then(d => document.getElementById('comment-counter-{{video.id}}').innerHTML = d.comment_count)
+        }).then(resp => resp.json()).then(d => window.location.reload())
     }
 
     const submitReply = (commentId, replyTo, replyId) => {   
