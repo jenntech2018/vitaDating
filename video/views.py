@@ -3,6 +3,7 @@ from django.urls import reverse
 from django.views import View
 from django.conf import settings
 base_dir = settings.BASE_DIR
+import requests
 
 from video.forms import UploadForm
 from video.models import Video, Sound
@@ -31,7 +32,10 @@ class UploadView(View):
                 instance.save()
             else:
                 video = mp.VideoFileClip(data["video"].temporary_file_path())
-                audio_clip = mp.AudioFileClip(f"media/{data['sound'].audio_file.url.replace('/media/%40', '@')}")
+                res = requests.get(data['sound'].audio_file.url)
+                open(data['sound'].audio_file.url.split('video/')[-1], 'wb').write(res.content)
+
+                audio_clip = mp.AudioFileClip(data['sound'].audio_file.url.split('video/')[-1])
                 if video.duration < audio_clip.duration:
                     audio_clip = audio_clip.subclip(video.duration)
                 video_clip = video.set_audio(audio_clip)
