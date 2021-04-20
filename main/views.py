@@ -36,6 +36,5 @@ class MainView(View):
 
     def get(self, request):
         videos = Video.objects.all().order_by('-timestamp')
-        user = Viber.objects.get(id=request.user.id)
         suggested_creators = Viber.objects.all().filter(verified=True).order_by('followers')[:10]
         return render(request, "main/main.html", {"videos": videos, "suggested": suggested_creators})
