@@ -1,7 +1,6 @@
 {% load static %}
 {% load fix_dates %}
 {% include 'base.html' %}
-
 <style>
     .sidepanel{
         background-color: #f0f0f0;
@@ -9,8 +8,6 @@
         border-radius: 10px;
         padding: 1rem;
     }
-
-
 
     .feed{
         position: absolute;
@@ -46,14 +43,14 @@
         width: 30rem;
     }
 
-    .feed-line{
+    .feed-line {
        border-color: black;
        width: 90%; 
        margin: 1rem 1rem 1rem 1rem;
     }
 </style>
 
-<div x-data="{mode: 'fyp'}" class="flex -mt-5">
+<div x-data="{mode: 'fyp', showLogin: false, showRegister: false, showStep2: false}" class="flex -mt-5">
 
         <!-- side panel -->
         <div id="side-panel" class="fixed justify-self-start top-16 left-96 mt-2 sidepanel">
@@ -85,19 +82,18 @@
                 <div>
                     <br><br><br>
                     <h6 class="w-64 text-gray-400">Log in to follow creators, like videos, and view comments.</h6><br>
-                    <button id="login-main" style="border-color: #fc2a5e; color: #fc2a5e" @click="console.log('fuck'), showLogin = ! showLogin" class="hover:bg-gray-100 border-2 h-12 font-semibold bg-opacity-0 w-56 focus:outline-none rounded-md">Log in</button>
+                    <button id="login-main" style="border-color: #fc2a5e; color: #fc2a5e" @click="showLogin = ! showLogin" class="hover:bg-gray-100 border-2 h-12 font-semibold bg-opacity-0 w-56 focus:outline-none rounded-md">Log in</button>
                 </div>
             {% endif %}
-
-            <!-- suggested accounts for logged in users -->
-            <div id="suggested-accounts" class="mt-6">
-                <hr><br>
+                <hr class="mt-5"><br>
                 <p class="font-thin pb-4">Suggested accounts</p>
+                <!-- suggested accounts for logged in users -->
+            <div id="suggested-accounts" class="max-h-64 overflow-y-scroll">
                 {% for account in suggested %}
                     <div onclick="window.location.href='/@{{account.username}}'" class="cursor-pointer hover:bg-gray-100">
                         <img
                             class="inline rounded-full duration-500 delay-1000 w-12 h-12 cursor-pointer"
-                            alt="{{account.display_name}}'s phorid grid-flow-col auto-cols-maxto"
+                            alt="{{account.display_name}}'s photo"
                             src="{% if account.profile_photo %} {{account.profile_photo.url}} {% else %} {% static 'images/default.png' %} {% endif %}">
                             <span class="flex-col inline-flex -mt-2 ml-2">
                                 <p class="inline-flex font-semibold">
@@ -111,12 +107,12 @@
                             </span>
                     </div>   
                 {% endfor %}
-                <div class="w-72 mt-10 text-xs text-gray-400 font-semibold cursor-pointer">
-                    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">About Newsroom Store Contact Careers Creator Directory<br>
-                        Help Safety Terms Privacy Creator Portal Community Guidelines Copyright<br>
-                        VibeTube for Good Advertise Developers Transparency</a><br>
-                </div>
             </div> <!-- end suggested accounts -->
+            <div class="w-72 mt-10 text-xs text-gray-400 font-semibold cursor-pointer">
+                <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">About Newsroom Store Contact Careers Creator Directory<br>
+                    Help Safety Terms Privacy Creator Portal Community Guidelines Copyright<br>
+                    VibeTube for Good Advertise Developers Transparency</a><br>
+            </div>
         </div>
 
         <!-- loop through posts -->
@@ -184,7 +180,6 @@
                 <hr class='feed-line'>
             {% endfor %}
         </div>
-
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://code.jquery.com/jquery-migrate-3.0.0.min.js"></script>
