@@ -3,7 +3,7 @@ node_modules
 */node_modules
 
 media
-staticfiles
+./staticfiles
 
 */.DS_Store
 # Byte-compiled / optimized / DLL files
