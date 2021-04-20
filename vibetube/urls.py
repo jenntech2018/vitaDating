@@ -41,7 +41,6 @@ urlpatterns += api_urls
 handler404 = auth_views.error_404
 handler500 = auth_views.error_500
 
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL,
-                          document_root=settings.MEDIA_ROOT)
+urlpatterns += static(settings.MEDIA_URL,
+                        document_root=settings.MEDIA_ROOT)
 
