@@ -258,6 +258,20 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://code.jquery.com/jquery-migrate-3.0.0.min.js"></script>
     <script>
+            const getCookie = (name) => {
+                let cookieValue = null;
+                if (document.cookie && document.cookie !== '') {
+                    let cookies = document.cookie.split(';');
+                    for (let i = 0; i < cookies.length; i++) {
+                        let cookie = jQuery.trim(cookies[i]);
+                        if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                            break;
+                        }
+                    }
+                }
+                return cookieValue;
+            }
         $(document).ready(() => {
             url = "http://vibetube.herokuapp.com/api-vibes"
             let videos = $('video').not("[autoplay='autoplay']");
@@ -282,13 +296,15 @@
             window.addEventListener("scroll", checkVideos)
         })
 
-        const likeVideo = (vId, cId, viberId) => {
+        const likeVideo = (vId, cId, viberId) => {   
+            const csrfToken = getCookie('csrftoken')
             const wrapper = document.getElementById(`like-icon-wrapper-${vId}`)
             postLike = fetch(`${url}/videos/${vId}/like_video/`, {
                 method: "POST",
                 headers: {
                     'Accept': 'application/json',
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrfToken
                 },
                 body: JSON.stringify({
                     "creator_id": cId,
@@ -305,13 +321,15 @@
             })
         }
 
-        const unlikeVideo = (vId, cId) => {
+        const unlikeVideo = (vId, cId) => {   
+            const csrfToken = getCookie('csrftoken')
             const wrapper = document.getElementById(`like-icon-wrapper-${vId}`)
             postLike = fetch(`${url}/videos/${vId}/unlike_video/`, {
                 method: "POST",
                 headers: {
                     'Accept': 'application/json',
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrfToken
                 },
                 body: JSON.stringify({
                     "username": '{{request.user.username}}'
@@ -326,14 +344,16 @@
             })
         }
 
-        const submitComment = (videoId) => {
+        const submitComment = (videoId) => {   
+            const csrfToken = getCookie('csrftoken')
             const comment = document.getElementById(`addComment${videoId}`).value
             const url = "http://vibetube.herokuapp.com/api-vibes"
             fetch(`${url}/comments/add_comment/`, {
                 method: "POST",
                 headers: {
                     'Accept': 'application/json',
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrfToken
                 },
                 body: JSON.stringify({
                     "video_id": videoId,
@@ -343,7 +363,8 @@
         }).then(resp => resp.json()).then(d => document.getElementById('comment-counter-{{video.id}}').innerHTML = d.comment_count)
     }
 
-    const submitReply = (commentId, replyTo, replyId) => {
+    const submitReply = (commentId, replyTo, replyId) => {   
+        const csrfToken = getCookie('csrftoken')
         const reply = document.getElementById(`replyBox${commentId}`).value
         const replyBox = replyTo ? document.getElementById(`replyTo${commentId}${replyId}`).value : document.getElementById(`replyBox${commentId}`).value
         const replyList = document.getElementById(`replies-list-${commentId}`)
@@ -354,7 +375,8 @@
             method: "POST",
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrfToken
             },
             body: JSON.stringify({
                 "user_id": '{{request.user.id}}',
@@ -399,7 +421,8 @@
         })
     }
 
-    const likeReply = (commentId, replyId) => {
+    const likeReply = (commentId, replyId) => {   
+        const csrfToken = getCookie('csrftoken')
         const replyCount = document.getElementById(`reply-${commentId}-${replyId}-likes`)
         const likeIcon = document.getElementById(`like-${commentId}-${replyId}-icon`)
 
@@ -408,7 +431,8 @@
             method: "POST",
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrfToken
             },
             body: JSON.stringify({
                 "reply_id": replyId,
@@ -423,7 +447,8 @@
         })
     }
 
-    const unlikeReply = (commentId, replyId) => {
+    const unlikeReply = (commentId, replyId) => {   
+        const csrfToken = getCookie('csrftoken')
         const replyCount = document.getElementById(`reply-${commentId}-${replyId}-likes`)
         const likeIcon = document.getElementById(`like-${commentId}-${replyId}-icon`)
 
@@ -432,7 +457,8 @@
             method: "POST",
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrfToken
             },
             body: JSON.stringify({
                 "reply_id": replyId,
@@ -447,7 +473,8 @@
         })
     }
 
-    const likeComment = (commentId) => {
+    const likeComment = (commentId) => {   
+        const csrfToken = getCookie('csrftoken')
         const likeCount = document.getElementById(`comment-${commentId}-likes`)
         const likeIcon = document.getElementById(`like-${commentId}-icon`)
 
@@ -456,7 +483,8 @@
             method: "POST",
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrfToken
             },
             body: JSON.stringify({
                 "user_id": '{{request.user.id}}'
@@ -470,7 +498,8 @@
         })
     }
 
-    const unlikeComment = (commentId) => {
+    const unlikeComment = (commentId) => {   
+        const csrfToken = getCookie('csrftoken')
         const likeCount = document.getElementById(`comment-${commentId}-likes`)
         const likeIcon = document.getElementById(`like-${commentId}-icon`)
 
@@ -479,7 +508,8 @@
             method: "POST",
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrfToken
             },
             body: JSON.stringify({
                 "user_id": '{{request.user.id}}'
