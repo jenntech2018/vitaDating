@@ -28,7 +28,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 environ.Env.read_env()
 SECRET_KEY = os.environ["secret_key"]
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 SITE_URL = "http://vibetube.herokuapp.com"
@@ -104,8 +104,8 @@ TEMPLATES = [
 
 AWS_STORAGE_BUCKET_NAME = 'vibetubebucket'
 AWS_S3_REGION_NAME = 'us-east-2'  # e.g. us-east-2
-AWS_ACCESS_KEY_ID = 'AKIA3QWNKKSAQQEUZREO'
-AWS_SECRET_ACCESS_KEY = 'AH0jRO5hHDuI/sRc2KbQ+MvPp44201Xpb6q6IIZJ'
+AWS_ACCESS_KEY_ID = os.environ["AWS_ACCESS_KEY_ID"]
+AWS_SECRET_ACCESS_KEY = os.environ["AWS_SECRET_ACCESS_KEY"]
 
 # Tell django-storages the domain to use to refer to static files.
 AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME

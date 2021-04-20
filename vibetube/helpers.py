@@ -1,7 +1,10 @@
 from django.contrib.auth import authenticate, login
-
+import os
+import environ
 import random
-
+environ.Env.read_env()
+AWS_ACCESS_KEY_ID = os.environ["AWS_ACCESS_KEY_ID"]
+AWS_SECRET_ACCESS_KEY = os.environ["AWS_SECRET_ACCESS_KEY"]
 def auth_user(request, data):
         if '@' in data['username']:
             user = authenticate(request, email=data['username'], password=data["password"])
@@ -117,3 +120,31 @@ def generate_html(email, token):
                     </div>
                 </body>
                 """
+
+def upload_file(file_name, bucket, object_name=None):
+    import logging
+    import boto3
+    from botocore.exceptions import ClientError
+
+    if object_name is None:
+        object_name = file_name
+    s3_client = boto3.client('s3', aws_access_key_id=AWS_ACCESS_KEY_ID, aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
+    try:
+        response = s3_client.upload_file(file_name, bucket, object_name)
+    except ClientError as e:
+        logging.error(e)
+        return False
+    return True
+
+def rename_tmp(src, target):
+    import boto3
+    s3_client = boto3.resource('s3', aws_access_key_id=AWS_ACCESS_KEY_ID, aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
+    bucket = s3_client.Bucket("vibetubebucket")
+    for obj in bucket.objects.filter(Prefix=src):
+        src_filename = (obj.key).split('/')[-1]
+        copy_source = {
+            "Bucket": "vibetubebucket",
+            "Key": obj.key
+        }
+        target_filename = target
+        s3_client.meta.copy(copy_source, "vibetubebucket", target)
