@@ -1,6 +1,7 @@
 from django import forms
-from video.models import Video
+from video.models import Video, Sound
 from vibe_user.models import Viber
+
 
 CHOICES = [
     ("F", "Friends"),
@@ -16,9 +17,9 @@ class UploadForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop("user")
         super(UploadForm, self).__init__(*args, **kwargs)
-
         self.fields["creator"] = forms.ModelChoiceField(queryset=Viber.objects.filter(username=self.user.username), required=False)
+        self.fields["sound"] = forms.ModelChoiceField(queryset=Sound.objects.all(),widget=forms.Select(attrs={"class": "bg-white border-2 border-gray-400 w-96 h-10"}), required=False)
 
     class Meta:
         model = Video
-        fields = ("video", "caption", "privacy", "creator")
+        fields = ("video", "caption", "privacy", "creator", "sound")

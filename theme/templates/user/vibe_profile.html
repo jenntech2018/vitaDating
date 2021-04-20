@@ -90,13 +90,19 @@
     </div> 
     
     <div class="mt-6 cursor-pointer inline-flex justify-evenly" style="width: 500px;">
-            <p @click="selfActive = ! selfActive" @mouseover="videosActive = true" @mouseover.away="videosActive = false" class="video text-center text-xl font-semibold -mt-1 -ml-32">Videos</p>
+            <p 
+            @click="selfActive = ! selfActive" 
+            @mouseover="videosActive = true" 
+            @mouseover.away="videosActive = false" 
+            class="video text-center text-xl font-semibold -mt-1 -ml-32"
+            :class="{'text-gray-500 opacity-70': selfActive}">Videos</p>
             <p
             id="likes-text"
             @mouseover="likeActive = true"
             @click="selfActive = ! selfActive"
             @mouseover.away="likeActive = false"
-            class="liked -mr-44 text-xl -mt-1 font-semibold">
+            class="liked -mr-44 text-xl -mt-1 font-semibold"
+            :class="{'text-gray-500 opacity-70': selfActive == false}">
             <svg xmlns="http://www.w3.org/2000/svg" class="inline h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
             </svg>
@@ -108,20 +114,7 @@
         <div x-show="!selfActive">
             {% for vid in vibe_user_videos %}
                 <video
-                    class="video-js vjs-theme-forest border-white inline border-t-2"
-                    controls
-                    style="width: 178px; height: 260px;"
-                    preload="auto"
-                    data-setup='{}'>
-                </video>
-                <video
-                    class="video-js vjs-theme-forest border-white inline border-t-2"
-                    controls
-                    style="width: 178px; height: 260px;"
-                    preload="auto"
-                    data-setup='{}'>
-                </video>
-                <video
+                    src="{{vid.video.url}}"
                     class="video-js vjs-theme-forest border-white inline border-t-2"
                     controls
                     style="width: 178px; height: 260px;"
@@ -135,6 +128,7 @@
                 {% if vibe_user.liked_videos.all %}
                 {% for vid in vibe_user.liked_videos.all %}
                     <video
+                        src="{{vid.video.url}}"
                         class="video-js vjs-theme-forest border-white inline border-t-2"
                         controls
                         style="width: 178px; height: 260px;"

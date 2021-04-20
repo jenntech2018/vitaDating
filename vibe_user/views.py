@@ -20,7 +20,7 @@ def vibe_user_profile_view(request, username):
 
     vibe_user_videos = Video.objects.filter(creator=vibe_user).all()
 
-    suggested_creators = Viber.objects.all().filter(verified=True).order_by('-followers')[:10]
+    suggested_creators = Viber.objects.all().filter(verified=True).order_by('followers')[:10]
     return render(request, "user/vibe_profile.html", {
         "vibe_user": vibe_user, 
         "vibe_followers": vibe_followers,

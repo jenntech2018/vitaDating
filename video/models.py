@@ -36,6 +36,9 @@ class Sound(models.Model):
     original_video = models.ForeignKey("video.Video", related_name="og_sound", on_delete=models.CASCADE)
     audio_file = models.FileField(upload_to=user_sound_path)
 
+    def __str__(self):
+        return f"original sound - {self.creator.username}"
+
 
 class Comment(models.Model):
     user = models.ForeignKey('vibe_user.Viber', null=True, blank=True, on_delete=models.CASCADE, related_name="commenter")

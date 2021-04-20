@@ -1,0 +1,54 @@
+{% include 'base.html' %}
+{% include 'components/main/side-panel.html' %}
+{% load static %}
+<div style="left: 50rem; top: 5rem;" class="absolute h-full" id="sound-page" x-data="{boxHovered: false, soundClicked: false }">
+    <div id="flex-container" class="flex">
+    <div id="sound-top" class="cursor-pointer relative" @mouseover="boxHovered = true" @mouseover.away="boxHovered = false">
+        <div id="bg" :class="{'hover:opacity-20': boxHovered }" class="w-32 h-32 opacity-50 transform transition-opacity duration-300 bg-gray-400 absolute top-4"></div>
+        <audio id="og-sound" class="hidden">
+            <source src="{{sound.audio_file.url}}">
+        </audio>
+        <svg @click="soundClicked = true" id="trigger-sound" x-show="!soundClicked" xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 absolute left-11 top-14" viewBox="0 0 20 20" fill="white">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
+        </svg>
+        <svg @click="soundClicked = false" id="pause-sound" x-show="soundClicked" xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 absolute left-11 top-14" viewBox="0 0 20 20" fill="white">
+            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
+        </svg>
+        <img
+        class="duration-500 delay-1000 w-32 h-32 inline mt-4 p-1"
+        alt="{{sound.creator.display_name}}'s photo"
+        src="{% if sound.creator.profile_photo %} {{sound.creator.profile_photo.url}} {% else %} {% static 'images/default.png' %} {% endif %}">
+    </div>
+    <div id="sound-info-top" class="mt-5 ml-4">
+        <h2 class="font-bold text-3xl">original sound</h2>
+        <h4 class="font-semibold text-xl">{{sound.creator.username}}</h4>
+        <p class="text-gray-500">{{used_by|length}} video{%if usedby|length > 1 %}s{%endif%}</p>
+    </div>
+    </div>
+    <div id="used-by" style="width: 600px; min-height: 25vh;" class="">
+        <div>
+            {% for vid in used_by %}
+                <video
+                    src="{{vid.video.url}}"
+                    class="video-js vjs-theme-forest border-white inline border-t-2"
+                    controls
+                    style="width: 178px; height: 260px;"
+                    preload="auto"
+                    data-setup='{}'>
+                </video>
+            {% endfor %}
+        </div>
+</div>
+
+<script>
+    const trigger = document.getElementById('trigger-sound');
+    const pause = document.getElementById('pause-sound');
+    const audioElement = document.getElementById('og-sound');
+    
+    trigger.addEventListener("click", () => {
+        audioElement.play()
+    })
+    pause.addEventListener("click", () => {
+        audioElement.pause()
+    })
+</script>
