@@ -54,8 +54,8 @@ class ViberViewSet(viewsets.ModelViewSet):
     serializer_class = ViberSerializer
         
     @action(detail=True, methods=["post"])
-    def follow(self, request, pk=None):
-        user = Viber.objects.get(id=pk)
+    def follow(self, request):
+        user = Viber.objects.get(id=request.data["to_id"])
         follower = Viber.objects.get(id=request.data["from_id"])
         
         user.followers.add(follower)
@@ -75,8 +75,8 @@ class ViberViewSet(viewsets.ModelViewSet):
 
 
     @action(detail=True, methods=["post"])
-    def unfollow(self, request, pk=None):
-        user = Viber.objects.get(id=pk)
+    def unfollow(self, request):
+        user = Viber.objects.get(id=request.data["to_id"])
         unfollower = Viber.objects.get(id=request.data["from_id"])
         user.followers.remove(unfollower)
         unfollower.following.remove(user)
