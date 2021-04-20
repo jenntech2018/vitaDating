@@ -19,9 +19,9 @@ class UploadView(View):
             if not data['sound']:
                 video = mp.VideoFileClip(data["video"].temporary_file_path())
                 instance = form.save(commit=False)
-                video.audio.write_audiofile('tmp/f"@{request.user.username}/video/{instance.uuid}_sound.mp3')
+                video.audio.write_audiofile(f'tmp/"@{request.user.username}/video/{instance.uuid}_sound.mp3')
 
-                upload_file('tmp/f"@{request.user.username}/video/{instance.uuid}_sound.mp3', "vibetubebucket")
+                upload_file(f'tmp/"@{request.user.username}/video/{instance.uuid}_sound.mp3', "vibetubebucket")
                 sound = Sound.objects.create(
                     original_video = instance,
                     creator = request.user,
