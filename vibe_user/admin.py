@@ -8,10 +8,9 @@ class ViberAdmin(UserAdmin):
     add_form = UserCreationForm
     form = UserChangeForm
     model = Viber
-    list_display = ['id', 'email', 'username', 'first_name', 'last_name', 'display_name', 'verified']
-    add_fieldsets = UserAdmin.add_fieldsets + (
-        (None, {'fields': ('email', 'first_name', 'verified', 'last_name', 'display_name',)}),
-    )
-    fieldsets = UserAdmin.fieldsets
+    list_display = ['id', 'username', 'email', 'first_name', 'last_name', 'bio', 'website', 'display_name', 'verified', 'profile_photo']
+    fieldsets = [
+        (None, {'fields': ('username', 'email', 'first_name', 'last_name', 'bio', 'website', 'display_name', 'verified', 'profile_photo')})
+    ]
 
 admin.site.register(Viber, ViberAdmin)

@@ -1,6 +1,7 @@
 from django.shortcuts import render, HttpResponseRedirect, reverse, redirect
 from django.db.models import Q
 from django.views import View
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from django.contrib.auth.models import AbstractUser
 from vibe_user.models import Viber
@@ -41,33 +42,21 @@ def vibe_user_unfollow_view(request, user_id):
 
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
-class EditProfileView(View):
-    def post(self, request):
+
+class EditProfileView(View, LoginRequiredMixin):
+    def post(self, request, username):
         user = request.user
 
-        form = EditProfileForm(request.POST, request.FILES)
+        form = EditProfileForm(request.POST, request.FILES, instance=request.user)
         if form.is_valid():
             data = form.cleaned_data
-            to_update = {
-                "display_name": data['display_name'],
-                "bio": data['bio'],
-                "profile_photo": data['profile_photo'],
-                "username": data['username']
-            }
-            Viber.objects.filter(id=user.id).update(**to_update)
+            instance = form.save()
         return HttpResponseRedirect(request.GET.get('next', reverse('profile', args=[user.username])))
 
-    def get(self, request):
-        form = EditProfileForm(
-            initial={
-                "display_name": user.display_name,
-                "bio": user.bio,
-                "profile_photo": user.profile_photo,
-                "first_name": user.first_name,
-                "last_name": user.last_name,
-                "username": user.username,
-            }
-        )
+    def get(self, request, username):
+        user = request.user
+
+        form = EditProfileForm(instance=request.user)
         return render(request, "user/edit_profile.html", {'form': form})
 
 def settings_page(request):

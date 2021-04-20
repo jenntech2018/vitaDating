@@ -29,6 +29,7 @@ class MainView(View):
                     dob=dob,
                     display_name=display_name,
                     profile_photo=data["profile_photo"])
+                breakpoint()
             is_authed = auth_user(request, data)
             if is_authed:
                 return redirect(reverse("main"))
@@ -38,30 +39,3 @@ class MainView(View):
         user = Viber.objects.get(id=request.user.id)
         suggested_creators = Viber.objects.all().filter(verified=True).order_by('-followers')[:10]
         return render(request, "main/main.html", {"videos": videos, "suggested": suggested_creators})
-
-
-'''
-class Video(models.Model):
-    creator = models.ForeignKey('vibe_user.Viber', null=True, blank=True, on_delete=models.CASCADE, related_name="video_creator")
-    uuid = models.IntegerField(default=gen_uuid, unique=True)
-    video = models.FileField(upload_to=user_vid_path)
-    privacy = models.CharField(max_length=3,choices=PRIVACY_SETTINGS)
-    comments = models.ManyToManyField("Comment", blank=True)
-    likes = models.IntegerField(default=0)
-    timestamp = models.DateTimeField(default=timezone.now)
-    caption = models.CharField(max_length=70)
-    sound = models.ForeignKey("video.Sound", related_name="vid_sound", on_delete=models.CASCADE, null=True, blank=True,)
-
-class Viber(AbstractUser):
-    display_name = models.CharField(max_length=120, null=True, blank=True)
-    bio = models.TextField()
-    dob = models.DateField(blank=True,null=True)
-    followers = models.ManyToManyField('self', symmetrical=False, related_name='viber_followers')
-    following = models.ManyToManyField('self', symmetrical=False, related_name='viber_following')
-    videos = models.ManyToManyField(Video, related_name='viber_videos')
-    verified = models.BooleanField(default=False)
-    sounds = models.ManyToManyField(Sound, related_name='viber_sounds')
-    profile_photo = models.ImageField(upload_to=user_photo_path, blank=True, null=True)
-    liked_videos = models.ManyToManyField(Video, related_name="liked_videos_list")
-
-'''

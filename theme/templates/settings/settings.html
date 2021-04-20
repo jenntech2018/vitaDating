@@ -59,24 +59,21 @@
     <!-- left box -->
     <div class='boxes box-left shadow-md'>
         <div class='grid grid-flow-col auto-cols-max '>
-            <svg xmlns="http://www.w3.org/2000/svg" @mouseover="notifHovered = true" @mouseover.away="notifHovered = false" class="h-6 w-6 box-left-inner box-left-inner-left" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 box-left-inner box-left-inner-left" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
               </svg>
               <!-- manage account menu -->
               <p class='font-semibold text-lg box-left-inner'>Manage account</p>
         </div>
-    </div>
-    <!-- right box -->
-    <div class='boxes box-right shadow-md'>
-        <!-- manage account -->
-        <div class='text-xl font-semibold font-sans box-right-inner-title'>Manage account</div>
-        <div class='text-xs font-semibold font-sans text-gray-60 box-right-inner-subtitle'>Account control</div>
-        <!-- delete account title & button -->
-        <div class='grid grid-flow-col auto-cols-max justify-between'>
-            <div class='box-right-inner-deleteaccount'>Delete account</div>
-            <button @click="deleteClicked = ! deleteClicked"class='box-right-inner-delete-button text-red-700'>Delete</button>
+        <div class='grid grid-flow-col auto-cols-max '>
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 box-left-inner box-left-inner-left" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+              </svg>
+              <!-- manage account menu -->
+              <p class='font-semibold text-lg box-left-inner'>Edit account</p>
         </div>
-        <div
+    </div>
+    <div
         class="fixed inset-0 w-full h-full z-50 bg-black bg-opacity-50 duration-300 overflow-y-auto"
         x-show="deleteClicked"
         x-transition:enter="transition duration-300"
@@ -129,6 +126,16 @@
           </div>
         </div>
       </div>
+    <!-- right box -->
+    <div class='boxes box-right shadow-md'>
+        <!-- manage account -->
+        <div class='text-xl font-semibold font-sans box-right-inner-title'>Manage account</div>
+        <div class='text-xs font-semibold font-sans text-gray-60 box-right-inner-subtitle'>Account control</div>
+        <!-- delete account title & button -->
+        <div class='grid grid-flow-col auto-cols-max justify-between'>
+            <div class='box-right-inner-deleteaccount'>Delete account</div>
+            <button @click="deleteClicked = ! deleteClicked"class='box-right-inner-delete-button text-red-700'>Delete</button>
+        </div>
         <!-- line -->
         <!-- <hr style="width: 90%; margin: .7rem 0 0 2rem;" -->
 
@@ -145,7 +152,7 @@
         <!-- line -->
         <hr style="width: 90%; margin: .7rem 0 0 2rem;">
         <!-- Edit account -->
-        <div class='text-xl font-semibold font-sans box-right-inner-title'>Edit account</div>
+        <div class='text-xl font-semibold font-sans box-right-inner-title'>Edit profile</div>
         <!-- Edit button -->
         <div class='grid grid-flow-col auto-cols-max justify-between'>
             <div class='box-right-inner-deleteaccount'>Edit profile</div>
