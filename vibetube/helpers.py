@@ -135,16 +135,3 @@ def upload_file(file_name, bucket, object_name=None):
         logging.error(e)
         return False
     return True
-
-def rename_tmp(src, target):
-    import boto3
-    s3_client = boto3.resource('s3', aws_access_key_id=AWS_ACCESS_KEY_ID, aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
-    bucket = s3_client.Bucket("vibetubebucket")
-    for obj in bucket.objects.filter(Prefix=src):
-        src_filename = (obj.key).split('/')[-1]
-        copy_source = {
-            "Bucket": "vibetubebucket",
-            "Key": obj.key
-        }
-        target_filename = target
-        s3_client.meta.copy(copy_source, "vibetubebucket", target)
