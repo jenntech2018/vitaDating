@@ -53,7 +53,7 @@ class ViberViewSet(viewsets.ModelViewSet):
     queryset = Viber.objects.all().order_by('-username')
     serializer_class = ViberSerializer
         
-    @action(detail=True, methods=["post"])
+    @action(detail=False, methods=["post"])
     def follow(self, request):
         user = Viber.objects.get(id=request.data["to_id"])
         follower = Viber.objects.get(id=request.data["from_id"])
@@ -74,7 +74,7 @@ class ViberViewSet(viewsets.ModelViewSet):
         return Response(data={"followers_count": followers_count}, status=status.HTTP_201_CREATED)
 
 
-    @action(detail=True, methods=["post"])
+    @action(detail=False, methods=["post"])
     def unfollow(self, request):
         user = Viber.objects.get(id=request.data["to_id"])
         unfollower = Viber.objects.get(id=request.data["from_id"])
