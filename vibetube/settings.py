@@ -31,7 +31,7 @@ SECRET_KEY = os.environ["secret_key"]
 DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
-SITE_URL = "http://vibetube.herokuapp.com/"
+SITE_URL = "http://vibetube.herokuapp.com"
 
 
 # Application definition
@@ -193,6 +193,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static/']
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+
 FILE_UPLOAD_HANDLERS = [
     'django.core.files.uploadhandler.TemporaryFileUploadHandler',
 ]
