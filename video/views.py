@@ -38,7 +38,11 @@ class UploadView(View):
 
                 instance = form.save(commit=False)
                 video_clip.write_videofile(f"{instance.uuid}.{video_clip.filename.split('.')[-1]}")
-                upload_file(f'{instance.uuid}.{video_clip.filename.split('.')[-1]}',"vibetubebucket", f'media/@{request.user.username}/video/{instance.uuid}.{video_clip.filename.split('.')[-1]}')
+                upload_file(
+                    f"{instance.uuid}.{video_clip.filename.split('.')[-1]}",
+                    "vibetubebucket",
+                    f"media/@{request.user.username}/video/{instance.uuid}.{video_clip.filename.split('.')[-1]}"
+                    )
 
                 instance.video = f"@{request.user.username}/video/{instance.uuid}.{video_clip.filename.split('.')[-1]}"
                 instance.save()
