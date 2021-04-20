@@ -259,7 +259,7 @@
     <script src="https://code.jquery.com/jquery-migrate-3.0.0.min.js"></script>
     <script>
         $(document).ready(() => {
-            url = "http://localhost:8000/api-vibes"
+            url = "http://vibetube.herokuapp.com/api-vibes"
             let videos = $('video').not("[autoplay='autoplay']");
 
             let checkVideos = () => {
@@ -328,7 +328,7 @@
 
         const submitComment = (videoId) => {
             const comment = document.getElementById(`addComment${videoId}`).value
-            const url = "http://localhost:8000/api-vibes"
+            const url = "http://vibetube.herokuapp.com/api-vibes"
             fetch(`${url}/comments/add_comment/`, {
                 method: "POST",
                 headers: {
@@ -349,7 +349,7 @@
         const replyList = document.getElementById(`replies-list-${commentId}`)
         const viewReplies = document.getElementById(`view-comment-replies-${commentId}`)
         const showRepliesWrapper = document.getElementById(`show-replies-wrapper-${commentId}`)
-        const url = "http://localhost:8000/api-vibes"
+        const url = "http://vibetube.herokuapp.com/api-vibes"
         fetch(`${url}/comments/${commentId}/add_reply/`, {
             method: "POST",
             headers: {
@@ -403,7 +403,7 @@
         const replyCount = document.getElementById(`reply-${commentId}-${replyId}-likes`)
         const likeIcon = document.getElementById(`like-${commentId}-${replyId}-icon`)
 
-        const url = "http://localhost:8000/api-vibes"
+        const url = "http://vibetube.herokuapp.com/api-vibes"
         fetch(`${url}/comments/${commentId}/like_reply/`, {
             method: "POST",
             headers: {
@@ -427,7 +427,7 @@
         const replyCount = document.getElementById(`reply-${commentId}-${replyId}-likes`)
         const likeIcon = document.getElementById(`like-${commentId}-${replyId}-icon`)
 
-        const url = "http://localhost:8000/api-vibes"
+        const url = "http://vibetube.herokuapp.com/api-vibes"
         fetch(`${url}/comments/${commentId}/unlike_reply/`, {
             method: "POST",
             headers: {
@@ -451,7 +451,7 @@
         const likeCount = document.getElementById(`comment-${commentId}-likes`)
         const likeIcon = document.getElementById(`like-${commentId}-icon`)
 
-        const url = "http://localhost:8000/api-vibes"
+        const url = "http://vibetube.herokuapp.com/api-vibes"
         fetch(`${url}/comments/${commentId}/like_comment/`, {
             method: "POST",
             headers: {
@@ -474,7 +474,7 @@
         const likeCount = document.getElementById(`comment-${commentId}-likes`)
         const likeIcon = document.getElementById(`like-${commentId}-icon`)
 
-        const url = "http://localhost:8000/api-vibes"
+        const url = "http://vibetube.herokuapp.com/api-vibes"
         fetch(`${url}/comments/${commentId}/unlike_comment/`, {
             method: "POST",
             headers: {
