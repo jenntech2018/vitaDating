@@ -10,7 +10,7 @@ style="z-index: 1000;"
     x-show="showLogin"
   >
     <header class="flex items-center justify-between p-2">
-      <h2 class="font-semibold ml-48 mt-10 text-2xl">Log in</h2>
+      <h2 class="font-semibold mx-auto text-center mt-10 text-2xl">Log in</h2>
       <button class="focus:outline-none p-2 rounded-full hover:bg-gray-100" @click="showLogin = false">
         <svg class="fill-current" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 18 18">
           <path
@@ -22,7 +22,7 @@ style="z-index: 1000;"
     <main class="p-2 text-center">
       <form method="POST">
         {% csrf_token %}
-        <h5 class="font-semibold ml-10 float-left text-md">Email or Username</h5>
+        <h5 class="font-semibold ml-10 float-left text-md">Email or Username</h5><br>
         {{ login_form.username }}
         {{ login_form.password }}
         <br><span class="text-xs mt-3 ml-10 float-left">Forgot password?</span><br><br>

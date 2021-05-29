@@ -45,6 +45,7 @@
     </div>
     <div>
         <div class="flex-container">
+            {% if request.user.is_authenticated %}
             {% if not request.user == vibe_user %}
                 <div class="-mt-10 ml-4" x-data="{isFollowing: {{is_following}}}">
                         <button x-show="!isFollowing" @click="isFollowing = ! isFollowing, followViber({{vibe_user.id}}, {{request.user.id}})" style="
@@ -61,6 +62,7 @@
                 style="width: 208px;
                 border-width: .5px;
                 height: 36px;"class="hover:bg-gray-100 rounded-md ml-32 text-black border-gray-300 font-semibold focus:outline-none focus:ring" onclick='window.location.href="/edit/@{{request.user}}"'>Edit Profile</button>
+                {% endif %}
                 {% endif %}
             <h1 class="position text-3xl ml-4 -mt-4 font-bold">{{vibe_user.username}} 
                                 {% if vibe_user.verified %}
