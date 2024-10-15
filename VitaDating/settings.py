@@ -13,7 +13,6 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 from pathlib import Path
 import environ
 import os
-import os
 from django.core.exceptions import ImproperlyConfigured
 
 def get_env_variable(var_name):
@@ -23,8 +22,6 @@ def get_env_variable(var_name):
     except KeyError:
         raise ImproperlyConfigured(f"Set the {var_name} environment variable.")
 
-# Fetch SECRET_KEY from environment
-SECRET_KEY = "*h7p1h)h)5hzj)ztwq6a3_mf0hdr#j$9y6d2@e8#qfsn0m!-7!"
 # Initialize environment variables
 env = environ.Env(
     DEBUG=(bool, True)  # Default value for DEBUG is True
@@ -34,25 +31,12 @@ env = environ.Env(
 environ.Env.read_env()  # This will look for a .env file in the current directory
 
 # Use the environment variables
+SECRET_KEY = get_env_variable('SECRET_KEY')  # Fetch SECRET_KEY from environment
 DEBUG = env('DEBUG')  # Retrieve the DEBUG setting from environment variables
-ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=['localhost'])  #
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=['localhost'])
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-environ.Env.read_env()
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = ["*"]
-
-SITE_URL = "http://vitadating.herokuapp.com"
-
 
 # Application definition
 
@@ -112,7 +96,6 @@ TEMPLATES = [
     },
 ]
 
-
 # Tell the staticfiles app to use S3Boto3 storage when writing the collected static files (when
 # you run `collectstatic`).
 STATICFILES_LOCATION = 'static'
@@ -122,29 +105,19 @@ DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
 
 WSGI_APPLICATION = 'VitaDating.wsgi.application'
 
-
 # Database
-# https://docs.djangoproject.com/en/3.1/ref/settings/#databases
-
-
-DATABASES = { 
-   'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }}
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'template1',
-        'USER': 'postgres',
-        'PASSWORD': '1234',
-        'HOST': 'localhost',
-        'PORT': '',
-    }}
+        'NAME': get_env_variable('DB_NAME'),
+        'USER': get_env_variable('DB_USER'),
+        'PASSWORD': get_env_variable('DB_PASSWORD'),
+        'HOST': get_env_variable('DB_HOST'),
+        'PORT': get_env_variable('DB_PORT', default=''),  # Default to empty string for default port
+    }
+}
 
 # Password validation
-# https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -204,23 +177,14 @@ LOGGING = {
     }
 }
 
-
 # Internationalization
-# https://docs.djangoproject.com/en/3.1/topics/i18n/
-
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_L10N = True
-
 USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.1/howto/static-files/
-
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static/']
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
@@ -229,11 +193,8 @@ FILE_UPLOAD_HANDLERS = [
     'django.core.files.uploadhandler.TemporaryFileUploadHandler',
 ]
 
-AUTH_USER_MODEL= 'vitaDatinguser.vitaDatinguser'
-DEFAULT_AUTO_FIELD='django.db.models.AutoField'
+AUTH_USER_MODEL = 'vitaDatinguser.vitaDatinguser'
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
 MEDIA_URL = '/media/'
-
 MEDIA_ROOT = BASE_DIR / 'media/'
-
-
