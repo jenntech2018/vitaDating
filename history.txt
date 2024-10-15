@@ -1,0 +1,1000 @@
+  281  cd ..
+  282  cd petyounite
+  283  ls
+  284  python3 manage.py runserver
+  285  pip install Pillow
+  286  python3 manage.py runserver
+  287  npm init
+  288  npm start
+  289  npm run
+  290  npm install
+  291  npm update
+  292  cd client
+  293  npm install
+  294  keytool -exportcert -list -v -alias androiddebugkey -keystore ~/.android/debug.keystore
+  295  sudo apt install openjdk-11-jre-headless
+  296  keytool -exportcert -list -v -alias androiddebugkey -keystore ~/.android/debug.keystore
+  297  sudo apt install openjdk-17-jre-headless
+  298  apt-get update
+  299  sudo apt-get update
+  300  keytool -exportcert -list -v -alias androiddebugkey -keystore ~/.android/debug.keystore
+  301  cd..
+  302  cd c
+  303  cd Users
+  304  ls
+  305  cd jennm
+  306  mkdir bark
+  307  cd bark
+  308  python3 -m venv venv --prompt=social
+  309  ls
+  310  cd venv
+  311  ls
+  312  cd ..
+  313  source ./venv/bin/activate
+  314  pip install django==3.2.5
+  315  django
+  316  django-admin
+  317  django-admin startproject social .
+  318  ls
+  319  python manage.py startapp petsyounite
+  320  pip3 install django
+  321  pip3 intall -r requirements.txt
+  322  pip3 install -r requirements.txt
+  323  pip3 intall -r dev-requirements.txt
+  324  pip3 install -r dev-requirements.txt
+  325  pip3 install psycopg2-binary==2.8.6
+  326  sudo apt-get install libpq-dev
+  327  pip3 install -r dev-requirements.txt
+  328  pipenv shell
+  329  npm instal
+  330  npm install
+  331  npm init
+  332  npm start
+  333  cd ./Scripts/activate
+  334  ./Scripts/activate.bat
+  335  ./Scripts/activate.sh
+  336  cd .
+  337  cd ..
+  338  source ./venv/Scrips/activate
+  339  source .\venv\Scrips\activate
+  340  source ./venv/bin/activate
+  341  cmd
+  342  exit
+  343  pythom manage.py runserver
+  344  python manage.py runserver
+  345  python3 manage.py runserver
+  346  code .
+  347  pip install djangorestframework
+  348  python manage.py runservet
+  349  python manage.py runserver
+  350  python3
+  351  python3 manage.py runserver
+  352  pip3 install dj-database-url
+  353  python3 manage.py runserver
+  354  pip3 install material
+  355  pip3 install -r requirements.txt
+  356  pip3 install pip install psycopg-binary
+  357  pip3 install -r requirements.txt
+  358  pip install pillow
+  359  pip3 install -r requirements.txt
+  360  python3 manage.py runserver
+  361  pip3 uninstall pipenv
+  362  pip uninstall pipenv
+  363  pip3 install pipenv
+  364  python3 manage.py runserver
+  365  pip install --upgrade pip wheel setuptools requests
+  366  python3 manage.py runserver
+  367  sudo apt remove pipenv
+  368  pip3 install pipenv
+  369  python3 manage.py runserver
+  370  python3 -m pipenv shell
+  371  pipenv install
+  372  sudo apt-get install python-requests==2.27.1
+  373  sudo apt-get install python-requests
+  374  python manage.py runserver
+  375  pip3 install PIL
+  376  pip install --no-index -f https://dist.plone.org/thirdparty/ -U PIL
+  377  pip in
+  378  pip install pillow
+  379  pip install pycopg2-binary
+  380  pip install pycopg-binary
+  381  pip install -r requirements.txt
+  382  python manage.py runserver
+  383  apt install python-pip
+  384  sudo apt install python-pip
+  385  python -m pip install requests==2.27.1
+  386  python manage.py runserver
+  387  pip install collections
+  388  pip install update
+  389  python manage.py runserver
+  390  pip install -r requirements.txt
+  391  sudo apt install python3-venv
+  392  python3 -m venv my-project-env
+  393  source my-project-env/bin/activate.
+  394  source ./my-project-env/bin/activate.
+  395  my-project-env/bin/activate.
+  396  cd my-project-env/
+  397  ls
+  398  cd bin
+  399  ls
+  400  activate.bat
+  401  ./activate.bat
+  402  cd ..
+  403  my-project-env/bin/activate.bat
+  404  source my-project-env/bin/activate.bat
+  405  source my-project-env/bin/activate
+  406  pip -r install requirements.txt
+  407  pip3 install -r reqiuirements.txt
+  408  pip3 install -r requirements.txt
+  409  python manage.py makemigrations
+  410  pip install django
+  411  python manage.py makemigrations
+  412  pip install channels
+  413  python manage.py makemigrations
+  414  pip install djangorestframework
+  415  python manage.py makemigrations
+  416  pip install pillow
+  417  python manage.py makemigrations
+  418  python manage.py migrate
+  419  python manage.py runserver
+  420  pip install whitenoise
+  421  python manage.py runserver
+  422  python manage.py makemigrations
+  423  python manage.py migrate
+  424  python manage.py runserver
+  425  python manage.py createsuperuser
+  426  python manage.py runserver
+  427  git clone git clone https://github.com/redianmarku/Django-Twitter-Clone.git
+  428  python /home/jenntech/.vscode-server/extensions/ms-python.python-2024.2.1/pythonFiles/printEnvVariablesToFile.py /home/jenntech/.vscode-server/extensions/ms-python.python-2024.2.1/pythonFiles/deactivate/bash/envVars.txt
+  429  python /home/jenntech/.vscode-server/extensions/ms-python.python-2024.4.1/python_files/printEnvVariablesToFile.py /home/jenntech/.vscode-server/extensions/ms-python.python-2024.4.1/python_files/deactivate/bash/envVars.txt
+  430  ls
+  431  python manage.py runserver
+  432  python3 manage.py runserver
+  433  pip install openai
+  434  python3 -m pip install --upgrade pip
+  435  python3 manage.py runserver
+  436  cd ..
+  437  cd ,,
+  438  cd ..
+  439  ls
+  440  mkdir oskamyardcare
+  441  cd ..
+  442  ls
+  443  cd #
+  444  ;s
+  445  ls
+  446  mkdir oskamyardcare
+  447  ;s
+  448  ls
+  449  cd oskamyardcare/
+  450  ls
+  451  lsls
+  452  ls
+  453  django-admin startproject landing
+  454  ls
+  455  cd landing/
+  456  ;s
+  457  ls
+  458  code .
+  459  ls
+  460  ls -al
+  461  mkdir test
+  462  cd test
+  463  django-admin startproject test
+  464  django-admin startproject test2
+  465  ls
+  466  cd test2
+  467  ls
+  468  django-admin startapp services
+  469  ls
+  470  code .
+  471  python shell
+  472  python3 shell
+  473  python manage.py shell
+  474  python3 manage.py shell
+  475  python manage.py runserver
+  476  python3 manage.py runserver
+  477  python manage.py makemigrations
+  478  python3 manage.py makemigrations
+  479  python3 manage.py migrate
+  480  python3 manage.py runserver
+  481  clear
+  482  python3 manage.py runserver
+  483  pip install smtplib
+  484  pip install smtp
+  485  pip freeze
+  486  pipreqs
+  487  pipreqs --force
+  488  pip install -r requirements.txt
+  489  nano requirements.txt 
+  490  pip install -r requirements.txt
+  491  python3 manage.py runserver
+  492  pip install smtplib
+  493  python3 manage.py runserver
+  494  python3 manage.py makemigrations
+  495  python3 manage.py migrate
+  496  python3 manage.py runserver
+  497  sudo apt autoremove
+  498  ./swaks --auth   	--server smtp.mailgun.org   	--au postmaster@sandbox8f90611fc99f4fb6a0520504b842de23.mailgun.org   	--ap 3kh9umujora5   	--to bar@example.com   	--h-Subject: "Hello"   	--body 'Testing some Mailgun awesomness!'
+  499  ./swaks --auth   	--server smtp.mailgun.org   	--us postmaster@sandbox8f90611fc99f4fb6a0520504b842de23.mailgun.org   	--ap 3kh9umujora5   	--to bar@example.com   	--h-Subject: "Hello"   	--body 'Testing some Mailgun awesomness!'
+  500  ls
+  501  python manage.py shell
+  502  python3 manage.py shell
+  503  python3 manage.py runserver
+  504  pip install whitenoise
+  505  python3 manage.py runserver
+  506  ./swaks
+  507  curl -fsSL https://raw.githubusercontent.com/platformsh/cli/main/installer.sh | VENDOR=upsun bash
+  508  brew install platformsh/tap/upsun-cli
+  509  curl -fsSL https://raw.githubusercontent.com/platformsh/cli/main/installer.sh | VENDOR=upsun bash
+  510  ls
+  511  upsun push
+  512  git init
+  513  upsun push
+  514  upsun project:set-remote cx6wxr5huxyfe
+  515  upsun project:init
+  516  git add .upsun
+  517  git commit -m 'Add Upsun configuration files'
+  518  git config --global user.email "jenntech2018@gmail.com"
+  519  git config --global user.name "Jennifer Schneider"
+  520  git commit -m 'Add Upsun configuration files'
+  521  upsun push
+  522  git add .
+  523  git commit -m 'Add Upsun configuration files'
+  524  upsun push
+  525  upsun ssh --project cx6wxr5huxyfe --environment master --app test2
+  526  pip install pipreqs
+  527  ls
+  528  pip freeze
+  529  pip freeze > requirements.txt
+  530  pip install -r requirements.txt
+  531  pip install pkg-config
+  532  pip install psycopg2-binary
+  533  pip install psycopg2
+  534  pip install Pillow
+  535  ls
+  536  rm -rf *
+  537  '/home/jenntech/python-console-snake/snake/run.py'
+  538  sudo '/home/jenntech/python-console-snake/snake/run.py'
+  539  python3 '/home/jenntech/python-console-snake/snake/run.py'
+  540  pypython'
+  541  https://github.com/tancredi/python-console-snake.gitcd ..
+  542  cd ..
+  543  ls
+  544  python3 menu.py
+  545  code .
+  546  npm run dev
+  547  cd .
+  548  cd ..
+  549  ls
+  550  git clone https://github.com/tancredi/python-console-snake.git
+  551  ls
+  552  cd cd python-console-snake/
+  553  ls
+  554  cd p
+  555  cd python-console-snake/
+  556  ls
+  557  python3 menu.py
+  558  cd snake
+  559  ls
+  560  python3 game.py
+  561  code .
+  562  python3 run.py
+  563  ls -al
+  564  python3 __main__.py
+  565  ls
+  566  cd snake
+  567  python3 game.py
+  568  python3 menu.py
+  569  pip install raw_input
+  570  pip3 install raw_input
+  571  sudo apt install python3-pip
+  572  pip install raw_input
+  573  python3 menu.py
+  574  pip install raw_input
+  575  python3 menu.py
+  576  pip install raw_input
+  577  python3 menu.py
+  578  cd snake
+  579  ;s
+  580  ls
+  581  python3 run.py
+  582  ls
+  583  cd slotmachine/
+  584  ls
+  585  nano main.py
+  586  ls
+  587  cd ..
+  588  nano main.puy
+  589  ls
+  590  python3 main.py
+  591  ls
+  592  nano main.py
+  593  python3 main.py
+  594  python manage.py runserver
+  595  python3 manage.py runserver
+  596  python3 manage.py makemigrations
+  597  postgresql
+  598  pip install postgresql
+  599  pip install postgres
+  600  createdb
+  601  apt install postgresql-client-common
+  602  sudo apt install postgresql-client-common
+  603  createdb
+  604  createdb mydb
+  605  ls
+  606  rm -rf
+  607  ls
+  608  rm *
+  609  rm * -rf
+  610  ls
+  611  cd /
+  612  ls
+  613  cd home
+  614  ls
+  615  cd jenntech/
+  616  ls
+  617  cd #
+  618  cd ~
+  619  ls
+  620  cd /
+  621  ls
+  622  cd root
+  623  cd usr
+  624  ls
+  625  sudo apt-get install build-essential
+  626  sudo apt autoremove
+  627  sudo apt-get install python3-dev
+  628  sudo passwd postgres
+  629  su - postgres
+  630  python3 manage.py runserver
+  631  python3 manage.py makemigrations
+  632  python3 pip install -r requirements.txt
+  633  python manage.py migrate
+  634  python3 manage.py migrate
+  635  python manage.py runscript load_activities --script-args ALL
+  636  python3 manage.py runscript load_activities --script-args ALL
+  637  python3 manage.py makemigrations
+  638  python3 manage.py runserver
+  639  python3 manage.py runserver
+  640  su -l postgres
+  641  python manage.py runserver
+  642  python3 manage.py runserver
+  643  sudo -u postgres psql createdb test
+  644  sudo -u jennm psql createdb test
+  645  sudo  psql createdb test
+  646  sudo apt-get install postgresql-client
+  647  sudo  psql createdb test
+  648  sudo apt-get install postgresql-client
+  649  sudo -u jennm psql createdb test
+  650  sudo -u postgres psql createdb test
+  651  psql
+  652  postgresql
+  653  postgres
+  654  apt install postgres
+  655  pip install postgres
+  656  pip update
+  657  pip install update
+  658  apt install postgres
+  659  pip install postgres
+  660  psql
+  661  sql
+  662  sudo apt install parallel
+  663  psql
+  664  psql -h 127.0.0.1
+  665  apt-get install postgresql-9.5
+  666  sudo apt-get install postgresql-9.5
+  667  sudo apt-get install postgresql
+  668  postgres
+  669  psql
+  670  sudo -u postgres psql createdb test
+  671  sudo  psql createdb test
+  672  sudo  psql createdb
+  673  sudo service postgresql restart
+  674  sudo -u postgres psql createdb test
+  675  cat /etc/postgresql/16/main/pg_hba.conf  | grep peer
+  676  sudo psql -t -P format=unaligned -c 'show hba_file';
+  677  ls /etc/postgresql
+  678  sudo vim /etc/postgresql/14/main/pg_hba.conf
+  679  cd /etc/postgresql/14
+  680  ls
+  681  cd main
+  682  ls
+  683  nano pg_ident.conf
+  684  nano pg_ctl.conf
+  685  nano conf.d
+  686  nano start.conf
+  687  postgres
+  688  psql
+  689  su - postgres
+  690  sudo su -
+  691  psql
+  692  sudo - postgres
+  693  sudo passwd postgres
+  694  postgresql
+  695  psql
+  696  sudo -u postgres psql
+  697  pip install psycopg2-binary
+  698  brew services start postgresql@15
+  699  services start postgres@14
+  700  pip install brew
+  701  pip install -r requirements.txt
+  702  brew services start postgresql@15
+  703  sudo brew services start postgresql@15
+  704  pipy 
+  705  python3 manage.py runserver
+  706  sudo apt install postgresql postgresql-contrib -y
+  707  sudo -i -u postgres
+  708  sudo -u postgres psql
+  709  python3 manage.py makemigrations
+  710  cd /etc/postgresql/17/main/
+  711  cd ..createuser
+  712  createuser
+  713  createuser jenntech
+  714  postgres
+  715  su postgres
+  716  nano requirements.txt
+  717  pip install -r requirements.txt
+  718  ls -al
+  719  code .
+  720  git stash
+  721  git pull
+  722  python3 manage.py runserver
+  723  python3 manage.py makemigrations
+  724  pip install -r requirements.txt
+  725  python3 manage.py runserver
+  726  git reset --hard
+  727  ls
+  728  git pull origin 1127.2-automated-testing-improvitions
+  729  git pull origin 1127.2-automated-testing-improvations
+  730  git add .
+  731  git commit -m "Combined and optimized YAML workflows for Django and Selenium CI"
+  732  git checkout -b combined and  optimized yaml
+  733  git push
+  734  git fetch
+  735  git add .
+  736  git push
+  737  git pull ...
+  738  git pull
+  739  git stash
+  740  git pull
+  741  git add .
+  742  git push
+  743  git add .
+  744  git push
+  745  git commit -m fixed typo
+  746  git commit -m "fixed typo"
+  747  git push
+  748  git add .
+  749  git commit -m "fixed typo"
+  750  git push
+  751  git add .
+  752  git commit -m "fixed indent"
+  753  git add .
+  754  git commit -m "fixed indent"
+  755  git push
+  756  git add .
+  757  git commit -m "final"
+  758  git push
+  759  git pull
+  760  git stash
+  761  git pull
+  762  git config pull.rebase false 
+  763  git pull
+  764  git add .
+  765  git commit -m "final"
+  766  git push
+  767  git add .
+  768  git commit -m "fixed"
+  769  git push
+  770  git pull
+  771  git push
+  772  pip install -r requirements.xt
+  773  pip install -r requirements.txt
+  774  npm update
+  775  npm upgrade
+  776  npm install
+  777  python manage.py runscript call_openai
+  778  python3 manage.py runscript call_openai
+  779  python manage.py runscript cato_chat
+  780  python3 manage.py runscript cato_chat
+  781  python3 manage.py runserver
+  782  git pull
+  783  python3 manage.py runserver
+  784  python3 manage.py runserver 9000
+  785  python3 manage.py runserver 4500
+  786  python3 manage.py makemigrations
+  787  python3 manage.py migrate
+  788  python3 manage.py runserver 4500
+  789  git pull origin n 1127.2-automated-testing-improvations
+  790  git pull origin 1127.2-automated-testing-improvations
+  791  git pull origin enntech2018-patch2
+  792  git pull origin jenntech2018-patch2
+  793  cd ..
+  794  git clone https://github.com/kevinelong/bfa.git
+  795  ls
+  796  git pull
+  797  python3
+  798  pytest -vv page_tests/*_test.py --ignore-glob=*
+  799  pytest -vv page_tests/ --ignore-glob=*
+  800  pytest --v
+  801  pytest -vv
+  802  pytest -vv page_tests/*_test.py --ignore-glob=*
+  803  pytest -vv page_tests/*_test.py --ignore-glob=*  > output.txt 2>&1
+  804  pytest -vv page_tests/*_test.py  > output.txt 2>&1
+  805  ls -al
+  806  nano output.txt
+  807  pytest -vv page_tests/*_test.py --ignore-glob=* > "output.txt" 2>&1
+  808  nano output.txt
+  809  ssh -i "C:\Users\jennm\Downloads\dev2022.pem" ubuntu@13.57.173.117
+  810  sudo  ssh -i "C:\Users\jennm\Downloads
+  811  \dev2022.pem" ubuntu@13.57.173.117
+  812  sudo  ssh -i "C:\Users\jennm\Downloads\dev2022.pem" ubuntu@13.57.173.117
+  813  sudo  ssh -i C:\Users\jennm\Downloads\dev2022.pem ubuntu@13.57.173.117
+  814  sudo  ssh -i "C:/Users/jennm/Downloads/dev2022.pem" ubuntu@13.57.173.117
+  815  pytest -vv page_tests/*_test.py --ignore-glob=* > "output.txt" 
+  816  cat output.txt
+  817  git stash
+  818  pytest -vv page_tests/*_test.py --ignore-glob=* > "output.txt" 
+  819  pytest -vv page_tests/login_test.py
+  820  pip install -r requirements.txt
+  821  python manage.py runserver
+  822  python3 manage.py runserver
+  823  pip uninstall django-q
+  824  python3 manage.py makemigrations
+  825  python3 manage.py migrate
+  826  python3 manage.py runserver
+  827  git add .
+  828  git push
+  829  ls -al
+  830  python manage.py runserver
+  831  python3 manage.py runserver
+  832  django-admin startapp friends
+  833  django-admin startapp activity
+  834  cd ..
+  835  cd ~
+  836  ls
+  837  django-admin startproject vita
+  838  cd vita
+  839  ls
+  840  django-admin startapp user
+  841  django-admin startapp main
+  842  django-admin startapp notifications
+  843  django-admin startapp vita-auth
+  844  django-admin startapp vita_auth
+  845  django-admin startapp instant
+  846  django-admin startapp activity
+  847  django-admin startapp vita-api
+  848  django-admin startapp vita_api
+  849  code .
+  850  git add .
+  851  git push
+  852  git commit -m "test"
+  853  git push
+  854  git pull
+  855  git commit -m "test"
+  856  git push
+  857  git pull
+  858  powershell
+  859  cd .github
+  860  cd workflows
+  861  ./django.yml
+  862  run
+  863  pytest -vv ../../page_tests/*_test.py --maxfail=1 --disable-warnings -vrun\
+  864  cd ..
+  865  django-admin startproject vita
+  866  cd vita
+  867  ls
+  868  django-admin startapp user
+  869  django-admin startapp chat
+  870  django-admin startapp user-auth
+  871  django-admin startapp auth
+  872  code .
+  873  ls
+  874  python3 manage.py runservewr
+  875  python3 manage.py runserver
+  876  python3 manage.py makemigrations
+  877  python3 manage.py migrate
+  878  python3 manage.py runserver
+  879  python3 manage.py makemigrations
+  880  python3 manage.py migrate
+  881  python3 manage.py runserver
+  882  pip install -r requirements.txt
+  883  cd ..
+  884  ls
+  885  cd github
+  886  ls
+  887  cd bfa
+  888  ls
+  889  python3 manage.py runserver
+  890  pip install pytest-factoryboy
+  891  python3 manage.py runserver
+  892  python3 manage.py migrate
+  893  python3 manage.py makemigrations
+  894  git pull
+  895  git add .
+  896  git push
+  897  exit
+  898  exit()
+  899  pip install -r requirements.txt
+  900  python3 manage.py runserver
+  901  pip install pipdeptree
+  902  pipdeptree
+  903  pytest --timeout=60 --continue-on-collection-errors -vv page_tests/*_test.py --disable-warnings > output.txt || true
+  904  pytest -vv page_tests/login_test.py 
+  905  python3 manage.py runserver
+  906  pytest -vv page_tests/login_test.py 
+  907  python3 manage.py runserver
+  908  python3 manage.py migrate
+  909  python3 manage.py makemigrations
+  910  python3 manage.py migrate
+  911  python3 manage.py runserver
+  912  python manage.py migrate
+  913  python3 manage.py migrate
+  914  python3 manage.py makemigrations
+  915  python manage.py migrate
+  916  python3 manage.py migrate
+  917  poetry install
+  918  sudo apt install python3-poetry
+  919  poetry install
+  920  npm install
+  921  npm audit fix
+  922  poetry shell
+  923  npm run build
+  924  poetry run build
+  925  poetry env use 3.9.5
+  926  sudo apt install python3.9
+  927  poetry env use 3.9
+  928  poetry env use 3.9.5
+  929  pip install python3.9.5
+  930  sudo apt install python3.9.5
+  931  pyenv global 3.9.5
+  932  pyenv install 3.9.5
+  933  pip install pyenv
+  934  choco install pyenv
+  935  pip install pyenv-win --target %USERPROFILE%\\.pyenv
+  936  pyenv install 3.9.5
+  937  pyenv global 3.9.5
+  938  pyenv-win install 3.9.5
+  939  which python
+  940  python -v
+  941  python3 
+  942  python3 0v
+  943  python3 -v
+  944  /usr/bin/python3
+  945  cd ..
+  946  git clone https://github.com/jenntech2018/VibeTube.git
+  947  ls
+  948  cd vita/
+  949  cd ..
+  950  ls
+  951  code .
+  952  cd ..
+  953  git clone https://github.com/jenntech2018/VibeTube.git
+  954  ls
+  955  cd vibe
+  956  cd vibetube
+  957  ls
+  958  code .
+  959  python3 manage.py makemigrations
+  960  pip install environ
+  961  python3 manage.py makemigrations
+  962  python3 manage.py migrate
+  963  git pull
+  964  django-admin startapp activity
+  965  python3 manage.py makemigrations
+  966  poetry
+  967  poetry install
+  968  poetry env use 3.9.5
+  969  poetry env use 3.10
+  970  poetry env use 3.9.5
+  971  poetry install
+  972  poetry env use 3.10
+  973  poetry env use 3.10.12
+  974  poetry install
+  975  pip install pillow
+  976  pip install Pillow
+  977  npm install
+  978  npm fund
+  979  npm audit fix
+  980  npm run
+  981  npm run build
+  982  npm run
+  983  npm start
+  984  python3 manage.py runserver
+  985  cd ..
+  986  git clone https://github.com/alii76tt/django-youtube-clone.git
+  987  cd  vibetube
+  988  pip install --upgrade django-environ
+  989  python3 manage.py makemigrations
+  990  poetry add django-environ --upgrade
+  991  poetry add django-environ
+  992  poetry update django-environ
+  993  poetry add pillow
+  994  poetry install
+  995  poetry update pillow
+  996  poetry update Pillow
+  997  set SECRET_KEY=jessej69
+  998  poetry install
+  999  python3 manage.py runserver
+ 1000  poetry shall
+ 1001  poetry shell
+ 1002  . /home/jenntech/.cache/pypoetry/virtualenvs/vibetube-jonTGizH-py3.10/bin/activate
+ 1003  poepsql
+ 1004  postgres
+ 1005  pip install postgres
+ 1006  postgres
+ 1007  psql
+ 1008  python3 manage.py runserver
+ 1009  [3~istory 
+ 1010  history > history.txt
+ 1011  su - postgres
+ 1012  python3 manage.py runserver
+ 1013  python3 manage.py makemigrations
+ 1014  python3 manage.py migrate
+ 1015  python3 manage.py runserver
+ 1016  python manage.py migrate
+ 1017  python3 manage.py runserver
+ 1018  python3 manage.py migrate
+ 1019  clear
+ 1020  python3 manage.py makemigrations
+ 1021  python3 manage.py migrate
+ 1022  rm -rf vita_resetforgottenpassword
+ 1023  ls
+ 1024  python3 manage.py migrate
+ 1025  python3 manage.py makemigrations
+ 1026  python3 manage.py migrate
+ 1027  python3 manage.py runserver
+ 1028  python3 manage.py makemigrations
+ 1029  git stash
+ 1030  git pull
+ 1031  exit
+ 1032  python3 manage.py makemigrations
+ 1033  python3 manage.py migrate
+ 1034  git stash pop
+ 1035  git stash apply
+ 1036  git commit -m "added file to gitignore"
+ 1037  cd ..
+ 1038  ls
+ 1039  cd doc
+ 1040  cd Documents/
+ 1041  ls
+ 1042  cd cd ..
+ 1043  cd ..
+ 1044  ls
+ 1045  cd ~
+ 1046  ls
+ 1047  cd home
+ 1048  ls
+ 1049  cd /
+ 1050  ls
+ 1051  cd home
+ 1052  ls
+ 1053  cd jenntech/
+ 1054  ls
+ 1055  cd vita
+ 1056  ls
+ 1057  python3 manage.py migrate
+ 1058  git add .
+ 1059  git commit -m "debugged"
+ 1060  git push
+ 1061  git status
+ 1062  git stash
+ 1063  git add .
+ 1064  git stash
+ 1065  git stash pop
+ 1066  python manage.py makemigrations
+ 1067  python3 manage.py makemigrations
+ 1068  python3 manage.py migrate
+ 1069  psql
+ 1070  psql -U postgres
+ 1071  psql -U jenntech
+ 1072  su - postgres
+ 1073  python3 manage.py makemigrations
+ 1074  python3 manage.py migrate
+ 1075  python3 manage.py runserver
+ 1076  git add .
+ 1077  git commit -m "push stuff"
+ 1078  git push
+ 1079  exit
+ 1080  pytest -vv page_tests/chat_test.py 
+ 1081  pytest
+ 1082  pytest -vv page_tests/chat_test.py 
+ 1083  pip install -r requirements.txt
+ 1084  pytest -vv page_tests/chat_test.py 
+ 1085  pytest -vv page_tests/home_test.py 
+ 1086  pip install -r requirements.txt
+ 1087  pytest windows-selenium-django.yml
+ 1088  pytest .github/workflows/windows-selenium-django.yml
+ 1089  pytest C:\Users\jennm\OneDrive\Documents\GitHub\bfa\.github\workflows\windows-selenium-django.yml
+ 1090  pytest 
+ 1091  pytest Django & Selenium CI (Windows)
+ 1092  pytest Django & Selenium CI
+ 1093  pytest
+ 1094  geckodriver --version
+ 1095  sudo snap install firefox
+ 1096  pytest
+ 1097  sudo snap install firefox
+ 1098  pytest
+ 1099  pytest -vv home_test.py
+ 1100  pytest -vv page_test/home_test.py
+ 1101  pytest
+ 1102  pytest -vv login_test.py
+ 1103  git add .
+ 1104  git commit -m "getting testing working correctly"
+ 1105  git push
+ 1106  exit
+ 1107  pytest
+ 1108  exitexit
+ 1109  exit
+ 1110  python3 manage.py runserver
+ 1111  python3 manage.py migrate
+ 1112  python3 manage.py makemigrations --merge
+ 1113  python3 manage.py migrate
+ 1114  python3 manage.py makemigrations
+ 1115  python3 manage.py migrate
+ 1116  exit
+ 1117  pytest
+ 1118  pip install django-environ
+ 1119  python3 manage.py runserver
+ 1120  python3 manage.py runserver 9000
+ 1121  python3 manage.py runserver
+ 1122  python3 manage.py runserver --force
+ 1123  python3 manage.py runserver 8000
+ 1124  python3 manage.py runserver
+ 1125  python3 manage.py makemigrations
+ 1126  python3 manage.py migrate
+ 1127  python3 manage.py makemigrations
+ 1128  python3 manage.py migrate
+ 1129  python3 manage.py runserver
+ 1130  python3 manage.py runserver 8000
+ 1131  python3 manage.py runserver 8001
+ 1132  python3 manage.py runserver 800
+ 1133  python3 manage.py runserver 8000
+ 1134  git status
+ 1135  git pull
+ 1136  exit
+ 1137  vite@atest
+ 1138  vite@latest
+ 1139  git add .
+ 1140  git rebase
+ 1141  git pull
+ 1142  exit
+ 1143  gh pr checkout 1694
+ 1144  sudo snap install gh
+ 1145  gh pr checkout 1694
+ 1146  gh auth login
+ 1147  gh pr checkout 1694
+ 1148  git config --global url."https://".insteadOf git://
+ 1149  git remote -v
+ 1150  gh pr checkout 1694
+ 1151  git --version
+ 1152  git credential-cache exit
+ 1153  sudo apt update
+ 1154  sudo apt install --reinstall git
+ 1155  git remote -v
+ 1156  git fetch
+ 1157  git pull
+ 1158  exit
+ 1159  python3 manage.py runserver
+ 1160  cd ..
+ 1161  ls
+ 1162  exit
+ 1163  cd ..
+ 1164  cd vibetube
+ 1165  ls
+ 1166  python3 manage.py build
+ 1167  django shell
+ 1168  python
+ 1169  python3
+ 1170  python3 manage.py build
+ 1171  pip install django-dj-database-url
+ 1172  pip install dj-database-url
+ 1173  python3 manage.py build\
+ 1174  python3 manage.py build
+ 1175  pip install django-heroku
+ 1176  python3 manage.py build
+ 1177  pip install django-storages
+ 1178  python3 manage.py build
+ 1179  aws
+ 1180  aws configure
+ 1181  aws s3api create-bucket --bucket your-bucket-name --region your-region
+ 1182  export AWS_ACCESS_KEY_ID=<XXXXXXXXXXX> && \
+ 1183  export AWS_SECRET_ACCESS_KEY=<XXXXXXXXXXX> && \
+ 1184  export AWS_DEFAULT_REGION=<XXXXXX>
+ 1185  exit
+ 1186  export AWS_ACCESS_KEY_ID=<XXXXXXXXXXX> && \
+ 1187  export AWS_SECRET_ACCESS_KEY=<XXXXXXXXXXX> && \
+ 1188  export AWS_DEFAULT_REGION=<XXXXXX>
+ 1189  export AWS_DEFAULT_REGION
+ 1190  export AWS_SECRET_ACCESS_KEY > keys.txt
+ 1191  export AWS_ACCESS_KEY > keys.txt
+ 1192  LS
+ 1193  ls
+ 1194  cat keys.txt
+ 1195  aws
+ 1196  aws help
+ 1197  export AWS_ACCESS_KEY_ID=<XXXXXXXXXXX> && \
+ 1198  export AWS_SECRET_ACCESS_KEY=<XXXXXXXXXXX> && \
+ 1199  export AWS_DEFAULT_REGION=<XXXXXX>
+ 1200  aws configure
+ 1201  aws s3api create-bucket --bucket your-bucket-name --region your-region
+ 1202  aws s3api create-bucket --bucket vibetube --region your-region
+ 1203  aws configure
+ 1204  aws s3api create-bucket --bucket vibetube --region us-eat-2
+ 1205  aws s3api create-bucket --bucket vibetube --region us-east-2
+ 1206  aws ec2 create-vpc-endpoint --vpc-id vpcid --service-name com.amazonaws.region.s3   --route-table-ids routetableid
+ 1207  aws ec2 create-vpc-endpoint --vpc-id vpcid --servaws ec2 create-vpc-endpoint --vpc-id vpcid --vpc-endpoint-type Interface   --service-name com.amazonaws.region.codeartifact.repositories --subnet-ids subnetid   --security-group-ids groupid --private-dns-enabledice-name com.amazonaws.region.s3   --route-table-ids routetableid
+ 1208  python3 manage.py build
+ 1209  python3 manage.py runserver
+ 1210  pip install moviepy
+ 1211  python3 manage.py runserver
+ 1212  postgres
+ 1213  exit
+ 1214  psql
+ 1215  postgres
+ 1216  psql - postgres
+ 1217  su - postgres
+ 1218  su - jenntech
+ 1219  python3 manage.py runserver
+ 1220  python3 manage.py makemigrations
+ 1221  python3 manage.py migrate
+ 1222  python3 manage.py runserver
+ 1223  git init
+ 1224  git add .
+ 1225  git commit -m "initial commit"
+ 1226  git push
+ 1227  cd ..
+ 1228  django-admin startproject vitaDating
+ 1229  cd vitaDating/
+ 1230  ls
+ 1231  code .
+ 1232  python3 manage.py makemigrations
+ 1233  pip freeze > requirements.txt
+ 1234  pip install -r requirements.txt
+ 1235  python3 manage.py runserver
+ 1236  python3 manage.py makemigrations
+ 1237  pip install boto3
+ 1238  python3 manage.py runserver
+ 1239  python3 manage.py makemigrations
+ 1240  python3 manage.py migrate
+ 1241  su - postgres
+ 1242  git init
+ 1243  git add .
+ 1244  git commit -m "initial commmit"
+ 1245  echo "# vitaDating" >> README.md
+ 1246  git init
+ 1247  git branch -M main
+ 1248  git remote add origin git@github.com:jenntech2018/vitaDating.git
+ 1249  git add .
+ 1250  git push -u main
+ 1251  git push -u origin main
+ 1252  git remote add origin git@github.com:jenntech2018/vitaDating.git
+ 1253  git push -u origin main
+ 1254  git remote add origin https://github.com/jenntech2018/vitaDating.git
+ 1255  git push -u origin main
+ 1256  ls -al ~/.ssh
+ 1257  ssh-keygen -t rsa -b 4096 -C "jenntech2018@gmail.com"
+ 1258  eval "$(ssh-agent -s)"
+ 1259  ssh-add ~/.ssh/id_rsa
+ 1260  cat ~/.ssh/id_rsa.pub
+ 1261  ssh -T git@github.com
+ 1262  git push -u origin main
+ 1263  git add .
+ 1264  git commit -m "initial commit"
+ 1265  git push -u origin main
+ 1266  python3 manage.py makemigrations
+ 1267  python3 manage.py runserver
+ 1268  python3 manage.py migrate
+ 1269  git remote remove origin
+ 1270  git remote add origin https://github.com/jenntech2018/vita_dating.git
+ 1271  git add .
+ 1272  git commit -m "initial commit"
+ 1273  git push
+ 1274  exit
+ 1275  python3 manage.py makemigrations
+ 1276  python3 manage.py runserver
+ 1277  git checkout -b temp-branch
+ 1278  git branch -D main  # or git branch -D master if it's named master
+ 1279  git push origin --delete main  # or master
+ 1280  history > history.txt

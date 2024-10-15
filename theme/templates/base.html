@@ -159,8 +159,7 @@
 				<div class="container mx-auto px-4">
 				  <div class="flex items-center justify-between py-1">
 					<div>
-						<a href="/"><img style="height: 25px; width: 95px;" class="inline" src="{% static 'images/vita-dating.png' %}"/></a><h1>𝓥𝓲𝓽𝓪-𝓓𝓪𝓽𝓲𝓷𝓰</h1>
-						<h3>More than just connections...</h3>
+						<a href="/"><img style="height: 60px; width: 120px;" class="inline" src="{% static 'images/vita-dating.png' %}"/></a>
 					</div>
 					<div class="hidden relative text-gray-600 sm:flex sm:items-center">
 						<input x-ref="searchBox" id="search-box" style="width: 400px;" type="search" name="serch" placeholder="Search" class="bg-gray-100 shadow h-10 px-5 pr-10 rounded-full text-sm focus:outline-none">
@@ -172,7 +171,7 @@
 					</div>
 						{% if not request.user.is_authenticated %}
 						<div class="flex justify-between items-center">
-							<a id="upload-btn" class="cursor-pointer mt-2 hover:underline font-bold" @click="showLogin = true">Upload</a>
+							<a id="upload-btn" class="cursor-pointer mt-2 hover:underline font-bold" @click="showLogin = true">Success Story?</a>
 							<button id="login" @click="showLogin = true" class="ml-2 rounded-sm mt-2 auth-buttons mb-2 inline text-white focus:outline-none focus:ring shadow-lg hover:shadow-none transition-all duration-300">Log in</button>
 						</div>
 						{% else %}
