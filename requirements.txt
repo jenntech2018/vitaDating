@@ -47,7 +47,6 @@ factory-boy==3.3.0
 Faker==23.3.0
 filelock==3.6.0
 gprof2dot==2022.7.29
-gyp==0.1
 h11==0.14.0
 html5lib==1.1
 httpcore==1.0.2
