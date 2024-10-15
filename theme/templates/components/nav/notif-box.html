@@ -37,7 +37,7 @@ x-transition:leave-end="opacity-0 transform" style="height: 700px; width: 380px;
                     <h6 class="font-semibold text-xl mt-3 ml-5 text-black opacity-80">Today</h6>
                     {% for notif in notifs_all %}
                     <div class='shadow-lg ml-3 mr-5 mb-0.5 cursor-pointer bg-gray-50 border-solid rounded'>
-                    <span onclick="window.location.href='{{notif.video.video.url}}'">
+                    <span onclick="window.location.href='{{notif.activity.activity.url}}'">
                         <img
                             class="rounded-full w-9 h-9 inline mt-4 p-1"
                             alt="{{notif.sender.display_name}}'s photo"
@@ -57,14 +57,14 @@ x-transition:leave-end="opacity-0 transform" style="height: 700px; width: 380px;
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd" />
             </svg>
             <span class="text-center">
-                <h6 class="font-semibold text-xl text-black opacity-80">Likes on your videos</h6>
-                <p class="text-sm text-gray-500 opacity-75">When someone likes one of your videos, you'll see it here.</p>
+                <h6 class="font-semibold text-xl text-black opacity-80">Likes on your activities</h6>
+                <p class="text-sm text-gray-500 opacity-75">When someone likes one of your activities, you'll see it here.</p>
             </span>
             {% else %}
                 <h6 class="font-semibold text-xl mt-3 ml-5 text-black opacity-80">Today</h6>
                 {% for notif in notifs_likes %}
                 <div class='shadow-lg ml-3 mr-5 mb-0.5 cursor-pointer bg-gray-50 border-solid rounded'>
-                <span  onclick="window.location.href='{{notif.video.video.url}}'">
+                <span  onclick="window.location.href='{{notif.activity.activity.url}}'">
                     <img
                         class="rounded-full w-9 h-9 inline mt-4 p-1"
                         alt="{{notif.sender.display_name}}'s photo"
@@ -84,14 +84,14 @@ x-transition:leave-end="opacity-0 transform" style="height: 700px; width: 380px;
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
             </svg>
             <span class="text-center">
-                <h6 class="font-semibold text-xl text-black opacity-80">Comments on your videos</h6>
-                <p class="text-sm text-gray-500 opacity-75">When someone comments on one of your videos, you'll see it here.</p>
+                <h6 class="font-semibold text-xl text-black opacity-80">Comments on your activities</h6>
+                <p class="text-sm text-gray-500 opacity-75">When someone comments on one of your activities, you'll see it here.</p>
             </span>
             {% else %}
                 <h6 class="font-semibold text-xl mt-3 ml-5 text-black opacity-80">Today</h6>
                 {% for notif in notifs_comments %}
                 <div class='shadow-lg ml-3 mr-5 mb-0.5 cursor-pointer bg-gray-50 border-solid rounded'>
-                <span onclick="window.location.href='{{notif.video.video.url}}'">
+                <span onclick="window.location.href='{{notif.activity.activity.url}}'">
                     <img
                         class="rounded-full w-9 h-9 inline mt-4 p-1"
                         alt="{{notif.sender.display_name}}'s photo"
@@ -118,7 +118,7 @@ x-transition:leave-end="opacity-0 transform" style="height: 700px; width: 380px;
                 <h6 class="font-semibold text-xl mt-3 ml-5 text-black opacity-80">Today</h6>
                 {% for notif in notifs_mentions %}
                 <div class='shadow-lg ml-3 mr-5 mb-0.5 cursor-pointer bg-gray-50 border-solid rounded'>
-                <span onclick="window.location.href='{{notif.video.video.url}}'">
+                <span onclick="window.location.href='{{notif.activity.activity.url}}'">
                     <img
                         class="rounded-full w-9 h-9 inline mt-4 p-1"
                         alt="{{notif.sender.display_name}}'s photo"
@@ -145,7 +145,7 @@ x-transition:leave-end="opacity-0 transform" style="height: 700px; width: 380px;
                 <h6 class="font-semibold text-xl mt-3 ml-5 text-black opacity-80">Today</h6>
                 {% for notif in notifs_followers %}
                 <div class='shadow-lg ml-3 mr-5 mb-0.5 cursor-pointer bg-gray-50 border-solid rounded'>
-                <span onclick="window.location.href='{{notif.video.video.url}}'">
+                <span onclick="window.location.href='{{notif.activity.activity.url}}'">
                     <img
                         class="rounded-full w-9 h-9 inline mt-4 p-1"
                         alt="{{notif.sender.display_name}}'s photo"

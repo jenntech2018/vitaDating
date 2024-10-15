@@ -45,10 +45,10 @@
     <main>
         <form method="POST" enctype="multipart/form-data" class="flex">
             {% csrf_token %}
-            {% include 'video/components/upload-left.html' with form=form %}
-            {% include 'video/components/upload-right.html' with form=form %}
+            {% include 'activity/components/upload-left.html' with form=form %}
+            {% include 'activity/components/upload-right.html' with form=form %}
         </form>
     </main>
-    {% include 'video/components/footer.html' %}
+    {% include 'activity/components/footer.html' %}
 		<script src="{% static 'upload.js' %}"></script>
 </body>

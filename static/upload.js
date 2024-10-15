@@ -8,19 +8,19 @@ caption.addEventListener("keyup", () => {
     }
 })
 
-let video = document.getElementById("upload-input");
-video.onchange = (ev) => {
-    if (video.files) {
-        let videoPreview = document.getElementById("video-preview");
+let activity = document.getElementById("upload-input");
+activity.onchange = (ev) => {
+    if (activity.files) {
+        let activityPreview = document.getElementById("activity-preview");
         document.getElementById("upload-submit").disabled = false
         document.getElementById("preview-div").classList.remove("hidden")
         document.getElementById("file-uploader").classList.add("hidden")
         document.getElementById("upload-input").classList.add("hidden")
         
         let reader = new FileReader();
-        reader.readAsDataURL(video.files[0])
+        reader.readAsDataURL(activity.files[0])
         reader.onload = (e) => {
-            videoPreview.src = e.target.result;
+            activityPreview.src = e.target.result;
         }
     }
 }

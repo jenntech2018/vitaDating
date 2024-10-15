@@ -1,18 +1,18 @@
 <div id="upload-vid-div" class="flex flex-col flex-end">
     <div id="header-text">
-        <h2 id="upload-text" class="text-5xl font-bold mt-24">Upload video</h2>
-        <p id="helper-text" class="text-lg text-gray-400">This video will be published to @{{request.user.username}}</p>
+        <h2 id="upload-text" class="text-5xl font-bold mt-24">Upload activity</h2>
+        <p id="helper-text" class="text-lg text-gray-400">This activity will be published to @{{request.user.username}}</p>
     </div>
     <br>
     <div id="upload-box" class="hover:bg-opacity-75 relative text-gray-400 bg-gray-300 bg-opacity-50 rounded-md flex w-64 max-w-xs flex-col justify-center">
-            {{ form.video }}
+            {{ form.activity }}
             <div id="file-uploader" class="absolute right-0 left-0 m-auto">
                 <div id="upload-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
                     </svg>
                 </div>
-                <div id="select-txt" class="text-xl">Select video to upload</div> 
+                <div id="select-txt" class="text-xl">Select activity to upload</div> 
                 <div id="select-txt" class="text-md">Or drag and drop a file</div> 
                 <ul class="list-disc list-inside ml-12 mt-4 text-left">
                     <li>MP4 or WebM</li>
@@ -21,16 +21,16 @@
                 </ul>
             </div>        
             <div id="preview-div" class="hidden">
-                    <video
-                    id="video-preview"
-                    class="video-js"
+                    <activity
+                    id="activity-preview"
+                    class="activity-js"
                     src=""
                     controls
                     preload="auto"
                     width="640"
                     style="height: 40vh;"
                     data-setup="{}">
-                </video>
+                </activity>
             </div>
         </div>
     </div>

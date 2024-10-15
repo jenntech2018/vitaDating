@@ -1,8 +1,8 @@
 # from django.shortcuts import render, reverse, HttpResponseRedirect
 # from notifications.models import Notifications
 
-# from vibe_user.models import Viber
-# from video.models import Video
+# from vitaDatinguser.models import vitaDatinguser
+# from activity.models import activity
 
 # Create your views here.
 '''
@@ -17,28 +17,28 @@ def follow_notifcation(request, user_id):
 
 // call this function when comment is made to check for mentions
 def mention_notifcation(requst, post_id):
-    latest_post = Video.objects.latest('timestamp')
+    latest_post = activity.objects.latest('timestamp')
     mentions = re.findall(r'@([A-Za-z0-9_]+)', latest_post.comments.body)
 
 testing:
 
-from video.models import Video
-from vibe_user.models import Viber
+from activity.models import activity
+from vitaDatinguser.models import vitaDatinguser
 from notifications.models import Notifications
 
-from vibe_user.models import Viber:
+from vitaDatinguser.models import vitaDatinguser:
     display_name = models.CharField(max_length=120, null=True, blank=True)
     bio = models.TextField()
     dob = models.DateField(blank=True,null=True)
-    followers = models.ManyToManyField('self', symmetrical=False, related_name='viber_followers')
-    following = models.ManyToManyField('self', symmetrical=False, related_name='viber_following')
-    videos = models.ManyToManyField(Video, related_name='viber_videos')
-    # sound = models.ManyToManyField('self', symmetrical=False, related_name='viber_sound')
+    followers = models.ManyToManyField('self', symmetrical=False, related_name='vitaDatinguser_followers')
+    following = models.ManyToManyField('self', symmetrical=False, related_name='vitaDatinguser_following')
+    activities = models.ManyToManyField(activity, related_name='vitaDatinguser_activitys')
+    # sound = models.ManyToManyField('self', symmetrical=False, related_name='vitaDatinguser_sound')
     profile_photo = models.ImageField(upload_to=user_photo_path, blank=True, null=True)
 
-from video.models import Video:
-    creator = models.ForeignKey('vibe_user.Viber', null=True, blank=True, on_delete=models.CASCADE, related_name="video_creator")
-    video = models.FileField(upload_to=user_vid_path)
+from activity.models import activity:
+    creator = models.ForeignKey('vitaDatinguser.vitaDatinguser', null=True, blank=True, on_delete=models.CASCADE, related_name="activity_creator")
+    activity = models.FileField(upload_to=user_vid_path)
     uuid = models.IntegerField(default=gen_uuid, unique=True)
     privacy = models.CharField(max_length=3,choices=PRIVACY_SETTINGS)
     comments = models.ManyToManyField("Comment", blank=True)
@@ -48,7 +48,7 @@ from video.models import Video:
 
 notification creation:
 - create an object that has a foreign key relationship to a post
-  ex: n = MentionNotifications.objects.create(post=video1)
+  ex: n = MentionNotifications.objects.create(post=activity1)
 
 - add a user to the sender property who is being mentioned
   ex: n.sender = user1 // user1 is being mentioned @user1
@@ -57,10 +57,10 @@ notification creation:
   ex: n.reciever = user2 // person typeing the @user1
 
   n.mentions.all()
-<QuerySet [<Viber: vibetubez@gmail.com>]>
+<QuerySet [<vitaDatinguser: VitaDatingz@gmail.com>]>
 
   n.mentions.filter(id=1)
-<QuerySet [<Viber: vibetubez@gmail.com>]>
+<QuerySet [<vitaDatinguser: VitaDatingz@gmail.com>]>
 '''
 
 
@@ -74,10 +74,10 @@ notification creation:
 
 
 # def like_notification(request):
-#     vid = Video.objects.get(id=1)
+#     vid = activity.objects.get(id=1)
 #     Notifications.objects.create(
 #       n_type='L',
-#       video=vid,
+#       activity=vid,
 #       sender=request.user.id,
 #       reciever=request.user.id
 #     )

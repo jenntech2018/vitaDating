@@ -1,3 +1,3 @@
 Procfile
 -------------------------------
-web: gunicorn vibetube.wsgi --log-file -
+web: gunicorn VitaDating.wsgi --log-file -

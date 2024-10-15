@@ -5,10 +5,10 @@ from django.urls import reverse
 
 import datetime
 
-from video.models import Video
-from vibe_auth.forms import LoginForm, RegistrationForm
-from vibe_user.models import Viber
-from vibetube.helpers import auth_user, check_for_name, check_for_username
+from activity.models import Activity
+from vitaDatingauth.forms import LoginForm, RegistrationForm
+from vitaDatinguser.models import vitaDatinguser
+from VitaDating.helpers import auth_user, check_for_name, check_for_username
 
 class MainView(View):
     def post(self, request):
@@ -21,7 +21,7 @@ class MainView(View):
                 username = check_for_username(data['username'], display_name)
                 dob = datetime.date(int(data["year"]), int(data["month"]), int(data["day"]))
                 data["username"] = username
-                Viber.objects.create_user(
+                vitaDatinguser.objects.create_user(
                     username=username,
                     email=data["email"],
                     password=data["password"],
@@ -33,6 +33,6 @@ class MainView(View):
                 return redirect(reverse("main"))
 
     def get(self, request):
-        videos = Video.objects.all().order_by('-timestamp')
-        suggested_creators = Viber.objects.all().filter(verified=True).order_by('followers')[:10]
-        return render(request, "main/main.html", {"videos": videos, "suggested": suggested_creators})
+        activities = Activity.objects.all().order_by('-timestamp')
+        suggested_creators = vitaDatinguser.objects.all().filter(verified=True).order_by('followers')[:10]
+        return render(request, "main/main.html", {"activities": activities, "suggested": suggested_creators})

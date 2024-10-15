@@ -45,7 +45,7 @@ style="z-index: 1000;"
             <button
             type="button"
             id="reg-modal-btn"
-            @click="fetch('http://vibetube.herokuapp.com/api-vibes/auth/verify_token/', 
+            @click="fetch('http://VitaDating.herokuapp.com/api-vibes/auth/verify_token/', 
                           {method: 'POST', 
                            headers: 
                            {
@@ -68,7 +68,7 @@ style="z-index: 1000;"
 
     <footer>
       <br><br><br><br><br>
-      <p class="text-gray-400 text-xs text-center inline-block">By continuing, you agree to VibeTube's <a class="text-black" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Terms of Service</a> and confirm that you have read VibeTube's <a class="text-black" href="https://www.youtube.com/watch?v=RBs21CFBALI">Privacy Policy.</a></p>
+      <p class="text-gray-400 text-xs text-center inline-block">By continuing, you agree to VitaDating's <a class="text-black" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Terms of Service</a> and confirm that you have read VitaDating's <a class="text-black" href="https://www.youtube.com/watch?v=RBs21CFBALI">Privacy Policy.</a></p>
       <br><br><hr><br>
         <h5 class="ml-6 mb-10 float-left text-md">Already have an account? <button class="ml-1 focus:outline-none" style="color: #fc5e2a; font-weight: 600;" @click="showLogin = true, showRegister = false">Log in</button></h5>
         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-4 mt-1 float-right inline" fill="none" viewBox="0 0 24 24" stroke="gray">
@@ -89,7 +89,7 @@ style="z-index: 1000;"
 
   const sendToken = () => {
     userEmail = document.getElementById("reg-email").value
-    url = "http://vibetube.herokuapp.com/api-vibes"
+    url = "http://VitaDating.herokuapp.com/api-vibes"
     fetch(`${url}/auth/send_token/`, {
       method: "POST",
       headers: {

@@ -1,7 +1,7 @@
 from django import forms
-from vibe_user.models import Viber
+from vitaDatinguser.models import vitaDatinguser
 
 class MessageForm(forms.Form):
     message = forms.CharField(widget=forms.Textarea)
-    recipient = forms.ModelChoiceField(queryset=Viber.objects.all())
+    recipient = forms.ModelChoiceField(queryset=vitaDatinguser.objects.all())
  

@@ -22,20 +22,20 @@
     <div id="sound-info-top" class="mt-5 ml-4">
         <h2 class="font-bold text-3xl">original sound</h2>
         <h4 class="font-semibold text-xl">{{sound.creator.username}}</h4>
-        <p class="text-gray-500">{{used_by|length}} video{%if usedby|length > 1 %}s{%endif%}</p>
+        <p class="text-gray-500">{{used_by|length}} activity{%if usedby|length > 1 %}s{%endif%}</p>
     </div>
     </div>
     <div id="used-by" style="width: 600px; min-height: 25vh;" class="">
         <div>
             {% for vid in used_by %}
-                <video
-                    src="{{vid.video.url}}"
-                    class="video-js vjs-theme-forest border-white inline border-t-2"
+                <activity
+                    src="{{vid.activity.url}}"
+                    class="activity-js vjs-theme-forest border-white inline border-t-2"
                     controls
                     style="width: 178px; height: 260px;"
                     preload="auto"
                     data-setup='{}'>
-                </video>
+                </activity>
             {% endfor %}
         </div>
 </div>
