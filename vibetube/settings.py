@@ -11,11 +11,31 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
-import os
 import environ
+import os
+import os
+from django.core.exceptions import ImproperlyConfigured
+
+def get_env_variable(var_name):
+    """Get the environment variable or return exception."""
+    try:
+        return os.environ[var_name]
+    except KeyError:
+        raise ImproperlyConfigured(f"Set the {var_name} environment variable.")
+
+# Fetch SECRET_KEY from environment
+SECRET_KEY = "*h7p1h)h)5hzj)ztwq6a3_mf0hdr#j$9y6d2@e8#qfsn0m!-7!"
+# Initialize environment variables
 env = environ.Env(
-    DEBUG=(bool, True)
+    DEBUG=(bool, True)  # Default value for DEBUG is True
 )
+
+# Read the .env file if it exists
+environ.Env.read_env()  # This will look for a .env file in the current directory
+
+# Use the environment variables
+DEBUG = env('DEBUG')  # Retrieve the DEBUG setting from environment variables
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=['localhost'])  #
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,11 +46,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 environ.Env.read_env()
-SECRET_KEY = os.environ["secret_key"]
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
+
 SITE_URL = "http://vibetube.herokuapp.com"
 
 
@@ -87,28 +107,12 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'theme.processors.base_login_form',
-                'theme.processors.base_register_form',
-                'theme.processors.notifications_all',
-                'theme.processors.notifications_likes',
-                'theme.processors.notifications_comments',
-                'theme.processors.notifications_followers',
-                'theme.processors.notifications_mentions',
-                'theme.processors.users_list',
-                'theme.processors.inbox',
                 'django.template.context_processors.media'
             ],
         },
     },
 ]
 
-AWS_STORAGE_BUCKET_NAME = 'vibetubebucket'
-AWS_S3_REGION_NAME = 'us-east-2'  # e.g. us-east-2
-AWS_ACCESS_KEY_ID = os.environ["AWS_ACCESS_KEY_ID"]
-AWS_SECRET_ACCESS_KEY = os.environ["AWS_SECRET_ACCESS_KEY"]
-
-# Tell django-storages the domain to use to refer to static files.
-AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 
 # Tell the staticfiles app to use S3Boto3 storage when writing the collected static files (when
 # you run `collectstatic`).
@@ -124,8 +128,21 @@ WSGI_APPLICATION = 'vibetube.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 import dj_database_url
-DATABASES={}
-DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+
+DATABASES = { 
+   'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }}
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'template1',
+        'USER': 'postgres',
+        'PASSWORD': '1234',
+        'HOST': 'localhost',
+        'PORT': '',
+    }}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators

@@ -3,8 +3,7 @@ import os
 import environ
 import random
 environ.Env.read_env()
-AWS_ACCESS_KEY_ID = os.environ["AWS_ACCESS_KEY_ID"]
-AWS_SECRET_ACCESS_KEY = os.environ["AWS_SECRET_ACCESS_KEY"]
+
 def auth_user(request, data):
         if '@' in data['username']:
             user = authenticate(request, email=data['username'], password=data["password"])
